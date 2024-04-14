@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-1.png">
+                <img src="assets/images/product-1.png">
             </a>
             
             <a href="products-details.html">
@@ -43,7 +43,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-2.png">
+                <img src="assets/images/product-2.png">
             </a>
             
             <a href="products-details.html">
@@ -60,7 +60,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-3.png">
+                <img src="assets/images/product-3.png">
             </a>
             
             <a href="products-details.html">
@@ -77,7 +77,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-4.png">
+                <img src="assets/images/product-4.png">
             </a>
             
             <a href="products-details.html">
@@ -97,7 +97,7 @@
     <div class="row">
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-5.png">
+                <img src="assets/images/product-5.png">
             </a>
             
             <a href="products-details.html">
@@ -114,7 +114,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-6.png">
+                <img src="assets/images/product-6.png">
             </a>
             
             <a href="products-details.html">
@@ -131,7 +131,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-7.png">
+                <img src="assets/images/product-7.png">
             </a>
             
             <a href="products-details.html">
@@ -148,7 +148,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-8.png">
+                <img src="assets/images/product-8.png">
             </a>
             
             <a href="products-details.html">
@@ -167,7 +167,7 @@
     <div class="row">
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-9.png">
+                <img src="assets/images/product-9.png">
             </a>
             
             <a href="products-details.html">
@@ -184,7 +184,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-10.png">
+                <img src="assets/images/product-10.png">
             </a>
             
             <a href="products-details.html">
@@ -201,7 +201,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-11.png">
+                <img src="assets/images/product-11.png">
             </a>
             
             <a href="products-details.html">
@@ -218,7 +218,7 @@
         </div>
         <div class="col-4">
             <a href="products-details.html"> 
-                <img src="../images/product-12.png">
+                <img src="assets/images/product-12.png">
             </a>
             
             <a href="products-details.html">

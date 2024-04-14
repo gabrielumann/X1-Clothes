@@ -19,7 +19,7 @@
                         <a href="pages/products.html" class="btn">Explore Now &#8594;</a>
                     </div>
                     <div class="col-2">
-                        <img  src="images/centralcee.png" >
+                        <img  src="assets/images/centralcee.png" >
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                 <h2 class="title">Categorias</h2>
                 <div class="row">
                     <div class="col-3">
-                        <a href="pages/products.html">
-                            <img src="images/category-1.jpg">
+                        <a href="/products.html">
+                            <img src="assets/images/category-1.jpg">
                             <h2> 
                             Calças 
                         </a> 
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-3">
                         <a href="pages/products.html">
-                            <img src="images/category-2.jpg">
+                            <img src="assets/images/category-2.jpg">
                             <h2> 
                             Tênis   
                         </a> 
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-3">
                         <a href="pages/products.html">
-                            <img src="images/category-3.jpg">
+                            <img src="assets/images/category-3.jpg">
                             <h2> 
                             Casacos   
                         </a> 
@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col-4">
                     <a href="pages/products-details.html"> 
-                        <img class="productsImg" src="images/product-1.png">
+                        <img class="productsImg" src="assets/images/product-1.png">
                     </a>
                     <a href="pages/products-details.html">
                         <h4>CORTEIZ - Jaqueta Jeans Trucker C-Starz "Azul"</h4>
@@ -86,7 +86,7 @@
             
                     <div class="col-4">
                         <a href="pages/products-details.html"> 
-                            <img class="productsImg" src="images/product-2.png">
+                            <img class="productsImg" src="assets/images/product-2.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -104,7 +104,7 @@
             
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-3.png">
+                            <img class="productsImg" src="assets/images/product-3.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -122,7 +122,7 @@
             
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-4.png">
+                            <img class="productsImg" src="assets/images/product-4.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-5.png">
+                            <img class="productsImg" src="assets/images/product-5.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-6.png">
+                            <img class="productsImg" src="assets/images/product-6.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -177,7 +177,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-7.png">
+                            <img class="productsImg" src="assets/images/product-7.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -194,7 +194,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-8.png">
+                            <img class="productsImg" src="assets/images/product-8.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -213,7 +213,7 @@
                 <div class="row">
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-9.png">
+                            <img class="productsImg" src="assets/images/product-9.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -230,7 +230,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-10.png">
+                            <img class="productsImg" src="assets/images/product-10.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -247,7 +247,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-11.png">
+                            <img class="productsImg" src="assets/images/product-11.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -264,7 +264,7 @@
                     </div>
                     <div class="col-4">
                         <a href="pages/products-details.html">
-                            <img class="productsImg" src="images/product-12.png">
+                            <img class="productsImg" src="assets/images/product-12.png">
                         </a>
                         
                         <a href="pages/products-details.html">
@@ -287,7 +287,7 @@
             <div class="small-container">
                 <div class="row">
                     <div class="col-2">
-                        <img src="images/bapesta.png" class="offer-img">
+                        <img src="assets/images/bapesta.png" class="offer-img">
                     </div>
                     <div class="col-2">
                         <p>Exclusivamente na <span>X1 Clothes</span></p>
@@ -321,7 +321,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <img src="images/user-1.png">
+                        <img src="assets/images/user-1.png">
                         <h3>Sean Parker</h3>
 
                     </div>
@@ -339,7 +339,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="images/user-2.png">
+                        <img src="assets/images/user-2.png">
                         <h3>Max Retch</h3>
 
                     </div>
@@ -358,32 +358,9 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="images/user-3.png">
+                        <img src="assets/images/user-3.png">
                         <h3>Ana Mobs</h3>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--    brands     -->
-        <div class="brands">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-5">
-                        <img src="images/logo-bape.png">
-                    </div>
-                    <div class="col-5">
-                        <img src="images/logo-adidas.png">
-                    </div>
-                    <div class="col-5">
-                        <img src="images/logo-corteiz.png  ">
-                    </div>
-                    <div class="col-5">
-                        <img src="images/logo-trapstar.png">
-                    </div>
-                    <div class="col-5">
-                        <img src="images/logo-nike.png">
                     </div>
                 </div>
             </div>

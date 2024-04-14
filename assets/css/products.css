@@ -25,6 +25,5 @@ select:focus{
 .page-btn span:hover{
     background: #9600ff;
     color: #fff;
-    border-radius: 20px;
 }
 

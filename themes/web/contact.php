@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="/images/centralcee.png" >
+                    <img  src="assets/images/centralcee.png" >
                 </div>
                 <div class="col-2">
                     <div class="form-container">
@@ -35,28 +35,6 @@
             </div>
 
 
-<!--    brands     -->
-<div class="brands">
-    <div class="small-container">
-        <div class="row">
-            <div class="col-5">
-                <img src="/images/logo-godrej.png">
-            </div>
-            <div class="col-5">
-                <img src="/images/logo-oppo.png">
-            </div>
-            <div class="col-5">
-                <img src="/images/logo-coca-cola.png">
-            </div>
-            <div class="col-5">
-                <img src="/images/logo-paypal.png">
-            </div>
-            <div class="col-5">
-                <img src="/images/logo-philips.png">
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

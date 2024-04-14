@@ -15,20 +15,20 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="../images/gallery-1.jpg" width="100%" id="ProductImg">
+                <img src="assets/images/gallery-1.jpg" width="100%" id="ProductImg">
                 
                 <div class="small-img-row">
                     <div class="small-img-col">
-                        <img src="../images/gallery-1.jpg" width="100%" class="small-img">
+                        <img src="assets/images/gallery-1.jpg" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
-                        <img src="../images/gallery-2.jpg" width="100%" class="small-img">
+                        <img src="assets/images/gallery-2.jpg" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
-                        <img src="../images/gallery-3.jpg" width="100%" class="small-img">
+                        <img src="assets/images/gallery-3.jpg" width="100%" class="small-img">
                     </div>
                     <div class="small-img-col">
-                        <img src="../images/gallery-4.jpg" width="100%" class="small-img">
+                        <img src="assets/images/gallery-4.jpg" width="100%" class="small-img">
                     </div>
                 </div>
                 
@@ -74,7 +74,7 @@
     
     <div class="row">
         <div class="col-4">
-            <img src="../images/product-9.jpg">
+            <img src="assets/images/product-9.jpg">
             <h4>BEL Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -86,7 +86,7 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <img src="../images/product-10.jpg">
+            <img src="assets/images/product-10.jpg">
             <h4>BEL Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -98,7 +98,7 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <img src="../images/product-11.jpg">
+            <img src="assets/images/product-11.jpg">
             <h4>BEL Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -110,7 +110,7 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <img src="../images/product-12.jpg">
+            <img src="assets/images/product-12.jpg">
             <h4>BEL Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>

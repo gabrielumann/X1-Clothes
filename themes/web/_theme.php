@@ -14,7 +14,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/images/logox1.png">
+                        <a href="<?= url(); ?>"><img src="assets/images/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -40,15 +40,40 @@
         ?>
     </div>
 
+            <!--    brands     -->
+        <div class="brands">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-5">
+                        <img src="assets/images/logo-bape.png">
+                    </div>
+                    <div class="col-5">
+                        <img src="assets/images/logo-adidas.png">
+                    </div>
+                    <div class="col-5">
+                        <img src="assets/images/logo-corteiz.png  ">
+                    </div>
+                    <div class="col-5">
+                        <img src="assets/images/logo-trapstar.png">
+                    </div>
+                    <div class="col-5">
+                        <img src="assets/images/logo-nike.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 <!--             footer                -->
 
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <div class="footer-col-1">
-                        <h3>Download Our App</h3>
+                        <h3>Baixe o nosso App</h3>
                         <p>
-                            Download App for Android and ios mobile phone.
+                            Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
                             <img src="assets/images/play-store.png">
@@ -57,7 +82,7 @@
                     </div>
                     <div class="footer-col-2">
                         <div class="logo">
-                            <a href="index.html">X1 Clothes</span>
+                            <a href="<?= url(); ?>">X1 Clothes</span>
                             </a>
                             </div>
                         <p>
