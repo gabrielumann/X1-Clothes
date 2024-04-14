@@ -1,5 +1,8 @@
+<?php
+    echo $this->layout("_theme");       
+?>
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="pt-br">    
 <body>
 
 

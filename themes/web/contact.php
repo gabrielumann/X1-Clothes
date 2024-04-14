@@ -3,7 +3,10 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-r">
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="assets/css/contact.css">
+</head>
 <body>
 
         

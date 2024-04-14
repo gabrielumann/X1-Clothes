@@ -4,6 +4,9 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
 <body>
 
 <!-- container form-->
