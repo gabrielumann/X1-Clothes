@@ -18,6 +18,8 @@ $route->get("/contato", "Web:contact");
 $route->get("/produtos", "Web:products");
 $route->get("/carrinho","Web:cart");
 $route->get("/entrar","Web:login");
+$route->get("/faq", "Web:faq");
+
 $route->get("/ops/{errcode}", "Web:error");
 
 $route->group(null);

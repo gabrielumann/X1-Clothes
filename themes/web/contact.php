@@ -18,7 +18,7 @@
                 <div class="col-2">
                     <div class="form-container">
                         <div class="form-btn">
-                            <span >Fale conosco</span>
+                            <p>Fale conosco</p>
                             <hr id="Indic">
                         </div>
                         <form id="ContactForm">

@@ -34,6 +34,11 @@ public function __construct()
         echo $this->view->render("products",[]);
     }
 
+    public function faq ()
+    {
+        echo $this->view->render("faq",[]);
+    }
+
     public function cart () : void
     {
         echo $this->view->render("cart",[]);

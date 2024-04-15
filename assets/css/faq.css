@@ -1,0 +1,17 @@
+.faqList{
+    margin-top: 50px;
+}
+.faqList li{
+    margin-bottom: 30px;
+    margin: 0 5em 50px;
+    background-color: aliceblue;
+    border-radius: 50px;
+    padding: 30px;
+    color: #555;
+    font-weight: bold;
+}
+.faqList li:hover{
+    transform: translateY(-2px);
+    transition: 0.2s;
+    box-shadow: rgba(255, 255, 255, 0.56) 0px 12px 50px 14px;
+}

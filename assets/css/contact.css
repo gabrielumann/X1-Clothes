@@ -52,3 +52,7 @@ form .btn:focus{
     background: #9600ff;
     height: 3px;
 }
+.form-btn p {
+    color: #555;
+    font-weight: 800;
+}
