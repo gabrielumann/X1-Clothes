@@ -16,7 +16,7 @@
                             O sucesso não é uma questão de grandeza. É uma questão de consistência. 
                             <br> O consistente trabalho duro obtém o sucesso. A grandeza chegará para todos.
                         </p>
-                        <a href="pages/products.html" class="btn">Explore Now &#8594;</a>
+                        <a href="pages/products.html" class="btn">Veja Agora &#8594;</a>
                     </div>
                     <div class="col-2">
                         <img  src="assets/images/centralcee.png" >
