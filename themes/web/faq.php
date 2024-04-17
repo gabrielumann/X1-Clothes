@@ -52,6 +52,12 @@
                 </li>
             </ul>
         </div>
+        <div class="contactLink">
+            <h2>
+                Não Achou o que queria? <br>
+                <a href="<?= url("contato")?>">Fale Conosco!</a>
+            </h2>
+        </div>
 
     </body>
 </html>

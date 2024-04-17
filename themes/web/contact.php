@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="assets/images/centralcee.png" >
+                    <img src="assets/images/icon4.png" >
                 </div>
                 <div class="col-2">
                     <div class="form-container">

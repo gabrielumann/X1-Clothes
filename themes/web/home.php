@@ -16,10 +16,10 @@
                             O sucesso não é uma questão de grandeza. É uma questão de consistência. 
                             <br> O consistente trabalho duro obtém o sucesso. A grandeza chegará para todos.
                         </p>
-                        <a href="pages/products.html" class="btn">Veja Agora &#8594;</a>
+                        <a href="<?= url("produtos"); ?>" class="btn">Veja Agora &#8594;</a>
                     </div>
                     <div class="col-2">
-                        <img  src="assets/images/centralcee.png" >
+                        <img  src="assets/images/icon1.png" >
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <h2 class="title">Categorias</h2>
                 <div class="row">
                     <div class="col-3">
-                        <a href="/products.html">
+                        <a href="<?= url("produtos"); ?>">
                             <img src="assets/images/category-1.jpg">
                             <h2> 
                             Calças 
@@ -40,7 +40,7 @@
             
                     </div>
                     <div class="col-3">
-                        <a href="pages/products.html">
+                        <a href="<?= url("produtos"); ?>">
                             <img src="assets/images/category-2.jpg">
                             <h2> 
                             Tênis   
@@ -49,7 +49,7 @@
             
                     </div>
                     <div class="col-3">
-                        <a href="pages/products.html">
+                        <a href="<?= url("produtos"); ?>">
                             <img src="assets/images/category-3.jpg">
                             <h2> 
                             Casacos   
@@ -67,10 +67,10 @@
                 <h2 class="title">Produtos Mais Vendidos do Mês</h2>
                 <div class="row">
                     <div class="col-4">
-                    <a href="pages/products-details.html"> 
+                    <a href="<?= url("detalhes"); ?>"> 
                         <img class="productsImg" src="assets/images/product-1.png">
                     </a>
-                    <a href="pages/products-details.html">
+                    <a href="<?= url("detalhes"); ?>">
                         <h4>CORTEIZ - Jaqueta Jeans Trucker C-Starz "Azul"</h4>
                     </a>
             
@@ -85,11 +85,11 @@
                     </div>
             
                     <div class="col-4">
-                        <a href="pages/products-details.html"> 
+                        <a href="<?= url("detalhes"); ?>"> 
                             <img class="productsImg" src="assets/images/product-2.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>Camiseta Golf Wang 3D Multi Color - Black</h4>
                         </a>
                         <div class="rating">
@@ -103,11 +103,11 @@
                     </div>
             
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-3.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>Yeezy 350 V2 MX Dark Salt</h4>
                         </a>
                         <div class="rating">
@@ -121,11 +121,11 @@
                     </div>
             
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-4.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>Trapstar Star All Over Moletom - Black</h4>
                         </a>
                         <div class="rating">
@@ -142,11 +142,11 @@
                 <h2 class="title">Produtos</h2>
                 <div class="row">
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-5.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>TÊNIS ADIDAS YEEZY BOOST 350 V2 " BONE " BRANCO</h4>
                         </a>
                         <div class="rating">
@@ -159,11 +159,11 @@
                         <p>R$1150.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-6.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>CORTEIZ - Boné Trucker 5 Starz Alcatraz "Preto"</h4>
                         </a>
                         <div class="rating">
@@ -176,11 +176,11 @@
                         <p>R$250.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-7.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>CORTEIZ - Jaqueta Goat Varsity "Marinho/Branco"</h4>
                         </a>
                         <div class="rating">
@@ -193,11 +193,11 @@
                         <p>R$550.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-8.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>Calça Cargo Minus Two Preto/Vermelho</h4>
                         </a>
                         <div class="rating">
@@ -212,11 +212,11 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-9.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>HYPERDRIVE PUFFER - BLACK</h4>
                         </a>
                         <div class="rating">
@@ -229,11 +229,11 @@
                         <p>$780.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-10.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>KENTUCKY WILDCATS SPORTCAP</h4>
                         </a>
                         <div class="rating">
@@ -246,11 +246,11 @@
                         <p>R$250.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-11.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4>CAMISA SPRAY CITY PARIS</h4>
                         </a>
                         <div class="rating">
@@ -263,11 +263,11 @@
                         <p>R$200.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <img class="productsImg" src="assets/images/product-12.png">
                         </a>
                         
-                        <a href="pages/products-details.html">
+                        <a href="<?= url("detalhes"); ?>">
                             <h4> Jaqueta de Corrida Palm Angels</h4>
                         </a>
                         <div class="rating">
@@ -297,7 +297,7 @@
                             com detalhes minuciosamente elaborados para criar um visual único. 
                             A parte superior é confeccionada com materiais premium, garantindo durabilidade e conforto incomparáveis.
                         </small> <br>
-                        <a href="pages/products-details.html" class="btn">Buy Now &#8594;</a>
+                        <a href="<?= url("detalhes"); ?>" class="btn">Buy Now &#8594;</a>
                     </div>
                 </div>
             </div>

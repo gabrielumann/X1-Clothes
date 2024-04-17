@@ -33,6 +33,10 @@ public function __construct()
     {
         echo $this->view->render("products",[]);
     }
+    public function productsDetails ()
+    {
+        echo $this->view->render("products-details",[]);
+    }
 
     public function faq ()
     {
@@ -51,7 +55,8 @@ public function __construct()
 
     public function error(array $data)
     {
-        var_dump($data);
+        echo $this->view->render("404",[]);
+
     }
 
 }

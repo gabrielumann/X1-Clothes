@@ -13,8 +13,8 @@
 <div class="small-container cart-page">
     <table>
         <tr>
-            <th>Products</th>
-            <th>Quantity</th>
+            <th>Produtos</th>
+            <th>Quantidade</th>
             <th>Subtotal</th>
         </tr>
         <tr>
@@ -22,8 +22,8 @@
                 <div class="cart-info">
                     <img src="assets/images/buy-1.jpg">
                     <div>
-                        <p>BEL Printed T-shirt</p>
-                        <small>Price: $50.00</small>
+                        <p>exemplo</p>
+                        <small>Preço: $50.00</small>
                         <br>
                         <a href="">Remove</a>
                     </div>
@@ -37,8 +37,8 @@
                 <div class="cart-info">
                     <img src="assets/images/buy-2.jpg">
                     <div>
-                        <p>BEL Printed T-shirt</p>
-                        <small>Price: $70.00</small>
+                        <p>exemplo</p>
+                        <small>Preço: $70.00</small>
                         <br>
                         <a href="">Remove</a>
                     </div>
@@ -52,8 +52,8 @@
                 <div class="cart-info">
                     <img src="assets/images/buy-3.jpg">
                     <div>
-                        <p>BEL Printed T-shirt</p>
-                        <small>Price: $75.00</small>
+                        <p>exemplo</p>
+                        <small>Preço: $75.00</small>
                         <br>
                         <a href="">Remove</a>
                     </div>
@@ -71,7 +71,7 @@
                 <td>$200.00</td>
             </tr>
             <tr>
-                <td>Tax</td>
+                <td>Taxa</td>
                 <td>$30.00</td>
             </tr>
             <tr>
@@ -80,7 +80,9 @@
             </tr>
         </table>
     </div>
-
+    <span id="btnFinish">
+            <a href="<?= url(); ?>">Terminar</a>
+        </span>
 
 
 </div>

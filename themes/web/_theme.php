@@ -22,7 +22,7 @@
                             <li><p><a href="<?= url(); ?>">Home</a></p></li>
                             <li><p><a href="<?= url("produtos"); ?>">Produtos</a></p></li>
                             <li><p><a href="<?= url("sobre"); ?>">Sobre</a></p></li>
-                            <li><p><a href="<?= url("contato"); ?>">Contato</a></p></li>
+                            <li><p><a href="<?= url("faq"); ?>">Ajuda</a></p></li>
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
@@ -45,19 +45,29 @@
             <div class="small-container">
                 <div class="row">
                     <div class="col-5">
-                        <img src="assets/images/logo-bape.png">
+                        <a href="https://int.bape.com/">
+                            <img src="assets/images/logo-bape.png">
+                        </a>
                     </div>
                     <div class="col-5">
-                        <img src="assets/images/logo-adidas.png">
+                        <a href="https://www.adidas.com.br/">
+                            <img src="assets/images/logo-adidas.png">
+                        </a>
                     </div>
                     <div class="col-5">
-                        <img src="assets/images/logo-corteiz.png  ">
+                        <a href="https://www.crtz.xyz/password">
+                            <img src="assets/images/logo-corteiz.png  ">
+                        </a>
                     </div>
                     <div class="col-5">
-                        <img src="assets/images/logo-trapstar.png">
+                        <a href="https://uk.trapstarlondon.com/">
+                            <img src="assets/images/logo-trapstar.png">
+                        </a>
                     </div>
                     <div class="col-5">
-                        <img src="assets/images/logo-nike.png">
+                        <a href="https://www.nike.com.br/">
+                            <img src="assets/images/logo-nike.png">
+                        </a>
                     </div>
                 </div>
             </div>

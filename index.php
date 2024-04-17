@@ -16,6 +16,7 @@ $route->get("/", "Web:home");
 $route->get("/sobre", "Web:about");
 $route->get("/contato", "Web:contact");
 $route->get("/produtos", "Web:products");
+$route->get("/detalhes", "Web:productsDetails");
 $route->get("/carrinho","Web:cart");
 $route->get("/entrar","Web:login");
 $route->get("/faq", "Web:faq");

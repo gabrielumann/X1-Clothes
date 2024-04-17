@@ -13,24 +13,28 @@
     <div class="small-container">
 
         <div class="row row-2">
-            <h2>All Products</h2>
+            <h2>Todos os Produtos</h2>
             <select>
-                <option>Default Shorting</option>
-                <option>Short by price</option>
-                <option>Short by popularity</option>
-                <option>Short by rating</option>
-                <option>Short by sale</option>
+                <option>Todos os Produtos</option>
+                <option>Selecionar por preço</option>
+                <option>Selecionar por popularidade</option>
+                <option>Selecionar por avaliações</option>
+                <option>Selecionar por marcas</option>
             </select>
+            <form class="search-container">
+                <input type="text" id="search-bar" placeholder="Busca">
+                <a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+            </form>
         </div>
 
     <div class="row">
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-1.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -42,12 +46,12 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-2.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -59,12 +63,12 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-3.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -76,12 +80,12 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-4.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -95,13 +99,13 @@
     </div>
     
     <div class="row">
-        <div class="col-4">
-            <a href="products-details.html"> 
+    <div class="col-4">
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-5.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -113,46 +117,46 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-6.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
             </div>
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-7.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
             </div>
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-8.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -166,12 +170,12 @@
     </div>
     <div class="row">
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-9.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -183,46 +187,46 @@
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-10.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
             </div>
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-11.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
             </div>
             <p>$50.00</p>
         </div>
         <div class="col-4">
-            <a href="products-details.html"> 
+            <a href="<?= url("detalhes"); ?>"> 
                 <img src="assets/images/product-12.png">
             </a>
             
-            <a href="products-details.html">
-                <h4>BEL Printed T-Shirt</h4>
+            <a href="<?= url("detalhes"); ?>">
+                <h4>ex</h4>
             </a>
             <div class="rating">
                 <i class="fa fa-star"></i>

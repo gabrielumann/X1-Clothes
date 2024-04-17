@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="assets/images/centralcee.png" >
+                    <img  src="assets/images/icon2.png" >
                 </div>
                 <div class="col-2">
                     <h1>Quem somos?</h1>
