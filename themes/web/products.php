@@ -11,10 +11,9 @@
 
 
     <div class="small-container">
-
+    <h2>Todos os Produtos</h2>
         <div class="row row-2">
-            <h2>Todos os Produtos</h2>
-            <select>
+            <select class="select">
                 <option>Todos os Produtos</option>
                 <option>Selecionar por preço</option>
                 <option>Selecionar por popularidade</option>
@@ -23,7 +22,7 @@
             </select>
             <form class="search-container">
                 <input type="text" id="search-bar" placeholder="Busca">
-                <a href="#"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+                <a href="#"><img class="search-icon" src="assets/images/iconSearch.png"></a>
             </form>
         </div>
 
