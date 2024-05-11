@@ -20,6 +20,7 @@ $route->get("/detalhes", "Web:productsDetails");
 $route->get("/carrinho","Web:cart");
 $route->get("/entrar","Web:login");
 $route->get("/faq", "Web:faq");
+$route->get("/admin", "Web:admin");
 
 $route->get("/ops/{errcode}", "Web:error");
 

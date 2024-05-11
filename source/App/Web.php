@@ -52,6 +52,10 @@ public function __construct()
     {
         echo $this->view->render("login",[]);
     }
+    public function admin() : void
+    {
+        echo $this->view->render("admin",[]);
+    }
 
     public function error(array $data)
     {

@@ -73,8 +73,9 @@ CREATE TABLE Avaliação
 
 CREATE TABLE Faq 
 ( 
- ID_faq INT AUTO_INCREMENT PRIMARY KEY ,  
+ id INT AUTO_INCREMENT PRIMARY KEY ,  
+ id_type int,
  questions varchar(255),  
- answers varchar(255)
+ answers varchar(1500)
 ); 
 
