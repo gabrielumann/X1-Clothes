@@ -1,81 +1,93 @@
 CREATE DATABASE `db-x1-clothes`;
 
 use `db-x1-clothes`;
-CREATE TABLE Usuarios ( 
- ID_user INT AUTO_INCREMENT PRIMARY KEY,  
- name varchar(255),
- cpf char(11) ,
- password varchar(255),  
- email varchar(255),  
- role varchar(50),
+
+CREATE TABLE users ( 
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ name varchar(255) NOT NULL,
+ cpf char(11) NOT NULL,
+ password varchar(255) NOT NULL,  
+ email varchar(255) NOT NULL,  
+ role varchar(50) NOT NULL,
  image varchar(255)
 ); 
 
-CREATE TABLE Endereço 
+
+CREATE TABLE addresses
 ( 
- ID_addrees INT AUTO_INCREMENT PRIMARY KEY,   
- addrees varchar(255),  
- cep char(8),  
- state varchar(255),  
- ID_user INT,
- FOREIGN KEY (ID_user) REFERENCES Usuarios(ID_user)
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,   
+ address varchar(255) NOT NULL,  
+ cep char(8) NOT NULL,  
+ state varchar(255) NOT NULL,  
+ user_id INT NOT NULL,
+ FOREIGN KEY (user_id) REFERENCES users(id)
 ); 
 
-CREATE TABLE Categorias 
+CREATE TABLE categories 
 ( 
- ID_category INT AUTO_INCREMENT PRIMARY KEY,  
- name varchar(255)
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ name varchar(255) NOT NULL
 ); 
 
-CREATE TABLE Produtos 
+CREATE TABLE products 
 ( 
- ID_products INT AUTO_INCREMENT PRIMARY KEY,  
- name varchar(255),  
- price double,  
- ID_category INT,  
- FOREIGN KEY (ID_category) REFERENCES Categorias(ID_category) 
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ name varchar(255) NOT NULL,  
+ price double NOT NULL,  
+ category_id INT NOT NULL,  
+ FOREIGN KEY (category_id) REFERENCES categories(id) 
 ); 
 
-CREATE TABLE ImagemProdutos 
+CREATE TABLE product_images 
 ( 
- ID_image INT AUTO_INCREMENT PRIMARY KEY,  
- images varchar(255),  
- ID_products INT,  
- FOREIGN KEY (ID_products) REFERENCES Produtos(ID_products) 
-); 
-
-
-CREATE TABLE ItensPedidos 
-( 
- ID_orderProducts INT AUTO_INCREMENT PRIMARY KEY,  
- quantity INT,  
- ID_products INT, 
- FOREIGN KEY (ID_products) REFERENCES Produtos(ID_products)
-); 
-
-CREATE TABLE Pedidos 
-( 
-  ID_order INT AUTO_INCREMENT PRIMARY KEY ,  
-  orderDate  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,  
-  ID_user INT, 
-  FOREIGN KEY (ID_user) REFERENCES Usuarios(ID_user)
-); 
-
-CREATE TABLE Avaliação 
-( 
- ID_rating INT AUTO_INCREMENT PRIMARY KEY,  
- comment varchar(255),  
- rating INT,  
- ID_user INT, 
- FOREIGN KEY (ID_user) REFERENCES Usuarios(ID_user)
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ images varchar(255) NOT NULL,  
+ product_id INT NOT NULL,  
+ FOREIGN KEY (product_id) REFERENCES products(id) 
 ); 
 
 
-CREATE TABLE Faq 
+CREATE TABLE order_items 
 ( 
- id INT AUTO_INCREMENT PRIMARY KEY ,  
- id_type int,
- questions varchar(255),  
- answers varchar(1500)
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ quantity INT NOT NULL,  
+ product_id INT NOT NULL, 
+ FOREIGN KEY (product_id) REFERENCES products(id) 
 ); 
+
+CREATE TABLE orders 
+( 
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,  
+  order_date  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+  user_id INT NOT NULL, 
+  FOREIGN KEY (user_id) REFERENCES users(id)
+); 
+
+CREATE TABLE rating 
+( 
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+ text varchar(255),  
+ rating INT NOT NULL,  
+ user_id INT NOT NULL, 
+ FOREIGN KEY (user_id) REFERENCES users(id)
+); 
+
+
+CREATE TABLE faq_questions 
+(
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  question varchar(255) NOT NULL,
+  answer text NOT NULL,
+  type_id int NOT NULL,
+  FOREIGN KEY (type_id) REFERENCES faq_types(`id`)
+);
+
+
+CREATE TABLE faq_types 
+(
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL
+) ;
+
+
 
