@@ -32,7 +32,7 @@ CREATE TABLE categories
 CREATE TABLE products 
 ( 
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
- name varchar(255) NOT NULL,  
+ name varchar(255) NOT NULL,  	
  price double NOT NULL,  
  category_id INT NOT NULL,  
  FOREIGN KEY (category_id) REFERENCES categories(id) 
@@ -52,7 +52,10 @@ CREATE TABLE order_items
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
  quantity INT NOT NULL,  
  product_id INT NOT NULL, 
- FOREIGN KEY (product_id) REFERENCES products(id) 
+ FOREIGN KEY (product_id) REFERENCES products(id),
+ order_id INT NOT NULL, 
+ FOREIGN KEY (order_id) REFERENCES orders(id)
+ 
 ); 
 
 CREATE TABLE orders 
@@ -79,15 +82,14 @@ CREATE TABLE faq_questions
   question varchar(255) NOT NULL,
   answer text NOT NULL,
   type_id int NOT NULL,
-  FOREIGN KEY (type_id) REFERENCES faq_types(`id`)
+  FOREIGN KEY (type_id) REFERENCES faq_types(id)
 );
 
 
 CREATE TABLE faq_types 
 (
-  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `description` varchar(255) NOT NULL
 ) ;
-
 
 
