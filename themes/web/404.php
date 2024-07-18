@@ -15,7 +15,7 @@
                 <div class="col-2">
                     <h1>404</h1> 
                     <p>
-                        ops, acho que você esta no lugar errado... 
+                        ops, acho que você esta no lugar errado....
                     </p>
                     <p>
                         <a href="<?= url(); ?>">clique aqui</a> para ser redirecionado para a página inicial!
