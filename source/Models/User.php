@@ -4,7 +4,9 @@ namespace Source\Models;
 
 use PDOException;
 use Source\Core\Connect;
-class User {
+use Source\Core\Model;
+
+class User extends Model {
     private $id;
     private $name;
     private $email;
@@ -22,6 +24,7 @@ class User {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->entity = "users";
     }
 
     public function getId(): ?int
@@ -74,6 +77,11 @@ class User {
 
         $conn = Connect::getInstance();
 
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+            $this->message = "E-mail inválido!";
+            return false;
+        }
+
         $query = "SELECT * FROM users WHERE email LIKE :email";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":email", $this->email);
@@ -96,6 +104,7 @@ class User {
 
         try {
             $stmt->execute();
+            $this->message = "Usuário cadastrado com sucesso!";
             return $conn->lastInsertId();
         } catch (PDOException) {
             $this->message = "Por favor, informe todos os campos!";
@@ -129,6 +138,86 @@ class User {
         $this->message = "Usuário logado com sucesso!";
 
         return true;
+
+    }
+
+    public function update () : bool
+    {
+        $conn = Connect::getInstance();
+
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+            $this->message = "E-mail inválido!";
+            return false;
+        }
+
+        $query = "SELECT * FROM users WHERE email LIKE :email AND id != :id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+
+        if($stmt->rowCount() == 1) {
+            $this->message = "E-mail já cadastrado!";
+            return false;
+        }
+
+        $query = "UPDATE users 
+                  SET name = :name, email = :email 
+                  WHERE id = :id";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            $this->message = "Usuário atualizado com sucesso!";
+            return true;
+        } catch (PDOException $exception) {
+            $this->message = "Erro ao atualizar: {$exception->getMessage()}";
+            return false;
+        }
+
+    }
+
+    public function updatePassword (string $password, string $newPassword, string $confirmNewPassword) : bool
+    {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $conn = Connect::getInstance();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        if (!password_verify($password, $result->password)) {
+            $this->message = "Senha incorreta!";
+            return false;
+        }
+
+        if ($newPassword != $confirmNewPassword) {
+            $this->message = "As senhas não conferem!";
+            return false;
+        }
+
+        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        $query = "UPDATE users 
+                  SET password = :password 
+                  WHERE id = :id";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":password", $newPassword);
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            $this->message = "Senha atualizada com sucesso!";
+            return true;
+        } catch (PDOException $exception) {
+            $this->message = "Erro ao atualizar: {$exception->getMessage()}";
+            return false;
+        }
 
     }
 
