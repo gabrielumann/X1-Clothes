@@ -1,2 +1,5 @@
-# Estrutura Básica de um Projeto MVC
-## Turma: INF-3AT
+# X1 Clothes
+
+## coisas para fazer:
+ - criar uma politica de devolucao  
+ - 

@@ -4,12 +4,11 @@ namespace Source\App;
 
 use League\Plates\Engine;
 use Source\Models\Faq\Question;
-
 class Web
 {
     private $view;
 
-public function __construct()
+    public function __construct()
     {
         $this->view = new Engine(__DIR__ . "/../../themes/web","php");
     }
@@ -30,9 +29,18 @@ public function __construct()
         echo $this->view->render("contact",[]);
     }
 
-    public function location ()
+    public function products ()
     {
-        echo $this->view->render("location",[]);
+        echo $this->view->render("products",[]);
+    }
+    public function productsDetails()
+    {
+        echo $this->view->render("products-details",[]);
+    }
+
+    public function faqs ()
+    {
+        echo $this->view->render("faqs",[]);
     }
 
     public function cart () : void
@@ -44,21 +52,15 @@ public function __construct()
     {
         echo $this->view->render("login",[]);
     }
-
-    public function faqs() : void
+    public function admin() : void
     {
-        $question = new Question();
-        $faqs = $question->selectAll();
-        //var_dump($faqs);
-        echo $this->view->render("faqs",[
-            "faqs" => $faqs
-        ]);
-        //echo "Olá, FAQS";
+        echo $this->view->render("admin",[]);
     }
 
     public function error(array $data)
     {
-        var_dump($data);
+        echo $this->view->render("404",[]);
+
     }
 
 }

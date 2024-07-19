@@ -22,7 +22,7 @@
                             <li><p><a href="<?= url(); ?>">Home</a></p></li>
                             <li><p><a href="<?= url("produtos"); ?>">Produtos</a></p></li>
                             <li><p><a href="<?= url("sobre"); ?>">Sobre</a></p></li>
-                            <li><p><a href="<?= url("faq"); ?>">Ajuda</a></p></li>
+                            <li><p><a href="<?= url("faqs"); ?>">Ajuda</a></p></li>
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
@@ -113,7 +113,7 @@
                         <h3>Contato</h3>
                         <ul>
                             <li>(51)985412451</li>
-                            <li>gabrielmachado.ch002@academico.ifsul.edu.br</li>
+                            <li>x1clothes@suporte.com</li>
                             <li>R. Gen. Balbão, 81 - Centro, <br> Charqueadas - RS, 96745-000</li> 
                         </ul>
                     </div>
