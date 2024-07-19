@@ -25,7 +25,7 @@
                         </div>
 
                         <form id="LoginForm">
-                            <input type="text" placeholder="Usuário">
+                            <input type="text" placeholder="Email">
                             <input type="password" placeholder="Senha">
                             <button type="submit" class="btn">Entrar</button>
                             <a href="">Esqueceu a senha?</a>
@@ -34,7 +34,9 @@
                         <form id="RegForm">
                             <input type="text" placeholder="Usuário">
                             <input type="email" placeholder="Email">
+                            <input type="text" placeholder="CPF">
                             <input type="password" placeholder="Senha">
+                            <input type="password" placeholder="Confirmar senha">
                             <button type="submit" class="btn">Registrar</button>
                             
                         </form>
