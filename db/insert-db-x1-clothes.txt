@@ -81,3 +81,13 @@ INSERT INTO `faq_questions` VALUES
 
  );
 
+-- Insert users
+INSERT INTO `users` VALUES (
+1,
+'Gabriel Umann',
+'admin@admin.com',
+'admin',
+'12345678910',
+'admin',
+null
+);

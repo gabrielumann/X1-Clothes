@@ -60,8 +60,29 @@
                 </div>
             </div>
         </div>
-            
-            <!--      featured products    -->
+
+        <!--     offer     -->
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="assets/images/bapesta.png" class="offer-img">
+                    </div>
+                    <div class="col-2">
+                        <p>Exclusivamente na <span>X1 Clothes</span></p>
+                        <h1>BapeSta Low Black</h1>
+                        <small>
+                            Este tênis impressionante apresenta uma silhueta clássica e atemporal,
+                            com detalhes minuciosamente elaborados para criar um visual único.
+                            A parte superior é confeccionada com materiais premium, garantindo durabilidade e conforto incomparáveis.
+                        </small> <br>
+                        <a href="<?= url("detalhes"); ?>" class="btn">Buy Now &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--      featured products    -->
         <div class="content">
             <div class="small-container">
                 <h2 class="title">Produtos Mais Vendidos do Mês</h2>
@@ -278,26 +299,6 @@
                             <i class="fa fa-star-o"></i>
                         </div>
                         <p>$50.00</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--     offer     -->
-        <div class="offer">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="assets/images/bapesta.png" class="offer-img">
-                    </div>
-                    <div class="col-2">
-                        <p>Exclusivamente na <span>X1 Clothes</span></p>
-                        <h1>BapeSta Low Black</h1>
-                        <small>
-                            Este tênis impressionante apresenta uma silhueta clássica e atemporal, 
-                            com detalhes minuciosamente elaborados para criar um visual único. 
-                            A parte superior é confeccionada com materiais premium, garantindo durabilidade e conforto incomparáveis.
-                        </small> <br>
-                        <a href="<?= url("detalhes"); ?>" class="btn">Buy Now &#8594;</a>
                     </div>
                 </div>
             </div>

@@ -15,13 +15,13 @@
                 <div class="col-2">
                     <h1>Quem somos?</h1>
                     <p>
-                        A X1 Clothes se destina a jovens adultos (entre 18 e 35 anos) que valorizam a moda como uma forma de expressão pessoal 
-                        e estão sempre em busca das últimas tendências. Nosso público-alvo é formado por indivíduos que procuram por uma 
-                        experiência de compra única, onde possam encontrar uma ampla variedade de produtos que reflitam seu estilo de vida 
-                        dinâmico e contemporâneo.
+                        A X1 Clothes é uma loja destinada a jovens adultos (entre 18 e 35 anos) que valorizam a moda como uma forma de
+                        expressão pessoal e estão sempre em busca das últimas tendências. Nosso público-alvo é formado por indivíduos que
+                        procuram por uma experiência de compra única, onde possam encontrar uma ampla variedade de produtos importados únicos,
+                        que reflitam seu estilo de vida dinâmico e contemporâneo.
 
                     </p>
-                    <a href="pages/products.html" class="btn">Explore Now &#8594;</a>
+                    <a href="pages/products.html" class="btn">Veja os produtos &#8594;</a>
                 </div>
 
             </div>
