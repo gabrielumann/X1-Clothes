@@ -27,7 +27,7 @@
                         <form id="LoginForm">
                             <input type="text" placeholder="Email">
                             <input type="password" placeholder="Senha">
-                            <button type="submit" class="btn">Entrar</button>
+                            <button class="btn">Entrar</button>
                             <a href="">Esqueceu a senha?</a>
 
                         </form>
@@ -37,7 +37,7 @@
                             <input type="text" placeholder="CPF">
                             <input type="password" placeholder="Senha">
                             <input type="password" placeholder="Confirmar senha">
-                            <button type="submit" class="btn">Registrar</button>
+                            <button class="btn">Registrar</button>
                             
                         </form>
                     </div>
