@@ -6,7 +6,7 @@ require  __DIR__ . "/../vendor/autoload.php";
 
 use CoffeeCode\Router\Router;
 
-$route = new Router(url(),":");
+$route = new Router(url("api"),":");
 
 $route->namespace("Source\App\Api");
 
@@ -14,8 +14,6 @@ $route->namespace("Source\App\Api");
 $route->group("/faqs");
 
 $route->get("/","Faqs:listFaqs");
-
-$route->group("null");
 
 $route->group("/users");
 
@@ -25,7 +23,7 @@ $route->post("/login","Users:loginUser");
 $route->post("/update","Users:updateUser");
 $route->post("/set-password","Users:setPassword");
 
-$route->group("null");
+$route->group(null);
 
 $route->dispatch();
 
