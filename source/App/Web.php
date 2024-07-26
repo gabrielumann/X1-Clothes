@@ -4,8 +4,7 @@ namespace Source\App;
 
 use League\Plates\Engine;
 use Source\Models\Faq\Question;
-class Web
-{
+class Web{
     private $view;
 
     public function __construct()
@@ -15,7 +14,6 @@ class Web
 
     public function home ()
     {
-        //echo "<h1>Eu sou a Home</h1>";
         echo $this->view->render("home",[]);
     }
 
@@ -52,15 +50,6 @@ class Web
     {
         echo $this->view->render("login",[]);
     }
-    public function admin() : void
-    {
-        echo $this->view->render("admin",[]);
-    }
 
-    public function error(array $data)
-    {
-        echo $this->view->render("404",[]);
-
-    }
 
 }

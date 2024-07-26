@@ -10,8 +10,6 @@ $route = new Router(url(), ":");
 
 $route->namespace("Source\App");
 
-$route->group(null);
-
 $route->get("/", "Web:home");
 $route->get("/sobre", "Web:about");
 $route->get("/contato", "Web:contact");
@@ -20,16 +18,24 @@ $route->get("/detalhes", "Web:productsDetails");
 $route->get("/carrinho","Web:cart");
 $route->get("/entrar","Web:login");
 $route->get("/faqs", "Web:faqs");
-$route->get("/admin", "Web:admin");
 
-$route->get("/ops/{errcode}", "Web:error");
+
+
+$route->group("/app");
+$route->get("/", "App:home");
+
+$route->group("/adm");
+$route->get("/", "Admin:home");
 
 $route->group(null);
+
+$route->get("/ooops/{errcode}", "Error:error");
+
 
 $route->dispatch();
 
 if ($route->error()) {
-    $route->redirect("/ops/{$route->error()}");
+    $route->redirect("/ooops/{$route->error()}");
 }
 
 ob_end_flush();

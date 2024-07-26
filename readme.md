@@ -2,5 +2,6 @@
 
 ## coisas para fazer:
  - criar uma politica de devolucao  
- - criar uma area para os atendentes da loja
+ - arrumar os links
  - colocar opcao de pedido saiu para entraga, para alterar o order_shipped
+ - criar uma pagina para o perfil

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <link rel="stylesheet" href="assets/css/admin.css">
+        <link rel="stylesheet" href="../../assets/css/admin.css">
     </head>
     <body>
         <div class="container">

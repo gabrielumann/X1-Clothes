@@ -1,16 +1,20 @@
+<?php
+echo $this->layout("_theme");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">    
     <head>
         <title>X1 Clothes </title>
-        <link rel="stylesheet" href="../assets/css/style.css">
-        <link rel="stylesheet" href="../assets/css/404.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/404.css">
 
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="../assets/images/dog.png" >
+                    <img  src="../../assets/images/dog.png" >
                 </div>
                 <div class="col-2">
                     <h1>404</h1> 

@@ -27,7 +27,7 @@ class Users extends Api
             NULL,
             $data["name"],
             $data["email"],
-            $data["password"]
+            $data["password"],
         );
 
         $insert = $user->insert();
