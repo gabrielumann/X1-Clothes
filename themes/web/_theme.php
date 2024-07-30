@@ -4,10 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>X1 Clothes </title>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <script src="assets/js/scripts.js"></script>
+        <link rel="stylesheet" href="<?= url("/assets/css/styles.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="assets/js/scripts.js"></script>
+        <?php if ($this->section("specific-style")): ?>
+            <?= $this->section("specific-style"); ?>
+        <?php endif; ?>
     </head>
     <body>
         <div class="header">
@@ -33,12 +36,17 @@
             </div>
         </div>
 
+
+
+
     <div id="content">
         <!-- Your content goes here -->
         <?php
             echo $this->section("content");
         ?>
     </div>
+
+
 
             <!--    brands     -->
         <div class="brands">

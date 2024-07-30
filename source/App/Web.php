@@ -51,5 +51,8 @@ class Web{
         echo $this->view->render("login",[]);
     }
 
-
+    public function error(array $data)
+    {
+        echo $this->view->render("error",[$data]);
+    }
 }
