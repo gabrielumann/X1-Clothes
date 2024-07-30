@@ -4,7 +4,9 @@ namespace Source\App;
 
 use League\Plates\Engine;
 use Source\Models\Faq\Question;
-class Web{
+class   Web{
+
+
     private $view;
 
     public function __construct()
@@ -14,45 +16,50 @@ class Web{
 
     public function home ()
     {
-        echo $this->view->render("home",[]);
+        echo $this->view->render("home",[
+            "title" => "Home | ". SITE,
+        ]);
     }
 
     public function about ()
     {
-        echo $this->view->render("about",[]);
+        echo $this->view->render("about",[ "title" => "Sobre | ". SITE,]);
     }
 
     public function contact ()
     {
-        echo $this->view->render("contact",[]);
+        echo $this->view->render("contact",[ "title" => "Contatos | ". SITE,]);
     }
 
     public function products ()
     {
-        echo $this->view->render("products",[]);
+        echo $this->view->render("products",[ "title" => "Produtos | ". SITE,]);
     }
     public function productsDetails()
     {
-        echo $this->view->render("products-details",[]);
+        echo $this->view->render("products-details",[ "title" => "{nomedoproduto} | ". SITE,]);
     }
 
     public function faqs ()
     {
-        echo $this->view->render("faqs",[]);
+        echo $this->view->render("faqs",[ "title" => "FAQS | ". SITE,]);
     }
 
     public function cart () : void
     {
-        echo $this->view->render("cart",[]);
+        echo $this->view->render("cart",[ "title" => "Carrinho | ". SITE,]);
     }
 
     public function login() : void
     {
-        echo $this->view->render("login",[]);
+        echo $this->view->render("login",[ "title" => "Entrar | ". SITE,]);
     }
 
     public function error(array $data)
     {
-        echo $this->view->render("error",[$data]);
+        echo $this->view->render("error",[
+            "title" => "Erro | ". SITE,
+            "error" => $data["errcode"]
+        ]);
     }
 }

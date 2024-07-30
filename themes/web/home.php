@@ -2,11 +2,6 @@
     echo $this->layout("_theme");       
 ?>
 
-
-<!DOCTYPE html>
-<html lang="pt-br">
-    <body>
-        
         <!--     Start            -->
             <div class="container">
                 <div class="row">
@@ -366,8 +361,3 @@
                 </div>
             </div>
         </div>
-
-
-
-    </body>
-</html>

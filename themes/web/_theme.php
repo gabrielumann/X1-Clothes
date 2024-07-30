@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>X1 Clothes </title>
+        <title></title>
         <link rel="stylesheet" href="<?= url("/assets/css/styles.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,7 +13,8 @@
         <?php endif; ?>
     </head>
     <body>
-        <div class="header">
+    <?= $this->e(title)?>
+    <div class="header">
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">

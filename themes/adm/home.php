@@ -1,8 +1,6 @@
 <?php
     echo $this->layout("_theme");     
 
-    use Source\Models\Faq\Question;
-    new Question(1647, 2, "no seu tein paum?", "Aqui nau tein paum");
 ?>
 
 <!DOCTYPE html>
