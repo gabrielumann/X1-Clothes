@@ -24,7 +24,7 @@ CREATE TABLE addresses
  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE categories
+CREATE TABLE product_categories
 (
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  name varchar(255) NOT NULL
@@ -36,7 +36,14 @@ CREATE TABLE products
  name varchar(255) NOT NULL,
  price double NOT NULL,
  category_id INT NOT NULL,
- FOREIGN KEY (category_id) REFERENCES categories(id)
+ FOREIGN KEY (category_id) REFERENCES product_categories(id)
+);
+
+CREATE TABLE stock(
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    product_id INT NOT NULL,
+	quantity INT,
+	FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
 CREATE TABLE product_images
@@ -50,11 +57,15 @@ CREATE TABLE product_images
 CREATE TABLE orders
 (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  user_id INT NOT NULL,
+  address_id INT NOT NULL,
   order_date  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   shipped_date DATE,
   shipped_hour TIME,
-  user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  `shipped_status` ENUM("PENDENT", "SENDED", "FINISHED") NOT NULL,
+  total_price DOUBLE NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (address_id) REFERENCES addresses(id)
 );
 
 CREATE TABLE order_items
