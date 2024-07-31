@@ -1,13 +1,9 @@
-<?php
-    echo $this->layout("_theme");       
-?>
+<?php $this->layout("_theme", ['title' => $title]); ?>
+<?php $this->start("specific-style")?>
+<link rel="stylesheet" href="themes/web/assets/css/products-details.css">
+<?php $this->end(); ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <link rel="stylesheet" href="assets/css/products-details.css">
-</head>
-<body>
+
 
 
     <!--  single product details  -->
@@ -126,6 +122,3 @@
 
 
 </div>
-
-</body>
-</html>

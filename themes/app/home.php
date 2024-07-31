@@ -1,13 +1,5 @@
-<?php
-    echo $this->layout("_theme");       
-?>
-
-
-<!DOCTYPE html>
-<html lang="pt-br">
-    <body>
-        
-        <!--     Start            -->
+<?php $this->layout("_theme", ['title' => $title]); ?>
+<!-- tem q botar o nome do corno aq-->
             <div class="container">
                 <div class="row">
                     <div class="col-2">
@@ -366,8 +358,3 @@
                 </div>
             </div>
         </div>
-
-
-
-    </body>
-</html>

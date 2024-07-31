@@ -11,8 +11,10 @@ class App{
     {
         $this->view = new Engine(__DIR__ . "/../../themes/app","php");
     }
-    public function home () {
-        echo $this->view->render("home",[]);
+    public function home (){
+        echo $this->view->render("home",[
+            "title" => "Home | " . SITE,
+        ]);
     }
 
 }

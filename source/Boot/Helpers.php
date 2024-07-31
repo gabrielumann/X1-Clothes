@@ -13,3 +13,8 @@ function url(string $path = null): string
     }
     return CONF_URL_BASE;
 }
+
+function assetsCss(string $resource): string
+{
+    return "assets/css/$resource";
+}

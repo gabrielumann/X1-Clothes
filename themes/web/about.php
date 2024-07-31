@@ -1,12 +1,5 @@
-<?php
-    echo $this->layout("_theme");       
-?>
-<!DOCTYPE html>
-<html lang="pt-br">    
-<body>
+<?php $this->layout("_theme", ['title' => $title]); ?>
 
-
-        
         <div class="container">
             <div class="row">
                 <div class="col-2">
@@ -21,7 +14,7 @@
                         que reflitam seu estilo de vida dinâmico e contemporâneo.
 
                     </p>
-                    <a href="pages/products.html" class="btn">Veja os produtos &#8594;</a>
+                    <a href="<?= url()?>" class="btn">Veja os produtos &#8594;</a>
                 </div>
 
             </div>
@@ -90,7 +83,3 @@
         </div>
     </div>
 </div>
-
-
-</body>
-</html>

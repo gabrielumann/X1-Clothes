@@ -1,12 +1,8 @@
-<?php
-    echo $this->layout("_theme");       
-?>
-<!DOCTYPE html>
-<html lang="pt-br">  
-    <head>
-        <link rel="stylesheet" href="assets/css/faq.css">
-    </head>  
-    <body>
+<?php $this->layout("_theme" , ["title" => $title]); ?>
+<?php $this->start("specific-style")?>
+<link rel="stylesheet" href="themes/web/assets/css/faqs.css">
+<?php $this->end(); ?>
+
 
         <div class="faqList">
             <ul>
@@ -58,6 +54,3 @@
                 <a href="<?= url("contato")?>">Fale Conosco!</a>
             </h2>
         </div>
-
-    </body>
-</html>

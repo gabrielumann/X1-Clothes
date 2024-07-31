@@ -1,14 +1,8 @@
-<?php
-    echo $this->layout("_theme");     
+<?php $this->layout("_theme", ['title' => $title]); ?>
+<?php $this->start("specific-style")?>
+<link rel="stylesheet" href="themes/adm/assets/css/form.css">
+<?php $this->end(); ?>
 
-?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <link rel="stylesheet" href="../../assets/css/admin.css">
-    </head>
-    <body>
         <div class="container">
             <h2>Formulário de Cadastro de Usuários</h2>
             <form action="#" method="post">
@@ -136,5 +130,4 @@
                 <button type="submit">Enviar FAQ</button>
             </form>
         </div>
-    </body>
-</html>
+

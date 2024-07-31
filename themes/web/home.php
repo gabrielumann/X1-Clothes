@@ -1,6 +1,5 @@
-<?php
-    echo $this->layout("_theme");       
-?>
+
+<?php $this->layout("_theme", ['title' => $title]); ?>
 
         <!--     Start            -->
             <div class="container">

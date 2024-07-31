@@ -1,15 +1,7 @@
-<?php
-    echo $this->layout("_theme");       
-?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <link rel="stylesheet" href="assets/css/cart.css">
-</head>
-<body>
-
-    <!--  cart items details  -->
+<?php $this->layout("_theme", ['title' => $title]); ?>
+<?php $this->start("specific-style")?>
+<link rel="stylesheet" href="themes/web/assets/css/cart.css">
+<?php $this->end(); ?>
 <div class="small-container cart-page">
     <table>
         <tr>
