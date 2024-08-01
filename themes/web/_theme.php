@@ -9,7 +9,6 @@
             <?= $this->section("specific-style"); ?>
         <?php endif; ?>
         <link rel="stylesheet" href="<?= url("themes/web/assets/css/style.css"); ?>">
-        <link rel="stylesheet" href="<?= url("themes/web/assets/css/style.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -24,7 +23,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="storage/images/web/logox1.png">
+                        <a href="<?= url(); ?>"><img src="storage/images/shared/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -36,7 +35,7 @@
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
-                    <a href="<?= url("carrinho"); ?>"><img src="storage/images/web/cart.png" width="30px" height="30px">
+                    <a href="<?= url("carrinho"); ?>"><img src="storage/images/shared/cart.png" width="30px" height="30px">
                     </a>
                 </div>
             </div>
@@ -60,27 +59,27 @@
                 <div class="row">
                     <div class="col-5">
                         <a href="https://int.bape.com/">
-                            <img src="storage/images/web/logo-bape.png">
+                            <img src="storage/images/shared/logo-bape.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.adidas.com.br/">
-                            <img src="storage/images/web/logo-adidas.png">
+                            <img src="storage/images/shared/logo-adidas.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.crtz.xyz/password">
-                            <img src="storage/images/web/logo-corteiz.png  ">
+                            <img src="storage/images/shared/logo-corteiz.png  ">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://uk.trapstarlondon.com/">
-                            <img src="storage/images/web/logo-trapstar.png">
+                            <img src="storage/images/shared/logo-trapstar.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.nike.com.br/">
-                            <img src="storage/images/web/logo-nike.png">
+                            <img src="storage/images/shared/logo-nike.png">
                         </a>
                     </div>
                 </div>
@@ -100,8 +99,8 @@
                             Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
-                            <img src="storage/images/web/play-store.png">
-                            <img src="storage/images/web/app-store.png">
+                            <img src="storage/images/shared/play-store.png">
+                            <img src="storage/images/shared/app-store.png">
                         </div>
                     </div>
                     <div class="footer-col-2">

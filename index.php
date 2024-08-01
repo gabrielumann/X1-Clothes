@@ -28,6 +28,15 @@ $route->get("/faqs", "Web:faqs");
  */
 $route->group("/app");
 $route->get("/", "App:home");
+$route->get("/sobre", "App:about");
+$route->get("/perfil", "App:profile");
+$route->get("/contato", "App:contact");
+$route->get("/produtos", "App:products");
+$route->get("/detalhes", "App:productsDetails");
+$route->get("/carrinho","App:cart");
+$route->get("/faqs", "App:faqs");
+
+
 
 /*
  * Adm

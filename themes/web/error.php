@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            <img  src="assets/images/dog.png" >
+            <img  src="storage/images/shared/dog.png" >
         </div>
         <div class="col-2">
             <h1>404</h1>
