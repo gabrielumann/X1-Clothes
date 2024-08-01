@@ -24,7 +24,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="assets/images/logox1.png">
+                        <a href="<?= url(); ?>"><img src="storage/images/web/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -36,7 +36,7 @@
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
-                    <a href="<?= url("carrinho"); ?>"><img src="assets/images/cart.png" width="30px" height="30px">
+                    <a href="<?= url("carrinho"); ?>"><img src="storage/images/web/cart.png" width="30px" height="30px">
                     </a>
                 </div>
             </div>
@@ -60,27 +60,27 @@
                 <div class="row">
                     <div class="col-5">
                         <a href="https://int.bape.com/">
-                            <img src="assets/images/logo-bape.png">
+                            <img src="storage/images/web/logo-bape.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.adidas.com.br/">
-                            <img src="assets/images/logo-adidas.png">
+                            <img src="storage/images/web/logo-adidas.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.crtz.xyz/password">
-                            <img src="assets/images/logo-corteiz.png  ">
+                            <img src="storage/images/web/logo-corteiz.png  ">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://uk.trapstarlondon.com/">
-                            <img src="assets/images/logo-trapstar.png">
+                            <img src="storage/images/web/logo-trapstar.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.nike.com.br/">
-                            <img src="assets/images/logo-nike.png">
+                            <img src="storage/images/web/logo-nike.png">
                         </a>
                     </div>
                 </div>
@@ -100,8 +100,8 @@
                             Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
-                            <img src="assets/images/play-store.png">
-                            <img src="assets/images/app-store.png">
+                            <img src="storage/images/web/play-store.png">
+                            <img src="storage/images/web/app-store.png">
                         </div>
                     </div>
                     <div class="footer-col-2">
