@@ -8,7 +8,8 @@
         <?php if ($this->section("specific-style")): ?>
             <?= $this->section("specific-style"); ?>
         <?php endif; ?>
-        <link rel="stylesheet" href="themes/web/assets/css/style.css">
+        <link rel="stylesheet" href="<?= url("themes/web/assets/css/style.css"); ?>">
+        <link rel="stylesheet" href="<?= url("themes/web/assets/css/style.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -36,8 +37,7 @@
                         </ul>
                     </nav>
                     <a href="<?= url("carrinho"); ?>"><img src="assets/images/cart.png" width="30px" height="30px">
-                    </a> 
-                    <img src="assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    </a>
                 </div>
             </div>
         </div>
@@ -137,22 +137,5 @@
         </div>
 
 
-<!--                js for toggle menu          temp      -->
-        <script>
-            var MenuItems = document.getElementById("menuItems");
-
-            MenuItems.style.maxHeight = "0px";
-
-            function  menutoggle(){
-                if(MenuItems.style.maxHeight == "0px")
-                {
-                    MenuItems.style.maxHeight = "200px"
-                }
-                else
-                {
-                    MenuItems.style.maxHeight = "0px"
-                }
-            }
-        </script>
     </body>
 </html>

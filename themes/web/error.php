@@ -1,7 +1,7 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
 
 <?php $this->start("specific-style")?>
-<link rel="stylesheet" href="themes/web/assets/css/error.css">
+<link rel="stylesheet" href="<?= url("themes/web/assets/css/error.css"); ?>">
 <?php $this->end(); ?>
 
 

@@ -34,6 +34,11 @@ $route->get("/", "App:home");
  */
 $route->group("/adm");
 $route->get("/", "Admin:home");
+$route->get("/produtos","Admin:products");
+$route->get("/pedidos","Admin:orders");
+$route->get("/usuarios", "Admin:users");
+$route->get("/faqs", "Admin:faqs");
+$route->get("/avaliacao", "Admin:rating");
 
 $route->group(null);
 
