@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="assets/images/icon3.png" >
+                    <img  src="themes/shared/images/icon/icon3.png" >
                 </div>
                 <div class="col-2">
                     <div class="form-container">

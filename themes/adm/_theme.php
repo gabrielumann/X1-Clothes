@@ -23,7 +23,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="assets/images/logox1.png">
+                        <a href="<?= url("/adm"); ?>"><img src="themes/shared/images/icon/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -31,13 +31,11 @@
                             <li><p><a href="<?= url("/adm"); ?>">Home</a></p></li>
                             <li><p><a href="<?= url("/adm/produtos"); ?>">Produtos</a></p></li>
                             <li><p><a href="<?= url("/adm/pedidos"); ?>">Pedidos</a></p></li>
-                            <li><p><a href="<?= url("/adm/usuarios"); ?>">Usuarios</a></p></li
+                            <li><p><a href="<?= url("/adm/usuarios"); ?>">Usuarios</a></p></li>
                             <li><p><a href="<?= url("/adm/faqs"); ?>">Faqs</a></p></li>
                             <li><p><a href="<?= url("/adm/avaliacao"); ?>">Avaliação</a></p></li>
                         </ul>
                     </nav>
-                    <a href="<?= url("carrinho"); ?>"><img src="assets/images/cart.png" width="30px" height="30px">
-                    </a> 
 
                 </div>
             </div>

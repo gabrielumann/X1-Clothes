@@ -23,7 +23,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="storage/images/shared/logox1.png">
+                        <a href="<?= url(); ?>"><img src="themes/shared/images/icon/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -35,7 +35,7 @@
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
-                    <a href="<?= url("carrinho"); ?>"><img src="storage/images/shared/cart.png" width="30px" height="30px">
+                    <a href="<?= url("carrinho"); ?>"><img src="themes/shared/images/interface/cart.png" width="30px" height="30px">
                     </a>
                 </div>
             </div>
@@ -59,27 +59,27 @@
                 <div class="row">
                     <div class="col-5">
                         <a href="https://int.bape.com/">
-                            <img src="storage/images/shared/logo-bape.png">
+                            <img src="themes/shared/images/icon/logo-bape.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.adidas.com.br/">
-                            <img src="storage/images/shared/logo-adidas.png">
+                            <img src="themes/shared/images/icon/logo-adidas.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.crtz.xyz/password">
-                            <img src="storage/images/shared/logo-corteiz.png  ">
+                            <img src="themes/shared/images/icon/logo-corteiz.png  ">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://uk.trapstarlondon.com/">
-                            <img src="storage/images/shared/logo-trapstar.png">
+                            <img src="themes/shared/images/icon/logo-trapstar.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.nike.com.br/">
-                            <img src="storage/images/shared/logo-nike.png">
+                            <img src="themes/shared/images/icon/logo-nike.png">
                         </a>
                     </div>
                 </div>
@@ -99,8 +99,8 @@
                             Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
-                            <img src="storage/images/shared/play-store.png">
-                            <img src="storage/images/shared/app-store.png">
+                            <img src="themes/shared/images/interface/play-store.png">
+                            <img src="themes/shared/images/interface/app-store.png">
                         </div>
                     </div>
                     <div class="footer-col-2">

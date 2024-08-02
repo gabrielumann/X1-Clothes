@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="assets/images/icon2.png" >
+                    <img  src="themes/shared/images/icon/icon2.png" >
                 </div>
                 <div class="col-2">
                     <h1>Quem somos?</h1>
@@ -40,7 +40,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-1.png">
+                <img src="themes/shared/images/interface/user-1.png">
                 <h3>Sean Parker</h3>
 
             </div>
@@ -58,7 +58,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-2.png">
+                <img src="themes/shared/images/interface/user-2.png">
                 <h3>Max Retch</h3>
 
             </div>
@@ -76,7 +76,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-3.png">
+                <img src="themes/shared/images/interface/user-3.png">
                 <h3>Ana Mobs</h3>
 
             </div>

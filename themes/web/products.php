@@ -16,7 +16,7 @@
             </select>
             <form class="search-container">
                 <input type="text" id="search-bar" placeholder="Busca">
-                <a href="#"><img class="search-icon" src="assets/images/iconSearch.png"></a>
+                <a href="#"><img class="search-icon" src="themes/shared/images/interface/iconSearch.png"></a>
             </form>
         </div>
 

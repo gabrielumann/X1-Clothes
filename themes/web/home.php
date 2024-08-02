@@ -13,7 +13,7 @@
                         <a href="<?= url("produtos"); ?>" class="btn">Veja Agora &#8594;</a>
                     </div>
                     <div class="col-2">
-                        <img  src="storage/images/shared/icon1.png" >
+                        <img  src="themes/shared/images/icon/icon1.png" >
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="storage/images/shared/category-1.jpg">
+                            <img src="themes/shared/images/interface/category-1.jpg">
                             <h2> 
                             Calças 
                         </a> 
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="storage/images/shared/category-2.jpg">
+                            <img src="themes/shared/images/interface/category-2.jpg">
                             <h2> 
                             Tênis   
                         </a> 
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="storage/images/shared/category-3.jpg">
+                            <img src="themes/shared/images/interface/category-3.jpg">
 <!--                            aq vai ser passado a category.image-->
                             <h2> 
                             Casacos   
@@ -61,7 +61,7 @@
             <div class="small-container">
                 <div class="row">
                     <div class="col-2">
-                        <img src="storage/images/shared/bapesta.png" class="offer-img">
+                        <img src="themes/shared/images/interface/bapesta.png" class="offer-img">
                     </div>
                     <div class="col-2">
                         <p>Exclusivamente na <span>X1 Clothes</span></p>
@@ -317,7 +317,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <img src="storage/images/shared/user-1.png">
+                        <img src="themes/shared/images/interface/user-1.png">
 <!--                        aq vai a user.img-->
                         <h3>Sean Parker</h3>
 
@@ -336,7 +336,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="storage/images/shared/user-2.png">
+                        <img src="themes/shared/images/interface/user-2.png">
                         <h3>Max Retch</h3>
 
                     </div>
@@ -355,7 +355,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="storage/images/shared/user-3.png">
+                        <img src="themes/shared/images/interface/user-3.png">
                         <h3>Ana Mobs</h3>
 
                     </div>

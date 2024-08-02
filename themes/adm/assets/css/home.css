@@ -5,7 +5,7 @@
     padding: 20px;
 }
 
-.header {
+.dashboard {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,17 +13,17 @@
     border-bottom: 1px solid #ddd;
 }
 
-h1 {
+.dashboard h1 {
     margin: 0;
     color: #ffffff;
 }
 
-select {
+#date-range {
     padding: 10px;
     font-size: 16px;
 }
 
-main {
+.cardMain {
     margin-top: 20px;
 }
 
