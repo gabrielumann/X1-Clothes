@@ -28,7 +28,13 @@ CREATE TABLE product_categories
 (
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  name varchar(255) NOT NULL,
- image varchar(255) NOT NULL
+ image varchar(255)
+);
+
+CREATE TABLE brands
+(
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ name varchar(255) NOT NULL
 );
 
 CREATE TABLE products
@@ -37,7 +43,9 @@ CREATE TABLE products
  name varchar(255) NOT NULL,
  price double NOT NULL,
  category_id INT NOT NULL,
- FOREIGN KEY (category_id) REFERENCES product_categories(id)
+ brand_id INT NOT NULL,
+ FOREIGN KEY (category_id) REFERENCES product_categories(id) ,
+ FOREIGN KEY (brand_id) REFERENCES brands(id)
 );
 
 CREATE TABLE stock(

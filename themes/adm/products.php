@@ -1,5 +1,19 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
+
+
 <h1> oi eu sou a <?= $title?></h1>
+
+<div class="container">
+    <h2>Formulário de Cadastro de Categorias</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="nome-produto">Nome da Categoria:</label>
+            <input type="text" id="categoria" name="categoria" required>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+<br>
 
 <div class="container">
     <h2>Formulário de Cadastro de Produtos</h2>

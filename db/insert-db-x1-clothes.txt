@@ -1,8 +1,10 @@
 use `db-x1-clothes`;
 
--- Insert faq
+-- Insert faq types
 INSERT INTO `faq_types` VALUES (1,'Vendas'),(2,'Envio'),(3,'Pagamento'),(4,'Contato');
 
+
+-- Insert faq questions
 INSERT INTO `faq_questions` VALUES
 (
  null ,
@@ -81,6 +83,7 @@ INSERT INTO `faq_questions` VALUES
 
  );
 
+
 -- Insert users
 INSERT INTO `users` VALUES (
 1,
@@ -90,4 +93,76 @@ INSERT INTO `users` VALUES (
 '12345678910',
 'admin',
 null
+);
+
+-- Insert categories
+INSERT INTO product_categories VALUES (
+null,
+'Tênis',
+null
+),
+(
+null,
+'Camisetas',
+null
+),
+(
+null,
+'Calças',
+null
+),
+(
+null,
+'Assesórios',
+null
+),
+(
+null,
+'Shorts',
+null
+),
+(
+null,
+'Moletons/Jaquetas',
+null
+),
+(
+null,
+'Shorts',
+null
+);
+
+--insert brands
+INSERT INTO brands VALUES
+(
+null,
+'Nike'
+),
+(
+null,
+'Adidas'
+),
+(
+null,
+'Jordan'
+),
+(
+null,
+'Cortez'
+),
+(
+null,
+'A Bathing Ape'
+),
+(
+null,
+'Nocta'
+),
+(
+null,
+'Supreme'
+),
+(
+null,
+'Luis Vuitton'
 );
