@@ -2,6 +2,7 @@
 
 namespace Source\App\Api;
 
+use CoffeeCode\DataLayer\Connect;
 use Source\Core\TokenJWT;
 use Source\Models\User;
 
@@ -12,12 +13,40 @@ class Users extends Api
         parent::__construct();
     }
 
+    public function testConnection()
+    {
+        $error = Connect::getError();
+
+        if ($error){
+            echo $error->getMessage();
+            die();
+        }
+        echo "good connection with database";
+    }
     public function listUsers ()
     {
-        //echo "Olá, Lista de Usuários";
         $user = new User();
-        //var_dump($user->selectAll());
-        $this->back($user->selectAll());
+        $listUser = $user->find()->fetch(true);
+
+        if (!$listUser){
+            $this->back("Nenhum Usuário cadastrado");
+        }
+
+        $response = [];
+        foreach ($listUser as $user){
+            $response[] = [
+                "id" => $user->id,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name,
+                "email" => $user->email,
+                "password" => $user->password,
+                "cpf" => $user->cpf,
+                "role" => $user->role,
+            ];
+        }
+        $this->back($response);
+
+
     }
 
     public function insertUser (array $data)

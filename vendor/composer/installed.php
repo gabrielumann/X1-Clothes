@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
         'name' => 'fabio3268/mvc-project-tarde',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '661415ec0cb77ee11b8749a054f909476160d4c3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'coffeecode/datalayer' => array(
+            'pretty_version' => '2.0.7',
+            'version' => '2.0.7.0',
+            'reference' => '619eb838783a3d2488d98f8a879dd772e62b444f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../coffeecode/datalayer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'coffeecode/router' => array(
             'pretty_version' => '2.0.2',
             'version' => '2.0.2.0',
@@ -20,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'fabio3268/mvc-project-tarde' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '661415ec0cb77ee11b8749a054f909476160d4c3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

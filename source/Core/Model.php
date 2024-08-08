@@ -12,10 +12,6 @@ abstract class Model
 
     private $massage;
 
-    public function getMessage(): ?string
-    {
-        return $this->massage;
-    }
 
     public function selectAll (): ?array
     {

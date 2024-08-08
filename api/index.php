@@ -25,6 +25,9 @@ $route->post("/set-password","Users:setPassword");
 
 $route->group(null);
 
+//$route->group("/products");
+//$route->get("/", "Products:listProducts");
+
 $route->dispatch();
 
 /** ERROR REDIRECT */
