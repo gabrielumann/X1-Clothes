@@ -56,8 +56,8 @@ $route->get("/ooops/{errcode}", "Web:error");
 
 $route->dispatch();
 
-if ($route->error()) {
-    $route->redirect("/ooops/{$route->error()}");
-}
+//if ($route->error()) {
+//    $route->redirect("/ooops/{$route->error()}");
+//}
 
 ob_end_flush();

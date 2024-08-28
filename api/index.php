@@ -1,33 +1,32 @@
 <?php
-
 ob_start();
-
 require  __DIR__ . "/../vendor/autoload.php";
-
 use CoffeeCode\Router\Router;
 
 $route = new Router(url("api"),":");
-
 $route->namespace("Source\App\Api");
 
-
 $route->group("/faqs");
-
 $route->get("/","Faqs:listFaqs");
 
-$route->group("/users");
 
+$route->group("/users");
 $route->get("/", "Users:listUsers");
 $route->post("/","Users:insertUser");
 $route->post("/login","Users:loginUser");
 $route->post("/update","Users:updateUser");
 $route->post("/set-password","Users:setPassword");
 
-$route->group(null);
 
-//$route->group("/products");
-//$route->get("/", "Products:listProducts");
+$route->group("/category");
+$route->get("/", "Products:listCategories");
 
+$route->group("/products");
+$route->get("/", "Products:listProducts");
+$route->get("/{id}", "Products:getProduct");
+$route->post("/","Products:insertProduct");
+$route->post("/update/{id}", "Products:updateProduct");
+$route->post("/delete/{id}","Products:deleteProduct");
 $route->dispatch();
 
 /** ERROR REDIRECT */

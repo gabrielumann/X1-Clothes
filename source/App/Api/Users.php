@@ -3,6 +3,7 @@
 namespace Source\App\Api;
 
 use CoffeeCode\DataLayer\Connect;
+use PDOException;
 use Source\Core\TokenJWT;
 use Source\Models\User;
 
@@ -11,6 +12,7 @@ class Users extends Api
     public function __construct()
     {
         parent::__construct();
+
     }
 
     public function testConnection()
@@ -26,14 +28,15 @@ class Users extends Api
     public function listUsers ()
     {
         $user = new User();
-        $listUser = $user->find()->fetch(true);
+        $users = $user->find()->fetch(true);
 
-        if (!$listUser){
-            $this->back("Nenhum Usuário cadastrado");
+        if(!$users){
+            $this->error(message: "Nenhum usuario cadastrado");
+            die();
         }
 
         $response = [];
-        foreach ($listUser as $user){
+        foreach ($users as $user){
             $response[] = [
                 "id" => $user->id,
                 "first_name" => $user->first_name,
@@ -44,41 +47,31 @@ class Users extends Api
                 "role" => $user->role,
             ];
         }
-        $this->back($response);
+        $this->success($response);
 
 
     }
-
+    // pronto
     public function insertUser (array $data)
     {
+        $user = new User();
+        $user->first_name = $data["first_name"];
+        $user->last_name = $data["last_name"];
+        $user->email = $data["email"];
+        $password = password_hash($data["password"], PASSWORD_DEFAULT);
+        $user->password = $password;
+        $user->cpf = $data["cpf"];
+        $user->role = $data["role"];
+        $user->save();
 
-        $user = new User(
-            NULL,
-            $data["name"],
-            $data["email"],
-            $data["password"],
-        );
 
-        $insert = $user->insert();
-
-        if(!$insert){
-            $this->back([
-                "type" => "error",
-                "message" => $user->getMessage()
-            ]);
-            return;
+        $response = [];
+        if(!$user->save()){
+            $this->error(message: $user->getMessage());
+            return false;
         }
 
-        $this->back([
-            "type" => "success",
-            "message" => $user->getMessage(),
-            "user" => [
-                "id" => $insert,
-                "name" => $user->getName(),
-                "email" => $user->getEmail()
-            ]
-        ]);
-
+        $this->success($response);
     }
 
     public function loginUser (array $data) {

@@ -109,12 +109,7 @@ null
 -- Insert categories
 INSERT INTO product_categories VALUES (
 null,
-'Tênis',
-null
-),
-(
-null,
-'Camisetas',
+'Moletons/Jaquetas',
 null
 ),
 (
@@ -124,22 +119,22 @@ null
 ),
 (
 null,
+'Bermudas',
+null
+),
+(
+null,
+'Camisetas',
+null
+);
+(
+null,
+'Tênis',
+null
+),
+(
+null,
 'Assesórios',
-null
-),
-(
-null,
-'Shorts',
-null
-),
-(
-null,
-'Moletons/Jaquetas',
-null
-),
-(
-null,
-'Shorts',
 null
 );
 
@@ -177,3 +172,6 @@ null,
 null,
 'Luis Vuitton'
 );
+
+--insert products categories
+INSERT INTO product_categories VALUES
