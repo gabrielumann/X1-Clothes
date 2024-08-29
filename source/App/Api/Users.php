@@ -51,7 +51,7 @@ class Users extends Api
 
 
     }
-    // pronto
+
     public function insertUser (array $data)
     {
         $user = new User();
@@ -62,18 +62,16 @@ class Users extends Api
         $user->password = $password;
         $user->cpf = $data["cpf"];
         $user->role = $data["role"];
-        $user->save();
 
 
-        $response = [];
         if(!$user->save()){
             $this->error(message: $user->getMessage());
-            return false;
+            return;
         }
 
-        $this->success($response);
+        $this->success(message: "Usuário cadastrado com sucesso!");
     }
-
+    // pronto
     public function loginUser (array $data) {
         $user = new User();
 

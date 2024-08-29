@@ -24,7 +24,7 @@ $route->get("/", "Products:listCategories");
 $route->group("/products");
 $route->get("/", "Products:listProducts");
 $route->get("/{id}", "Products:getProduct");
-$route->post("/","Products:insertProduct");
+$route->post("/","Products:createProduct");
 $route->post("/update/{id}", "Products:updateProduct");
 $route->post("/delete/{id}","Products:deleteProduct");
 $route->dispatch();

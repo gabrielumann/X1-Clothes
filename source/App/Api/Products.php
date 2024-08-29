@@ -8,21 +8,26 @@ use Source\Models\Product\Product;
 
 class Products extends Api
 {
+    public static string $KEY_NOT_FOUND_PRODUCT = "KEY_NOT_FOUND_PRODUCT";
+    public static string $KEY_NOT_EXIST_PRODUCT = "KEY_NOT_EXIST_PRODUCT";
+
+
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function listProducts(){
+    public function listProducts()
+    {
         $products = (new Product())->find()->fetch(true);
 
-        if(!$products){
-            $this->success(message: "Não existem produtos cadastrados.");
-            die();
+        if (!$products) {
+            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            return;
         }
 
         $response = [];
-        foreach($products as $product){
+        foreach ($products as $product) {
             $response[] = [
                 "id" => $product->id,
                 "name" => $product->name,
@@ -36,12 +41,13 @@ class Products extends Api
     }
 
 
-    public function getProduct(array $data){
+    public function getProduct(array $data)
+    {
         $id = $data["id"];
         $product = (new Product())->findById($id);
-        if(!$product){
-            $this->error(message: "Produto inexistente.");
-            die();
+        if (!$product) {
+            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            return;
         }
 
         $response[] = [
@@ -54,32 +60,79 @@ class Products extends Api
         $this->success($response);
     }
 
-    public function updateProduct(array $data){
-        $id = $data["id"];
-        $product = (new Product())->findById($id);
-        if(!$product){
-            $this->error(message: "Produto inexistente.");
-            die();
+    public function createProduct(array $data)
+    {
+        $product = new Product();
+        if (!$product) {
+            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            return;
+        }
+
+        $requiredFields = ["name", "price", "category_id", "brand_id"];
+        foreach ($requiredFields as $field) {
+            if (!isset($data[$field])) {
+                $this->error(message: "Está faltando o campo $field");
+                die();
+            }
         }
 
         $product->name = $data["name"];
         $product->price = $data["price"];
         $product->category_id = $data["category_id"];
         $product->brand_id = $data["brand_id"];
-        $product->save();
-        if(!$product->save()){
 
+        if (!$product->createProduct()) {
+            $this->error(message: $product->getMessage());
+            return;
         }
 
+        $this->success(message: "Produto criado com sucesso!");
+    }
 
-        $this->success($data);
+    public function updateProduct(array $data)
+    {
+//
+//        verificar a porra do usuario
+//
+        $id = $data["id"];
+        $product = (new Product())->findById($id);
+        if (!$product) {
+            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            return;
+        }
+
+        if (isset($data["name"])) {
+            $product->name = $data["name"];
+        }
+        if (isset($data["price"])) {
+            $product->price = $data["price"];
+        }
+        if (isset($data["category_id"])) {
+            $product->category_id = $data["category_id"];
+        }
+        if (isset($data["brand_id"])) {
+            $product->brand_id = $data["brand_id"];
+        }
+
+        $product->save();
+
+        $this->success(message: "Produto alterado com sucesso!");
     }
 
 
-    public function deleteProduct(array $data){
-        $this->success($data);
-    }
+    public function deleteProduct(array $data)
+    {
+        $id = $data["id"];
+        $product = (new Product())->findById($id);
 
+        if ($product) {
+            $product->destroy();
+            $this->success(message: "produto removido com sucesso!");
+        } else {
+            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+        }
+
+    }
 
     public function listCategories()
     {
@@ -87,7 +140,7 @@ class Products extends Api
         $categories = $category->find()->fetch(true);
 
         $response = [];
-        foreach($categories as $category){
+        foreach ($categories as $category) {
 
             $response[] = $category->data();
         }
@@ -100,4 +153,15 @@ class Products extends Api
         return $this->userAuth;
     }
 
+    public function messageProduct(string $KEY)
+    {
+        switch ($KEY) {
+            case self::$KEY_NOT_EXIST_PRODUCT:
+                $this->success(message: "Não existem produtos cadastrados.");
+                break;
+            case self::$KEY_NOT_FOUND_PRODUCT:
+                $this->error(message: "Produto inexistente.", code: 404);
+                break;
+        }
+    }
 }
