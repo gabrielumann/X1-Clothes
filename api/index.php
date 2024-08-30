@@ -8,7 +8,10 @@ $route->namespace("Source\App\Api");
 
 $route->group("/faqs");
 $route->get("/","Faqs:listFaqs");
-
+$route->get("/{id}", "Faqs:getFaq");
+$route->post("/","Faqs:createFaq");
+$route->post("/update/{id}", "Faqs:updateFaq");
+$route->post("/delete/{id}","Faqs:deleteFaq");
 
 $route->group("/users");
 $route->get("/", "Users:listUsers");
