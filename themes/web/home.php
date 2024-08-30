@@ -1,12 +1,6 @@
-<?php
-    echo $this->layout("_theme");       
-?>
 
+<?php $this->layout("_theme", ['title' => $title]); ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-    <body>
-        
         <!--     Start            -->
             <div class="container">
                 <div class="row">
@@ -19,7 +13,7 @@
                         <a href="<?= url("produtos"); ?>" class="btn">Veja Agora &#8594;</a>
                     </div>
                     <div class="col-2">
-                        <img  src="assets/images/icon1.png" >
+                        <img  src="themes/shared/images/icon/icon1.png" >
                     </div>
                 </div>
             </div>
@@ -32,7 +26,7 @@
                 <div class="row">
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="assets/images/category-1.jpg">
+                            <img src="themes/shared/images/interface/category-1.jpg">
                             <h2> 
                             Calças 
                         </a> 
@@ -41,7 +35,7 @@
                     </div>
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="assets/images/category-2.jpg">
+                            <img src="themes/shared/images/interface/category-2.jpg">
                             <h2> 
                             Tênis   
                         </a> 
@@ -50,7 +44,8 @@
                     </div>
                     <div class="col-3">
                         <a href="<?= url("produtos"); ?>">
-                            <img src="assets/images/category-3.jpg">
+                            <img src="themes/shared/images/interface/category-3.jpg">
+<!--                            aq vai ser passado a category.image-->
                             <h2> 
                             Casacos   
                         </a> 
@@ -60,8 +55,29 @@
                 </div>
             </div>
         </div>
-            
-            <!--      featured products    -->
+
+        <!--     offer     -->
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="themes/shared/images/interface/bapesta.png" class="offer-img">
+                    </div>
+                    <div class="col-2">
+                        <p>Exclusivamente na <span>X1 Clothes</span></p>
+                        <h1>BapeSta Low Black</h1>
+                        <small>
+                            Este tênis impressionante apresenta uma silhueta clássica e atemporal,
+                            com detalhes minuciosamente elaborados para criar um visual único.
+                            A parte superior é confeccionada com materiais premium, garantindo durabilidade e conforto incomparáveis.
+                        </small> <br>
+                        <a href="<?= url("detalhes"); ?>" class="btn">Buy Now &#8594;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--      featured products    -->
         <div class="content">
             <div class="small-container">
                 <h2 class="title">Produtos Mais Vendidos do Mês</h2>
@@ -282,26 +298,6 @@
                 </div>
             </div>
         </div>
-        <!--     offer     -->
-        <div class="offer">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-2">
-                        <img src="assets/images/bapesta.png" class="offer-img">
-                    </div>
-                    <div class="col-2">
-                        <p>Exclusivamente na <span>X1 Clothes</span></p>
-                        <h1>BapeSta Low Black</h1>
-                        <small>
-                            Este tênis impressionante apresenta uma silhueta clássica e atemporal, 
-                            com detalhes minuciosamente elaborados para criar um visual único. 
-                            A parte superior é confeccionada com materiais premium, garantindo durabilidade e conforto incomparáveis.
-                        </small> <br>
-                        <a href="<?= url("detalhes"); ?>" class="btn">Buy Now &#8594;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!--------      testimonial       ------------- -->
         <div class="testimonial">
@@ -321,7 +317,8 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <img src="assets/images/user-1.png">
+                        <img src="themes/shared/images/interface/user-1.png">
+<!--                        aq vai a user.img-->
                         <h3>Sean Parker</h3>
 
                     </div>
@@ -339,7 +336,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="assets/images/user-2.png">
+                        <img src="themes/shared/images/interface/user-2.png">
                         <h3>Max Retch</h3>
 
                     </div>
@@ -358,15 +355,10 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
-                        <img src="assets/images/user-3.png">
+                        <img src="themes/shared/images/interface/user-3.png">
                         <h3>Ana Mobs</h3>
 
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-    </body>
-</html>

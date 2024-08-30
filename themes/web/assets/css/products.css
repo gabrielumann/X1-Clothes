@@ -1,0 +1,76 @@
+.row-2{
+    margin: 100px auto 50px;
+    flex-direction: column;
+    justify-content: end;
+}
+.small-container h2{
+  position: absolute;
+}
+.select{ /* <div> */
+  width: 239px;
+  height: 34px;
+  overflow: hidden;
+  background: url(nova_setinha.jpg) no-repeat right #ddd; /* novo ícone para o <select> */
+  border: 1px solid #ccc;
+}   
+
+.select select { /* <select> */
+  background: transparent; /* importante para exibir o novo ícone */
+  width: 268px;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+}      
+
+select{
+    border: 1px solid #9600ff;
+    padding: 5px;
+    margin-left: 532px;
+}
+select:focus{
+    outline: none;
+}
+.page-btn{
+    margin: 0 auto 80px;
+}
+.page-btn span{
+    display: inline-block;
+    border: 1px solid #9600ff;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+.page-btn span:hover{
+    background: #9600ff;
+    color: #fff;
+}
+/* search */  
+  .search-container{
+    width: 490px;
+    display: block;
+    margin-left: 783px;
+  }
+  
+  input#search-bar{
+    margin-top: 10px;
+    height: 35px;
+    padding: 0 10px;
+    width: 240px;
+    border: 1px solid #D0CFCE;
+    outline: none;
+   }
+
+  .search-icon{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    right: 35px;
+    top: 8px;
+  }
+  

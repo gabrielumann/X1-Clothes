@@ -3,18 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>X1 Clothes </title>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <script src="assets/js/scripts.js"></script>
+        <title><?= $this->e($title)?></title>
+
+        <?php if ($this->section("specific-style")): ?>
+            <?= $this->section("specific-style"); ?>
+        <?php endif; ?>
+        <link rel="stylesheet" href="<?= url("themes/web/assets/css/style.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <?php if ($this->section("specific-script")): ?>
+            <?= $this->section("specific-script"); ?>
+        <?php endif; ?>
+        <script src="assets/js/scripts.js" async></script>
     </head>
     <body>
-        <div class="header">
+
+    <div class="header">
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="assets/images/logox1.png">
+                        <a href="<?= url(); ?>"><img src="themes/shared/images/icon/logox1.png">
                         </a>
                     </div>
                     <nav>
@@ -22,16 +31,18 @@
                             <li><p><a href="<?= url(); ?>">Home</a></p></li>
                             <li><p><a href="<?= url("produtos"); ?>">Produtos</a></p></li>
                             <li><p><a href="<?= url("sobre"); ?>">Sobre</a></p></li>
-                            <li><p><a href="<?= url("faq"); ?>">Ajuda</a></p></li>
+                            <li><p><a href="<?= url("faqs"); ?>">Ajuda</a></p></li>
                             <li><p><a href="<?= url("entrar"); ?>">Login</a></p></li>
                         </ul>
                     </nav>
-                    <a href="<?= url("carrinho"); ?>"><img src="assets/images/cart.png" width="30px" height="30px">
-                    </a> 
-                    <img src="assets/images/menu.png" class="menu-icon" onclick="menutoggle()">
+                    <a href="<?= url("carrinho"); ?>"><img src="themes/shared/images/interface/cart.png" width="30px" height="30px">
+                    </a>
                 </div>
             </div>
         </div>
+
+
+
 
     <div id="content">
         <!-- Your content goes here -->
@@ -40,33 +51,35 @@
         ?>
     </div>
 
+
+
             <!--    brands     -->
         <div class="brands">
             <div class="small-container">
                 <div class="row">
                     <div class="col-5">
                         <a href="https://int.bape.com/">
-                            <img src="assets/images/logo-bape.png">
+                            <img src="themes/shared/images/icon/logo-bape.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.adidas.com.br/">
-                            <img src="assets/images/logo-adidas.png">
+                            <img src="themes/shared/images/icon/logo-adidas.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.crtz.xyz/password">
-                            <img src="assets/images/logo-corteiz.png  ">
+                            <img src="themes/shared/images/icon/logo-corteiz.png  ">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://uk.trapstarlondon.com/">
-                            <img src="assets/images/logo-trapstar.png">
+                            <img src="themes/shared/images/icon/logo-trapstar.png">
                         </a>
                     </div>
                     <div class="col-5">
                         <a href="https://www.nike.com.br/">
-                            <img src="assets/images/logo-nike.png">
+                            <img src="themes/shared/images/icon/logo-nike.png">
                         </a>
                     </div>
                 </div>
@@ -86,8 +99,8 @@
                             Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
-                            <img src="assets/images/play-store.png">
-                            <img src="assets/images/app-store.png">
+                            <img src="themes/shared/images/interface/play-store.png">
+                            <img src="themes/shared/images/interface/app-store.png">
                         </div>
                     </div>
                     <div class="footer-col-2">
@@ -113,7 +126,7 @@
                         <h3>Contato</h3>
                         <ul>
                             <li>(51)985412451</li>
-                            <li>gabrielmachado.ch002@academico.ifsul.edu.br</li>
+                            <li>x1clothes@suporte.com</li>
                             <li>R. Gen. Balbão, 81 - Centro, <br> Charqueadas - RS, 96745-000</li> 
                         </ul>
                     </div>
@@ -123,22 +136,5 @@
         </div>
 
 
-<!--                js for toggle menu          temp      -->
-        <script>
-            var MenuItems = document.getElementById("menuItems");
-
-            MenuItems.style.maxHeight = "0px";
-
-            function  menutoggle(){
-                if(MenuItems.style.maxHeight == "0px")
-                {
-                    MenuItems.style.maxHeight = "200px"
-                }
-                else
-                {
-                    MenuItems.style.maxHeight = "0px"
-                }
-            }
-        </script>
     </body>
 </html>

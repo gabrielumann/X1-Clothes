@@ -1,16 +1,10 @@
-<?php
-    echo $this->layout("_theme");       
-?>
+<?php $this->layout("_theme", ['title' => $title]); ?>
+<?php $this->start("specific-style")?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <link rel="stylesheet" href="assets/css/products.css">
-</head>
-<body>
+<link rel="stylesheet" href="themes/web/assets/css/products.css">
+<?php $this->end(); ?>
 
-
-    <div class="small-container">
+<div class="small-container">
     <h2>Todos os Produtos</h2>
         <div class="row row-2">
             <select class="select">
@@ -22,7 +16,7 @@
             </select>
             <form class="search-container">
                 <input type="text" id="search-bar" placeholder="Busca">
-                <a href="#"><img class="search-icon" src="assets/images/iconSearch.png"></a>
+                <a href="#"><img class="search-icon" src="themes/shared/images/interface/iconSearch.png"></a>
             </form>
         </div>
 
@@ -246,6 +240,4 @@
             <span>&#8594;</span>
         </div>
 
-    </div>
-    </body>
-</html>
+</div>

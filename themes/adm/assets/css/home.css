@@ -1,0 +1,48 @@
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.dashboard h1 {
+    margin: 0;
+    color: #ffffff;
+}
+
+#date-range {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.cardMain {
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #666;
+}
+
+.card p {
+    font-size: 48px;
+    color: #333;
+    margin: 20px 0 0;
+}

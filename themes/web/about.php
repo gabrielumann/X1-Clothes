@@ -1,27 +1,20 @@
-<?php
-    echo $this->layout("_theme");       
-?>
-<!DOCTYPE html>
-<html lang="pt-br">    
-<body>
+<?php $this->layout("_theme", ['title' => $title]); ?>
 
-
-        
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img  src="assets/images/icon2.png" >
+                    <img  src="themes/shared/images/icon/icon2.png" >
                 </div>
                 <div class="col-2">
                     <h1>Quem somos?</h1>
                     <p>
-                        A X1 Clothes se destina a jovens adultos (entre 18 e 35 anos) que valorizam a moda como uma forma de expressão pessoal 
-                        e estão sempre em busca das últimas tendências. Nosso público-alvo é formado por indivíduos que procuram por uma 
-                        experiência de compra única, onde possam encontrar uma ampla variedade de produtos que reflitam seu estilo de vida 
-                        dinâmico e contemporâneo.
+                        A X1 Clothes é uma loja destinada a jovens adultos (entre 18 e 35 anos) que valorizam a moda como uma forma de
+                        expressão pessoal e estão sempre em busca das últimas tendências. Nosso público-alvo é formado por indivíduos que
+                        procuram por uma experiência de compra única, onde possam encontrar uma ampla variedade de produtos importados únicos,
+                        que reflitam seu estilo de vida dinâmico e contemporâneo.
 
                     </p>
-                    <a href="pages/products.html" class="btn">Explore Now &#8594;</a>
+                    <a href="<?= url()?>" class="btn">Veja os produtos &#8594;</a>
                 </div>
 
             </div>
@@ -47,7 +40,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-1.png">
+                <img src="themes/shared/images/interface/user-1.png">
                 <h3>Sean Parker</h3>
 
             </div>
@@ -65,7 +58,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-2.png">
+                <img src="themes/shared/images/interface/user-2.png">
                 <h3>Max Retch</h3>
 
             </div>
@@ -83,14 +76,10 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <img src="assets/images/user-3.png">
+                <img src="themes/shared/images/interface/user-3.png">
                 <h3>Ana Mobs</h3>
 
             </div>
         </div>
     </div>
 </div>
-
-
-</body>
-</html>
