@@ -2,6 +2,9 @@
 <?php $this->start("specific-style")?>
 <link rel="stylesheet" href="themes/web/assets/css/login.css">
 <?php $this->end(); ?>
+<?php $this->start("specific-script")?>
+<script src="themes/web/assets/js/scripts-register.js" async></script>
+<?php $this->end(); ?>
 
         <div class="container">
             <div class="row">
@@ -25,11 +28,12 @@
 
                         </form>
                         <form id="RegForm">
-                            <input type="text" placeholder="Usuário">
-                            <input type="email" placeholder="Email">
-                            <input type="text" placeholder="CPF">
-                            <input type="password" placeholder="Senha">
-                            <input type="password" placeholder="Confirmar senha">
+                            <input type="text" name="first_name" placeholder="Primeiro nome">
+                            <input type="text" name="last_name" placeholder="Ultimo nome">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="text" name="cpf" placeholder="CPF">
+                            <input type="password" name="password" placeholder="Senha">
+                            <input type="password" name="passwordConfirmed" placeholder="Confirmar senha">
                             <button class="btn">Registrar</button>
                             
                         </form>

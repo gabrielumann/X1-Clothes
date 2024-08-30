@@ -68,12 +68,16 @@ class Users extends Api
     {
         $user = new User();
 
-        $requiredFields = ["first_name", "last_name", "email", "password", "cpf"];
+        $requiredFields = ["first_name", "last_name", "email", "password", "passwordConfirmed", "cpf"];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
                 $this->error(message: "Está faltando o campo $field");
                 die();
             }
+        }
+        if ($data["password"] !== $data["passwordConfirmed"]) {
+            $this->error(message: "As senhas devem coincidir!");
+            return;
         }
 
         $user->first_name = $data["first_name"];
