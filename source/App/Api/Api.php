@@ -16,7 +16,7 @@ abstract class Api
 
         if(!empty($this->headers["token"]) || isset($this->headers["token"])){
             $jwt = new TokenJWT();
-            if($jwt->verify($this->headers[" "])){
+            if($jwt->verify($this->headers["token"])){
                 $this->userAuth = $jwt->token->data;
             }
         }
@@ -48,6 +48,13 @@ abstract class Api
         }
 
         self::back($return, $code);
+    }
+    protected function auth (): void
+    {
+        if (!$this->userAuth){
+            $this->error("Usuário não autorizado e/ou token expirado", 401);
+            exit();
+        }
     }
 
 }

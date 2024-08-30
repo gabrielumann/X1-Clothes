@@ -10,8 +10,7 @@ CREATE TABLE users (
  email varchar(255) NOT NULL,
  password varchar(255) NOT NULL,
  cpf char(11) NOT NULL,
- role varchar(50) NOT NULL,
- image varchar(255)
+ role ENUM("ADMIN", "DEFAULT") NOT NULL
 );
 
 
@@ -37,16 +36,24 @@ CREATE TABLE brands
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  name varchar(255) NOT NULL
 );
+CREATE TABLE sizes
+(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name varchar(10) NOT NULL
+);
 
 CREATE TABLE products
 (
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  name varchar(255) NOT NULL,
- price double NOT NULL,
+ price_brl DOUBLE NOT NULL DEFAULT 0.0,
+ color VARCHAR(100) NOT NULL,
  category_id INT NOT NULL,
  brand_id INT NOT NULL,
+ size_id INT NOT NULL,
  FOREIGN KEY (category_id) REFERENCES product_categories(id) ,
- FOREIGN KEY (brand_id) REFERENCES brands(id)
+ FOREIGN KEY (brand_id) REFERENCES brands(id),
+ FOREIGN KEY (size_id) REFERENCES sizes(id)
 );
 
 CREATE TABLE stock(
@@ -60,6 +67,7 @@ CREATE TABLE product_images
 (
  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
  image varchar(255) NOT NULL,
+ type ENUM("PRINCIPAL", "SECONDARY") NOT NULL,
  product_id INT NOT NULL,
  FOREIGN KEY (product_id) REFERENCES products(id)
 );
@@ -99,7 +107,7 @@ CREATE TABLE rating
  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE faq_types
+CREATE TABLE faq_categories
 (
   id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `description` varchar(255) NOT NULL
@@ -108,10 +116,10 @@ CREATE TABLE faq_types
 CREATE TABLE faq_questions
 (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  type_id int NOT NULL,
+  category_id int NOT NULL,
   question varchar(255) NOT NULL,
   answer text NOT NULL,
-  FOREIGN KEY (type_id) REFERENCES faq_types(id)
+  FOREIGN KEY (category_id) REFERENCES faq_categories(id)
 );
 
 

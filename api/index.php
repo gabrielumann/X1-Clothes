@@ -12,11 +12,12 @@ $route->get("/","Faqs:listFaqs");
 
 $route->group("/users");
 $route->get("/", "Users:listUsers");
-$route->post("/","Users:insertUser");
+$route->get("/{id}", "Users:getUser");
+$route->post("/","Users:createUser");
+$route->post("/update/{id}", "Users:updateUser");
+$route->post("/change-password/{id}","Users:changePassword");
+$route->post("/delete/{id}","Users:deleteUser");
 $route->post("/login","Users:loginUser");
-$route->post("/update","Users:updateUser");
-$route->post("/set-password","Users:setPassword");
-
 
 $route->group("/category");
 $route->get("/", "Products:listCategories");
@@ -27,6 +28,8 @@ $route->get("/{id}", "Products:getProduct");
 $route->post("/","Products:createProduct");
 $route->post("/update/{id}", "Products:updateProduct");
 $route->post("/delete/{id}","Products:deleteProduct");
+
+
 $route->dispatch();
 
 /** ERROR REDIRECT */

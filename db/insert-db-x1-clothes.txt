@@ -1,7 +1,7 @@
 use `db-x1-clothes`;
 
--- Insert faq types
-INSERT INTO `faq_types` VALUES (1,'Vendas'),(2,'Envio'),(3,'Pagamento'),(4,'Contato');
+-- Insert faq_categories
+INSERT INTO `faq_categories` VALUES (1,'Vendas'),(2,'Envio'),(3,'Pagamento'),(4,'Contato');
 
 
 -- Insert faq questions
@@ -94,22 +94,12 @@ null,
 '12345678910',
 'admin',
 null
-),
-(
- null,
-'Lucas',
-'Neves',
-'default@default.com',
-'default',
-'12345678910',
-'default',
-null
 );
 
 -- Insert categories
 INSERT INTO product_categories VALUES (
 null,
-'Moletons/Jaquetas',
+'Jaquetas',
 null
 ),
 (
@@ -126,7 +116,7 @@ null
 null,
 'Camisetas',
 null
-);
+),
 (
 null,
 'Tênis',
@@ -173,5 +163,39 @@ null,
 'Luis Vuitton'
 );
 
---insert products categories
-INSERT INTO product_categories VALUES
+INSERT INTO `sizes` VALUES (
+null,
+'PP'
+),
+(
+null,
+'P'
+),
+(
+null,
+'M'
+),
+(
+null,
+'G'
+),
+(
+null,
+'GG'
+),
+(
+null,
+'XXG'
+);
+
+--insert products
+INSERT INTO products VALUES
+(
+null,
+"Camiseta Supreme Mini Logo",
+132.50,
+'Preta',
+4,
+7,
+2
+)

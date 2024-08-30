@@ -3,6 +3,7 @@
 namespace Source\Models\Product;
 
 use CoffeeCode\DataLayer\DataLayer;
+use PDOException;
 
 class Product extends DataLayer
 {
@@ -11,18 +12,26 @@ class Product extends DataLayer
     public function __construct()
     {
         //string $entity, array $required, string $primary = 'id', bool $timestamps = true, array $database = null
-        parent::__construct("products", ["name", "price", "category_id", "brand_id"], timestamps: false);
+        parent::__construct("products", ["name", "price_brl", "color", "category_id", "brand_id", "size_id"], timestamps: false);
     }
 
     public function getImages()
     {
         return (new ProductImage())->find("product_id = :pid", "pid={$this->id}")->fetch(true);
     }
-
+    public function getBrand()
+    {
+        $brand = (new Brands())->findById($this->id);
+        return $brand->name;
+    }
+    public function getCategory()
+    {
+        $category = (new Category())->findById($this->id);
+        return $category->name;
+    }
 
     public function createProduct(): bool
     {
-
         $params = http_build_query(["name" => $this->name]);
         $product = $this->find("name = :name", $params);
         $product->fetch(true);

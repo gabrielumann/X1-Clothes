@@ -11,6 +11,6 @@ class ProductImage extends DataLayer
     public function __construct()
     {
         //string $entity, array $required, string $primary = 'id', bool $timestamps = true, array $database = null
-        parent::__construct("product_images", ["image" , "product_id"], timestamps: false);
+        parent::__construct("product_images", ["image" ,"type" ,"product_id"], timestamps: false);
     }
 }

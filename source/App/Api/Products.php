@@ -11,7 +11,6 @@ class Products extends Api
     public static string $KEY_NOT_FOUND_PRODUCT = "KEY_NOT_FOUND_PRODUCT";
     public static string $KEY_NOT_EXIST_PRODUCT = "KEY_NOT_EXIST_PRODUCT";
 
-
     public function __construct()
     {
         parent::__construct();
@@ -22,7 +21,7 @@ class Products extends Api
         $products = (new Product())->find()->fetch(true);
 
         if (!$products) {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
             return;
         }
 
@@ -31,15 +30,18 @@ class Products extends Api
             $response[] = [
                 "id" => $product->id,
                 "name" => $product->name,
-                "price" => $product->price,
+                "price_brl" => $product->price_brl,
+                "color" => $product->color,
                 "category_id" => $product->category_id,
+                //"category" => $product->getCategory(),
                 "brand_id" => $product->brand_id,
+                //"brand" => $product->getBrand(),
+                "size_id" => $product->size_id,
             ];
         }
 
         $this->success($response);
     }
-
 
     public function getProduct(array $data)
     {
@@ -53,22 +55,22 @@ class Products extends Api
         $response[] = [
             "id" => $product->id,
             "name" => $product->name,
-            "price" => $product->price,
+            "price_brl" => $product->price_brl,
+            "color" => $product->color,
             "category_id" => $product->category_id,
             "brand_id" => $product->brand_id,
+            "size_id" => $product->size_id,
         ];
         $this->success($response);
     }
 
     public function createProduct(array $data)
     {
-        $product = new Product();
-        if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
-            return;
-        }
+        $this->auth();
 
-        $requiredFields = ["name", "price", "category_id", "brand_id"];
+        $product = new Product();
+
+        $requiredFields = ["name", "price_brl", "color", "category_id", "brand_id", "size_id"];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
                 $this->error(message: "Está faltando o campo $field");
@@ -77,35 +79,51 @@ class Products extends Api
         }
 
         $product->name = $data["name"];
-        $product->price = $data["price"];
+        $product->price_brl = $data["price_brl"];
+        $product->color = $data["color"];
         $product->category_id = $data["category_id"];
         $product->brand_id = $data["brand_id"];
+        $product->size_id = $data["size_id"];
 
         if (!$product->createProduct()) {
             $this->error(message: $product->getMessage());
             return;
         }
+        $response[] = [
+            "id" => $product->id,
+            "name" => $product->name,
+            "price_brl" => $product->price_brl,
+            "color" => $product->color,
+            "category_id" => $product->category_id,
+            "brand_id" => $product->brand_id,
+            "size_id" => $product->size_id,
+        ];
 
-        $this->success(message: "Produto criado com sucesso!");
+        $this->success($response ,message: "Produto criado com sucesso!");
     }
 
     public function updateProduct(array $data)
     {
-//
-//        verificar a porra do usuario
-//
+        $this->auth();
+
         $id = $data["id"];
-        $product = (new Product())->findById($id);
+
+        $instance = new Product();
+        $product = $instance->findById($id);
         if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
             return;
         }
 
         if (isset($data["name"])) {
             $product->name = $data["name"];
+            echo $product->name;
         }
-        if (isset($data["price"])) {
+        if (isset($data["price_brl"])) {
             $product->price = $data["price"];
+        }
+        if (isset($data["color"])) {
+            $product->color = $data["color"];
         }
         if (isset($data["category_id"])) {
             $product->category_id = $data["category_id"];
@@ -113,23 +131,29 @@ class Products extends Api
         if (isset($data["brand_id"])) {
             $product->brand_id = $data["brand_id"];
         }
+        if (isset($data["size_id"])) {
+            $product->size_id = $data["size_id"];
+        }
 
-        $product->save();
+        if($product->save()){
+            $this->success(message: "Produto atualizado com sucesso!");
+        };
 
-        $this->success(message: "Produto alterado com sucesso!");
+
     }
-
 
     public function deleteProduct(array $data)
     {
+        $this->auth();
+
         $id = $data["id"];
         $product = (new Product())->findById($id);
 
         if ($product) {
             $product->destroy();
-            $this->success(message: "produto removido com sucesso!");
+            $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
         }
 
     }
@@ -148,10 +172,6 @@ class Products extends Api
         $this->success($response);
     }
 
-    public function isUserAuth(): bool
-    {
-        return $this->userAuth;
-    }
 
     public function messageProduct(string $KEY)
     {
