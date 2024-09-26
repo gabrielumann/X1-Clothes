@@ -9,6 +9,9 @@ abstract class Api
     protected $headers;
     protected $userAuth = false;
 
+    public static int  $KEY_NOT_FOUND = 404;
+    public static int  $KEY_NOT_EXIST = 501;
+
     public function __construct()
     {
         header('Content-Type: application/json; charset=UTF-8');
@@ -54,6 +57,25 @@ abstract class Api
         if (!$this->userAuth){
             $this->error("Usuário não autorizado e/ou token expirado", 401);
             exit();
+        }
+    }
+    public function message(string $class, string $code)
+    {
+        $help = "a";
+        $class = strtolower($class);
+
+        if (substr($class, -1) === 'o'){
+            $help = "o";
+        }
+
+
+        switch ($code) {
+            case self::$KEY_NOT_EXIST:
+                 $this->success(message: "Não existe {$class} cadastrad$help.", code: self::$KEY_NOT_EXIST);
+                break;
+            case self::$KEY_NOT_FOUND:
+                 $this->error(message: "$class inexistente.", code: self::$KEY_NOT_FOUND);
+                break;
         }
     }
 

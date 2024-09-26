@@ -12,7 +12,7 @@
     padding: 20px 0;
     margin: auto;
     box-shadow: 0 0 20px 20px rgba(0,0,0,0.1);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .form-container span{
     font-weight: bold;
@@ -48,17 +48,17 @@ form .btn{
 form .btn:focus{
     outline: none;
 }
-#LoginForm{
+#loginForm{
     right: 0;
 }
-#RegForm{
+#regForm{
     top: 70px;
     right: -300px;
 }
 form a{
     font-size: 12px;
 }
-#Indicator{
+#indicator{
     width: 100px;
     border: none;
     background: #9600ff;

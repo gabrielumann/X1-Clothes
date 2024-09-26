@@ -4,21 +4,21 @@ namespace Source\Models\Product;
 
 use CoffeeCode\DataLayer\DataLayer;
 
-class Category extends DataLayer
+class Brand extends DataLayer
 {
     private $message;
     public function __construct()
     {
-        parent::__construct("product_categories", ["name"], timestamps: false);
+        parent::__construct("brands", ["name"], timestamps: false);
     }
-    public function createCategory(): bool
+    public function createBrand(): bool
     {
         $params = http_build_query(["name" => $this->name]);
         $product = $this->find("name = :name", $params);
         $product->fetch(true);
 
         if ($product->count() == 1) {
-            $this->message = "Ja existe uma categoria com esse nome";
+            $this->message = "Ja existe esse nome!";
             return false;
         };
 

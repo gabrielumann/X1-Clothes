@@ -2,14 +2,14 @@
 
 namespace Source\App\Api;
 
-use Source\Models\Product\Brands;
+use Source\Models\Product\Brand;
 use Source\Models\Product\Category;
 use Source\Models\Product\Product;
+use Source\Models\Product\ProductImage;
 
 class Products extends Api
 {
-    public static string $KEY_NOT_FOUND_PRODUCT = "KEY_NOT_FOUND_PRODUCT";
-    public static string $KEY_NOT_EXIST_PRODUCT = "KEY_NOT_EXIST_PRODUCT";
+    private static string $CLASSNAME = "produto";
 
     public function __construct()
     {
@@ -19,9 +19,10 @@ class Products extends Api
     public function listProducts()
     {
         $products = (new Product())->find()->fetch(true);
+        $productImage = (new ProductImage())->find()->fetch(true);
 
         if (!$products) {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
             return;
         }
 
@@ -33,10 +34,12 @@ class Products extends Api
                 "price_brl" => $product->price_brl,
                 "color" => $product->color,
                 "category_id" => $product->category_id,
-                //"category" => $product->getCategory(),
+                "category" => $product->getCategory(),
                 "brand_id" => $product->brand_id,
-                //"brand" => $product->getBrand(),
+                "brand" => $product->getBrand(),
                 "size_id" => $product->size_id,
+                "size" => $product->getSize(),
+                "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
             ];
         }
 
@@ -48,7 +51,7 @@ class Products extends Api
         $id = $data["id"];
         $product = (new Product())->findById($id);
         if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_EXIST);
             return;
         }
 
@@ -61,6 +64,7 @@ class Products extends Api
             "brand_id" => $product->brand_id,
             "size_id" => $product->size_id,
         ];
+
         $this->success($response);
     }
 
@@ -73,7 +77,7 @@ class Products extends Api
         $requiredFields = ["name", "price_brl", "color", "category_id", "brand_id", "size_id"];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
-                $this->error(message: "Está faltando o campo $field");
+                $this->error(message: "Está faltando o campo '$field'");
                 die();
             }
         }
@@ -111,13 +115,12 @@ class Products extends Api
         $instance = new Product();
         $product = $instance->findById($id);
         if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
             return;
         }
 
         if (isset($data["name"])) {
             $product->name = $data["name"];
-            echo $product->name;
         }
         if (isset($data["price_brl"])) {
             $product->price = $data["price"];
@@ -136,10 +139,9 @@ class Products extends Api
         }
 
         if($product->save()){
-            $this->success(message: "Produto atualizado com sucesso!");
+            $response[] = $product->data();
+            $this->success($response, message: "Produto atualizado com sucesso!");
         };
-
-
     }
 
     public function deleteProduct(array $data)
@@ -153,35 +155,17 @@ class Products extends Api
             $product->destroy();
             $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
         }
-
     }
 
-    public function listCategories()
+    public function listImageProducts()
     {
-        $category = new Category();
-        $categories = $category->find()->fetch(true);
-
+        $images = (new ProductImage())->find()->fetch(true);
         $response = [];
-        foreach ($categories as $category) {
-
-            $response[] = $category->data();
+        foreach ($images as $image) {
+            $response[] = $image->data();
         }
-
         $this->success($response);
-    }
-
-
-    public function messageProduct(string $KEY)
-    {
-        switch ($KEY) {
-            case self::$KEY_NOT_EXIST_PRODUCT:
-                $this->success(message: "Não existem produtos cadastrados.");
-                break;
-            case self::$KEY_NOT_FOUND_PRODUCT:
-                $this->error(message: "Produto inexistente.", code: 404);
-                break;
-        }
     }
 }

@@ -15,19 +15,33 @@ class Product extends DataLayer
         parent::__construct("products", ["name", "price_brl", "color", "category_id", "brand_id", "size_id"], timestamps: false);
     }
 
-    public function getImages()
+    public function getImage()
     {
-        return (new ProductImage())->find("product_id = :pid", "pid={$this->id}")->fetch(true);
+        $images = (new ProductImage())->find("product_id = :pid", "pid={$this->id}")->fetch(true);
+        if (!is_array($images)) {
+            $this->message = "Não existem imagens deste produto!";
+            return false;
+        }
+        foreach ($images as $image) {
+            $response[] = $image->data();
+        }
+        return $response;
+
     }
     public function getBrand()
     {
-        $brand = (new Brands())->findById($this->id);
+        $brand = (new Brand())->findById($this->id);
         return $brand->name;
     }
     public function getCategory()
     {
         $category = (new Category())->findById($this->id);
         return $category->name;
+    }
+    public function getSize()
+    {
+        $size = (new Size())->findById($this->id);
+        return $size->name;
     }
 
     public function createProduct(): bool
