@@ -36,18 +36,20 @@ $route->get("/detalhes", "App:productsDetails");
 $route->get("/carrinho","App:cart");
 $route->get("/faqs", "App:faqs");
 
-
-
 /*
  * Adm
  */
 $route->group("/adm");
 $route->get("/", "Admin:home");
 $route->get("/produtos","Admin:products");
-$route->get("/pedidos","Admin:orders");
+$route->get("/estoque", "Admin:stock");
+$route->get("/categorias", "Admin:categories");
+$route->get("/marcas", "Admin:brands");
 $route->get("/usuarios", "Admin:users");
+$route->get("/enderecos", "Admin:addresses");
 $route->get("/faqs", "Admin:faqs");
-$route->get("/avaliacao", "Admin:rating");
+
+
 
 $route->group(null);
 

@@ -67,10 +67,10 @@ $route->post("/delete/{id}","Categories:deleteCategory");
 
 $route->group("/products/stock");
 $route->get("/", "Stocks:listStock");
-$route->get("/{id}", "Stocks:getProductId");
+$route->get("/{product_id}", "Stocks:getProductId");
 $route->post("/","Stocks:AddProduct");
-$route->post("/update/{id}", "Stocks:updateQuantity");
-$route->post("/delete/{id}","Stocks:deleteProduct");
+$route->post("/update/{product_id}", "Stocks:updateQuantity");
+$route->post("/delete/{product_id}","Stocks:deleteProduct");
 
 $route->dispatch();
 

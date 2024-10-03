@@ -34,9 +34,8 @@ class Stocks extends Api
     }
     public function getProductId(array $data){
 
-        $params = http_build_query(["product_id" => $data["id"]]);
-        $stock = (new Stock())->find("product_id = :product_id", $params)->find(true);
-        //echo $params;
+        $params = http_build_query(["product_id" => $data["product_id"]]);
+        $stock = (new Stock())->find("product_id = :product_id", $params)->fetch();
         if (!$stock) {
             $this->success(message: "Não existe esse produto no estoque.");
             return;
@@ -47,18 +46,31 @@ class Stocks extends Api
     public function AddProduct(array $data){
         //$this->auth();
         $stock = new Stock();
+
         if (!isset($data["quantity"])) {
             $stock->quantity = 0;
         }
-
         if (!isset($data["product_id"])) {
             $this->error(message: "Está faltando o campo 'product_id'");
             return;
         }
 
-        // checar se o id é realmente de algum produto.
-        // checar se o produto ja esta cadastrado
+        if (!$stock->verifyProductId($data["product_id"])){
+            $this->error($stock->getMessage());
+            return;
+        }
+
+        if ($stock->productOnStock($data["product_id"])){
+            $helper = [
+                "quantity" => $data["quantity"] + $stock->getQuantity($data["product_id"]),
+                "product_id" => $data["product_id"],
+            ];
+            $this->updateQuantity($helper);
+            return;
+        }
+
         $stock->product_id = $data["product_id"];
+        $stock->quantity = $data["quantity"];
 
         if (!$stock->save()) {
             $this->error(message: "erro ao adicionar o produto no estoque");
@@ -75,17 +87,18 @@ class Stocks extends Api
         $this->success($response ,message: "Produto adicionado com sucesso!");
     }
     public function updateQuantity(array $data){
-        $id = $data["id"];
-        $stock = (new Stock())->find("product_id = :pid" , "pid = $id")->fetch(true);
-        if (!$stock) {
-            parent::message( self::$CLASSNAME, parent::$KEY_NOT_EXIST);
-            return;
-        }
+        $params = http_build_query(["product_id" => $data["product_id"]]);
+        $stock = (new Stock())->find("product_id = :product_id", $params)->fetch();
 
         if (!isset($data["quantity"])) {
             $this->error(message: "Está faltando o campo 'quantity'");
             die();
         }
+        if (!$stock->productOnStock($data["product_id"])) {
+            $this->success(message: "Não existe esse produto no estoque.");
+            return;
+        }
+
         $stock->quantity = $data["quantity"];
         if($stock->save()){
             $response[] = [
@@ -99,12 +112,12 @@ class Stocks extends Api
         };
     }
     public function deleteProduct(array $data){
-        $id = $data["id"];
-        $stock = (new Stock())->find("product_id = :pid" , "pid = $id")->fetch(true);
+        $params = http_build_query(["product_id" => $data["product_id"]]);
+        $stock = (new Stock())->find("product_id = :product_id", $params)->fetch();
 
         if ($stock) {
             $stock->destroy();
-            $this->success(message: "Produto do id: $id foi removido com sucesso do Estoque!");
+            $this->success(message: "Produto do id: {$data["product_id"]} foi removido com sucesso do Estoque!");
         } else {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
         }

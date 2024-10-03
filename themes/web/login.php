@@ -3,8 +3,7 @@
 <link rel="stylesheet" href="themes/web/assets/css/login.css">
 <?php $this->end(); ?>
 <?php $this->start("specific-script")?>
-<script src="themes/web/assets/js/scripts-register.js" async></script>
-<script src="themes/web/assets/js/scripts-login.js" async></script>
+<script src="themes/web/assets/js/scripts-login.js" type="module" async></script>
 <?php $this->end(); ?>
 
         <div class="container">
@@ -22,8 +21,8 @@
                         </div>
 
                         <form id="loginForm">
-                            <input type="text" placeholder="Email">
-                            <input type="password" placeholder="Senha">
+                            <input type="text" name="email" placeholder="Email">
+                            <input type="password" name="password" placeholder="Senha">
                             <button class="btn">Entrar</button>
                             <a href="">Esqueceu a senha?</a>
 
