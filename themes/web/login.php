@@ -3,8 +3,10 @@
 <link rel="stylesheet" href="themes/web/assets/css/login.css">
 <?php $this->end(); ?>
 <?php $this->start("specific-script")?>
-<script src="themes/web/assets/js/scripts-login.js" type="module" async></script>
+<script src="<?=url("themes/web/assets/js/scripts-login.js")?>" type="module" async></script>
 <?php $this->end(); ?>
+
+<div id="toast-container"></div>
 
         <div class="container">
             <div class="row">
@@ -21,8 +23,8 @@
                         </div>
 
                         <form id="loginForm">
-                            <input type="text" name="email" placeholder="Email">
-                            <input type="password" name="password" placeholder="Senha">
+                            <input type="text" name="email" placeholder="Email" value="rear@gmail.com">
+                            <input type="password" name="password" placeholder="Senha" value="12345678">
                             <button class="btn">Entrar</button>
                             <a href="">Esqueceu a senha?</a>
 

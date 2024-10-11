@@ -1,79 +1,69 @@
-import {
-    showDataForm, getBackendUrlApi, getBackendUrl, showToast, showDataSelect
-} from "./../_shared/functions.js";
+import {getBackendUrl, getBackendUrlApi, getList, setOption, showToast} from "../../../shared/js/functions.js";
+window.addEventListener("load", async () => {
+    document.querySelector("tbody.products").innerHTML = ' ';
+    let products = await getList("/products")
+    products.forEach((e) => {
+        console.log(e)
 
-const listServices = document.querySelector("#list-services");
-const serviceForm = document.querySelector("#edit-form");
+        document.querySelector("tbody.products").innerHTML += `
+            <tr>
+                <td>${e.id}</td>
+                <td><img src="${e.product_image.name}" alt="Imagem do Produto" class="produto-img"></td> <!-- Exemplo de imagem -->
+                <td>${e.name}</td>
+                <td>R$ ${e.price_brl.toFixed(2).toString().replace(".", ",")}</td>
+                <td>
+                    <button class="edit-btn">Editar</button>
+                    <button class="delete-btn">Excluir</button>
+                </td>
+            </tr>`
+    })
 
-const modalService = document.querySelector("#edit-modal");
-const selectCategories = document.querySelector("#service_category_id");
-
-//modalService.style.display = "flex";
-let categories = fetch(`http://localhost:8080/mvc-project-tarde/api/services-categories`).then((response) => {
-    response.json()
-        .then((categories) => {
-            showDataSelect(categories, selectCategories);
-            console.log(categories);
-            /*categories.forEach((category) => {
-                console.log(category);
-                const option = document.createElement("option");
-                option.setAttribute("value",category.id);
-                option.textContent = category.name;
-                selectCategories.appendChild(option);
-            });*/
-        });
-});
-
-//
-
-fetch(`http://localhost:8080/mvc-project-tarde/api/services/list-by-category/category/2`,{
-    method: "GET"
+    await setOption("/products/category", document.querySelector("#category"));
+    await setOption("/products/sizes", document.querySelector("#size"));
+    await setOption("/products/brands", document.querySelector("#brand"));
 })
-    .then((response) => {
-        response.json()
-            .then((services) => {
-                //console.log(services);
-                services.forEach((service) => {
-                    //console.log(service.id, service.name);
-                    const newServiceLi = document.createElement("li");
-                    newServiceLi.setAttribute("service-id",service.id);
-                    newServiceLi.classList.add("services-")
-                    newServiceLi.innerHTML = `
-                <span>ID: ${service.id}</span>
-                <span>Nome: ${service.name}</span>
-                <button class="edit-btn" data-id="1"><i class="fas fa-edit"></i> Editar</button>
-                <button class="delete-btn" data-id="1"><i class="fas fa-trash"></i> Excluir</button>
-                `;
-                    listServices.appendChild(newServiceLi);
-                });
-            });
-    });
-
-listServices.addEventListener("click", (e) => {
-    console.log(e.target.tagName);
-    /*if(e.target.tagName == "BUTTON" && e.target.classList.contains("edit-btn")){
-        console.log('edite');
-    }*/
-    if(e.target.matches("button.edit-btn")){
-        console.log('edite');
-        console.log();
-        fetch(`http://localhost:8080/mvc-project-tarde/api/services/service/${e.target.parentElement.getAttribute("service-id")}`, {
-            method: "GET"
-        }).then((response)=>{
-            response.json()
-                .then((service) => {
-                    console.log(service);
-                    //modalService.style.display = "flex";
-                    modalService.classList = "modal active";
-                    showDataForm(service);
-                });
-        });
-    }
-    if(e.target.matches("button.delete-btn")){
-        console.log("delete");
+const inputElement = document.getElementById('product-complementary-images');
+inputElement.addEventListener('change', function () {
+    if (this.files.length > 4) {
+        showToast("Você pode selecionar no máximo 4 imagens.");
+        this.value = '';
     }
 });
 
-document.querySelector(".close-button").addEventListener("click", () => {
-    modalService.classList = "modal";
+
+
+const productForm = document.querySelector("#form-register");
+productForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+    }
+
+    try {
+        let response = await (await fetch(getBackendUrlApi("/products"), {
+            method: "POST",
+            body: new FormData(productForm)
+        })).json();
+        console.log(response)
+    } catch (error) {
+        console.error("Erro ao enviar o formulário:", error);
+    }
 });
+function validateForm() {
+    const name = document.querySelector("#name").value.trim();
+    const price = document.querySelector("#price").value.trim();
+    const color = document.querySelector("#color").value.trim();
+    const category = document.querySelector("#category").value;
+    const size = document.querySelector("#size").value;
+    const brand = document.querySelector("#brand").value;
+    const productImage = document.querySelector("#product-image").files.length;
+
+
+    if (!name || !price || !color || !category || !size || !brand || productImage === 0) {
+        return false;
+    }
+
+    return true;
+}
+

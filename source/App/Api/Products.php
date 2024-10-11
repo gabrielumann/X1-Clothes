@@ -19,7 +19,6 @@ class Products extends Api
     public function listProducts()
     {
         $products = (new Product())->find()->fetch(true);
-        $productImage = (new ProductImage())->find()->fetch(true);
 
         if (!$products) {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
@@ -70,7 +69,7 @@ class Products extends Api
 
     public function createProduct(array $data)
     {
-        $this->auth();
+        //$this->authAdmin();
 
         $product = new Product();
 
@@ -104,6 +103,30 @@ class Products extends Api
         ];
 
         $this->success($response ,message: "Produto criado com sucesso!");
+
+        if ($_FILES['product-image']['size'] > 5000000) { // 5MB
+            $this->error(message: "O arquivo é muito grande.");
+            return;
+        }
+        if (isset($_FILES['product-image']) && $_FILES['product-image']['error'] === UPLOAD_ERR_OK) {
+            $this->addProductImage($product->id, $_FILES['product-image'], "PRINCIPAL");
+        }else{
+            $this->error(message: 'Erro ao fazer upload da imagem principal');
+            return;
+        }
+        for ($i = 0; $i < count($_FILES['comp-images']['name']); $i++) {
+            if ($_FILES['comp-images']['size'][$i] > 5000000) { // 5MB
+                $this->error(message: "O arquivo $i é muito grande.");
+                die();
+            }
+            if (isset($_FILES['comp-images']) && $_FILES['comp-images']['error'][$i] === UPLOAD_ERR_OK) {
+                $this->addProductImage($product->id, $_FILES['comp-images'][$i], "SECONDARY");
+            }else{
+                $this->error(message: "Erro ao enviar a imagem de índice $i.");
+            }
+        }
+
+
     }
 
     public function updateProduct(array $data)
@@ -168,4 +191,54 @@ class Products extends Api
         }
         $this->success($response);
     }
+
+    public function addProductImage( int $productId, array $img, string $type)
+    {
+        chdir("..");
+        $imageName = basename($img['name']);
+        $uniqueName = uniqid() . '_' . str_replace(' ', '_', $imageName);
+        move_uploaded_file($img["tmp_name"], "storage/images/products/" . $uniqueName);
+
+        $images = new ProductImage();
+        $images->image = $uniqueName;
+        $images->type = $type;
+        $images->product_id = $productId;
+
+        if (!$images->addImages()) {
+            $this->error(message: $images->getMessage());
+            return;
+        }
+
+        $this->success(message: "Imagem adicionada com sucesso!");
+    }
+//    public function addProductImages( int $productId)
+//    {
+//        chdir("..");
+//        for ($i = 0; $i < count($_FILES['comp-images']['name']); $i++) {
+//            if ($_FILES['comp-images']['error'][$i] !== UPLOAD_ERR_OK) {
+//                $this->error(message: "Erro ao enviar a imagem de índice $i.");
+//                continue;
+//            }
+//            $imageName = basename($_FILES['comp-images']['name'][$i]);
+//            $uniqueName = uniqid() . '_' . str_replace(' ', '_', $imageName);
+//            if(!move_uploaded_file($_FILES['comp-images']['tmp_name'][$i], "storage/images/products/" . $uniqueName)){
+//                $this->error(message: 'Erro ao mover a imagem de índice ' . $i . ' para a pasta.');
+//                return;
+//            }
+//
+//            $images = new ProductImage();
+//            $images->image = $uniqueName;
+//            $images->type = "SECONDARY";
+//            $images->product_id = $productId;
+//
+//            if (!$images->addImages()) {
+//                $this->error(message: $images->getMessage());
+//                return;
+//            }
+//
+//            //$this->success(message: "Imagem adicionada com sucesso!");
+//        }
+//
+//    }
+
 }

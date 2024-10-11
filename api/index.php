@@ -28,6 +28,8 @@ $route->post("/update/{id}", "Users:updateUser");
 $route->post("/change-password/{id}","Users:changePassword");
 $route->post("/delete/{id}","Users:deleteUser");
 $route->post("/login","Users:loginUser");
+$route->get("/token-validate","Token:tokenValidate");
+$route->get("/adm-permission-validate","Token:adminPermission");
 
 $route->group("/users/address");
 $route->get("/", "Addresses:listAddresses");

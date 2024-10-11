@@ -1,4 +1,6 @@
-document.getElementById('openModal').onclick = function() {
+let btnOpenModal = document.querySelector("button.add-btn")
+
+btnOpenModal.onclick = function() {
     document.getElementById('myModal').style.display = "block";
 }
 

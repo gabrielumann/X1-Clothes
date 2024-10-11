@@ -30,18 +30,28 @@ class Product extends DataLayer
     }
     public function getBrand()
     {
-        $brand = (new Brand())->findById($this->id);
-        return $brand->name;
+        $brand = (new Brand())->findById($this->brand_id);
+        if($brand){
+            return $brand->name;
+        }
+        return null;
     }
     public function getCategory()
     {
-        $category = (new Category())->findById($this->id);
-        return $category->name;
+        $category = (new Category())->findById($this->category_id);
+        if($category){
+            return $category->name;
+        }
+        return null;
     }
     public function getSize()
     {
-        $size = (new Size())->findById($this->id);
-        return $size->name;
+        $size = (new Size())->findById($this->size_id);
+
+        if($size){
+            return $size->name;
+        }
+        return null;
     }
 
     public function createProduct(): bool

@@ -15,7 +15,7 @@
         <?php if ($this->section("specific-script")): ?>
             <?= $this->section("specific-script"); ?>
         <?php endif; ?>
-        <script src="assets/js/scripts.js" async></script>
+        <script src="<?= url("themes/web/assets/js/scripts.js"); ?>" async></script>
     </head>
     <body>
 

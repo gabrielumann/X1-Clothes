@@ -15,6 +15,7 @@
             <?= $this->section("specific-script"); ?>
         <?php endif; ?>
         <script src="<?= url("themes/adm/assets/js/scripts.js"); ?>" async></script>
+        <script src="<?= url("themes/adm/assets/js/_theme.js"); ?>" type="module" async></script>
     </head>
     <body>
         <header class="header">

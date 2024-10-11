@@ -1,4 +1,4 @@
-import {getBackendUrl, getBackendUrlApi, showToast} from "../../../shared/js/functions.js";
+import {getBackendUrl, getBackendUrlApi, getList, showToast} from "../../../shared/js/functions.js";
 
 
 const regForm = document.querySelector("#regForm");
@@ -17,20 +17,17 @@ regForm.addEventListener("submit", async (e) => {
 const loginForm = document.querySelector("#loginForm");
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    fetch(getBackendUrlApi("users/login"), {
+    let response = await (await fetch(getBackendUrlApi("users/login"), {
         method: "POST",
-        body: new FormData(loginForm)
-    }).then((response) => {
-        response.json().then((data) => {
-            if (data.type === "error") {
-                showToast(data.message);
-                return;
-            }
-            localStorage.setItem("userAuth", JSON.stringify(data.user));
-            showToast(`Olá, ${(data.user.first_name)} como vai!`);
-            setTimeout(() => {
-                window.location.href = getBackendUrl("app");
-            }, 3000);
-        })
-    })
+        body: new FormData(e.target)
+    })).json();
+    localStorage.setItem('session', JSON.stringify(response.data.token));
+    //console.log(JSON.stringify(response.data.token))
+    showToast(`Seja Bem Vindo ${response.data.first_name}!`);
+    if (response.data.role !== "DEFAULT"){
+        window.location.href = getBackendUrl("adm");
+    }
+    setTimeout(() => {
+        window.location.href = getBackendUrl("app");
+    }, 3000);
 });

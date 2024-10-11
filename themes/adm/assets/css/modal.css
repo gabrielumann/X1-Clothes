@@ -1,7 +1,3 @@
-/*
-    MODAL
-*/
-
 /* Estilos para a modal */
 .modal {
     display: none; /* Oculto por padrão */
@@ -21,6 +17,8 @@
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
+    max-height: 80%; /* Limita a altura máxima da modal */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 

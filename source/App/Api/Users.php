@@ -18,7 +18,7 @@ class Users extends Api
 
     public function listUsers()
     {
-        //$this->auth();
+        $this->authAdmin();
 
         $users = (new User())->find()->fetch(true);
 
@@ -44,7 +44,7 @@ class Users extends Api
 
     public function getUser(array $data)
     {
-
+        //nao sei como usar isso ainda
 
         $id = $data["id"];
         $user = (new User())->findById($id);
@@ -104,8 +104,8 @@ class Users extends Api
 
     public function updateUser(array $data)
     {
-        //$this->auth();
-        //$this->userAuth->id   ||
+        $this->authAdmin();
+
         $id = $data["id"];
         $user = (new User())->findById($id);
         if (!$user) {
@@ -130,7 +130,7 @@ class Users extends Api
 
     public function deleteUser(array $data)
     {
-        //$this->auth();
+        $this->auth();
 
         if (isset($data["id"])) {
             $id = $data["id"];
@@ -165,8 +165,10 @@ class Users extends Api
 
         $this->success([
             "id" => $user->id,
-            "name" => $user->first_name . " ". $user->last_name,
+            "first_name" => $user->first_name,
+            "last_name" => $user->last_name,
             "email" => $user->email,
+            "role" => $user->role,
             "token" => $signature
         ], message: $user->getMessage());
 
@@ -174,6 +176,7 @@ class Users extends Api
 
     public function changePassword(array $data)
     {
+        $this->auth();
 
         $id = $data["id"];
         $user = (new User())->findById($id);

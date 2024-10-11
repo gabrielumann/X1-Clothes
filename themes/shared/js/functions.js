@@ -21,6 +21,14 @@ export function showDataForm (object)  {
         }
     }
 }
+export function showDataSelect  (listObj, selectHtml) {
+    listObj.forEach((obj) => {
+        const option = document.createElement("option");
+        option.setAttribute("value",obj.id);
+        option.textContent = obj.name;
+        selectHtml.appendChild(option);
+    });
+}
 
 // Função para exibir mensagens toast
 export function showToast (message) {
@@ -45,7 +53,15 @@ export function showToast (message) {
     }, 3000);
 }
 
-// Função que recebe o nome completo de uma pessoa e retorna só o primeiro nome
-export function getFirstName(fullName) {
-    return fullName.split(' ')[0];
+export async function getList ($path) {
+    let {data: arr} = await (await fetch(getBackendUrlApi($path), {method: "GET"})).json();
+    //console.log(arr)
+    return arr;
+}
+
+export async function setOption($path, $htmlElement){
+    let arr = await getList($path)
+    arr.forEach((e) => {
+        $htmlElement.innerHTML += `<option value="${e.id}">${e.name}</option>`
+    })
 }

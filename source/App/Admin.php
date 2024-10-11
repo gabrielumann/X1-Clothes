@@ -3,6 +3,7 @@
 namespace Source\App;
 
 use League\Plates\Engine;
+use Source\App\Api\Api;
 
 class Admin{
     private $view;

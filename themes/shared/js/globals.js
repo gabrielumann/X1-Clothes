@@ -1,1 +1,1 @@
-export let userAuth = JSON.parse(localStorage.getItem("userAuth"));
+export let session = JSON.parse(localStorage.getItem('session'));
