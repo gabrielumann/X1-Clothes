@@ -23,8 +23,8 @@
                         </div>
 
                         <form id="loginForm">
-                            <input type="text" name="email" placeholder="Email" value="rear@gmail.com">
-                            <input type="password" name="password" placeholder="Senha" value="12345678">
+                            <input type="text" name="email" placeholder="Email" required>
+                            <input type="password" name="password" placeholder="Senha" required>
                             <button class="btn">Entrar</button>
                             <a href="">Esqueceu a senha?</a>
 

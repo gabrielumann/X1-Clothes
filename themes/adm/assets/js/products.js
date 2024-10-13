@@ -3,12 +3,12 @@ window.addEventListener("load", async () => {
     document.querySelector("tbody.products").innerHTML = ' ';
     let products = await getList("/products")
     products.forEach((e) => {
-        console.log(e)
+        //console.log(e.product_image[0].image)
 
         document.querySelector("tbody.products").innerHTML += `
             <tr>
                 <td>${e.id}</td>
-                <td><img src="${e.product_image.name}" alt="Imagem do Produto" class="produto-img"></td> <!-- Exemplo de imagem -->
+                <td><img src="${e.product_image[0].image}" alt="Imagem do Produto" class="produto-img"></td> <!-- Exemplo de imagem -->
                 <td>${e.name}</td>
                 <td>R$ ${e.price_brl.toFixed(2).toString().replace(".", ",")}</td>
                 <td>
@@ -40,19 +40,16 @@ productForm.addEventListener("submit", async (e) => {
         return;
     }
 
-    try {
-        let response = await (await fetch(getBackendUrlApi("/products"), {
-            method: "POST",
-            body: new FormData(productForm)
-        })).json();
-        console.log(response)
-    } catch (error) {
-        console.error("Erro ao enviar o formulário:", error);
-    }
+    let response = await (await fetch(getBackendUrlApi("/products"), {
+        method: "POST",
+        body: new FormData(productForm)
+    })).json();
+    console.log(response)
+
 });
 function validateForm() {
     const name = document.querySelector("#name").value.trim();
-    const price = document.querySelector("#price").value.trim();
+    const price = document.querySelector("#price_brl").value.trim();
     const color = document.querySelector("#color").value.trim();
     const category = document.querySelector("#category").value;
     const size = document.querySelector("#size").value;

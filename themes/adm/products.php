@@ -44,16 +44,17 @@
                 <input type="text" id="name" name="name">
             </div>
             <div class="form-group">
-                <label for="price">Preço:</label>
-                <input type="number" id="price" name="price_brl">
+                <label for="price_brl">Preço:</label>
+                <input type="text" id="price_brl" name="price_brl" required placeholder="0.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
             </div>
+
             <div class="form-group">
                 <label for="color">Cor:</label>
                 <input type="text" id="color" name="color">
             </div>
             <div class="form-group">
                 <label for="category">Categoria:</label>
-                <select id="category" name="category_id">
+                <select id="category" name="category_id" >
                     <option value="">Selecione uma Categoria</option>
                 </select>
             </div>

@@ -28,28 +28,11 @@ class Product extends DataLayer
         return $response;
 
     }
-    public function getBrand()
+    public function getName ($instance, $field)
     {
-        $brand = (new Brand())->findById($this->brand_id);
-        if($brand){
-            return $brand->name;
-        }
-        return null;
-    }
-    public function getCategory()
-    {
-        $category = (new Category())->findById($this->category_id);
-        if($category){
-            return $category->name;
-        }
-        return null;
-    }
-    public function getSize()
-    {
-        $size = (new Size())->findById($this->size_id);
-
-        if($size){
-            return $size->name;
+        $temp = ($instance)->findById($this->$field);
+        if($temp){
+            return $temp->name;
         }
         return null;
     }
