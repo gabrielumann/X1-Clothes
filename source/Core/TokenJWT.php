@@ -5,6 +5,7 @@ namespace Source\Core;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 use Exception;
+use Source\App\Api\Api;
 
 class TokenJWT
 {
@@ -57,7 +58,9 @@ class TokenJWT
         if($this->token->data->role !== "ADMIN"){
             return false;
         }
+
         return true;
+
     }
 
 }

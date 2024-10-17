@@ -8,13 +8,15 @@
         <?php if ($this->section("specific-style")): ?>
             <?= $this->section("specific-style"); ?>
         <?php endif; ?>
+        <link rel="stylesheet" href="<?= url("themes/shared/css/toast.css")?>">
         <link rel="stylesheet" href="<?= url("themes/adm/assets/css/home.css")?>">
         <link rel="stylesheet" href="<?= url("themes/adm/assets/css/modal.css")?>">
 
         <?php if ($this->section("specific-script")): ?>
             <?= $this->section("specific-script"); ?>
         <?php endif; ?>
-        <script src="<?= url("themes/adm/assets/js/scripts.js"); ?>" async></script>
+
+        <script src="<?= url("themes/adm/assets/js/modal.js"); ?>" async></script>
         <script src="<?= url("themes/adm/assets/js/_theme.js"); ?>" type="module" async></script>
     </head>
     <body>
@@ -26,7 +28,7 @@
                 Área de Administração
             </div>
         </header>
-
+        <div id="toast-container"></div>
         <div class="container">
             <aside class="sidebar">
                 <ul>

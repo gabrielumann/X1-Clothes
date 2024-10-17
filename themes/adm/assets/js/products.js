@@ -1,14 +1,23 @@
-import {getBackendUrl, getBackendUrlApi, getList, setOption, showToast} from "../../../shared/js/functions.js";
+import {
+    getBackendUrl,
+    getBackendUrlApi,
+    getList, setAllOptions,
+    showDataForm,
+    showToast,
+    clearForm, clearImages, destroy
+} from "../../../shared/js/functions.js";
+let ImagesLocalPath = '/X1-Clothes/storage/images/products/';
+
+let tbody = document.querySelector("tbody.products-list")
 window.addEventListener("load", async () => {
-    document.querySelector("tbody.products").innerHTML = ' ';
+    tbody.innerHTML = ' ';
     let products = await getList("/products")
     products.forEach((e) => {
         //console.log(e.product_image[0].image)
-
-        document.querySelector("tbody.products").innerHTML += `
-            <tr>
+        tbody.innerHTML += `
+            <tr id="${e.id}">
                 <td>${e.id}</td>
-                <td><img src="${e.product_image[0].image}" alt="Imagem do Produto" class="produto-img"></td> <!-- Exemplo de imagem -->
+                <td><img src="${ImagesLocalPath + e.product_image[0].image}" alt="Imagem do Produto" class="produto-img"></td> <!-- Exemplo de imagem -->
                 <td>${e.name}</td>
                 <td>R$ ${e.price_brl.toFixed(2).toString().replace(".", ",")}</td>
                 <td>
@@ -18,49 +27,33 @@ window.addEventListener("load", async () => {
             </tr>`
     })
 
-    await setOption("/products/category", document.querySelector("#category"));
-    await setOption("/products/sizes", document.querySelector("#size"));
-    await setOption("/products/brands", document.querySelector("#brand"));
+    await setAllOptions("/products/category", "#category");
+    await setAllOptions("/products/sizes", "#size");
+    await setAllOptions("/products/brands", "#brand");
 })
-const inputElement = document.getElementById('product-complementary-images');
-inputElement.addEventListener('change', function () {
-    if (this.files.length > 4) {
-        showToast("Você pode selecionar no máximo 4 imagens.");
-        this.value = '';
+const updateModal = document.getElementById('updateModal');
+const closeUpdateModalBtn = document.querySelector('.close-update-modal');
+
+window.onclick = function(event) {
+    if (event.target === updateModal) {
+        updateModal.style.display = "none";
     }
-});
+}
+closeUpdateModalBtn.onclick = function() {
+    updateModal.style.display = "none";
+}
+export function validateForm(position = 0) {
+    const name = document.querySelectorAll("#name")[position].value.trim();
+    const price = document.querySelectorAll("#price_brl")[position].value.trim();
+    const color = document.querySelectorAll("#color")[position].value.trim();
+    const category = document.querySelectorAll("#category")[position].value;
+    const size = document.querySelectorAll("#size")[position].value;
+    const brand = document.querySelectorAll("#brand")[position].value;
 
 
-
-const productForm = document.querySelector("#form-register");
-productForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!validateForm()) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
-    }
-
-    let response = await (await fetch(getBackendUrlApi("/products"), {
-        method: "POST",
-        body: new FormData(productForm)
-    })).json();
-    console.log(response)
-
-});
-function validateForm() {
-    const name = document.querySelector("#name").value.trim();
-    const price = document.querySelector("#price_brl").value.trim();
-    const color = document.querySelector("#color").value.trim();
-    const category = document.querySelector("#category").value;
-    const size = document.querySelector("#size").value;
-    const brand = document.querySelector("#brand").value;
-    const productImage = document.querySelector("#product-image").files.length;
-
-
-    if (!name || !price || !color || !category || !size || !brand || productImage === 0) {
+    if (!name || !price || !color || !category || !size || !brand === 0) {
         return false;
     }
 
     return true;
 }
-

@@ -6,7 +6,6 @@
 <script src="<?=url("themes/web/assets/js/scripts-login.js")?>" type="module" async></script>
 <?php $this->end(); ?>
 
-<div id="toast-container"></div>
 
         <div class="container">
             <div class="row">

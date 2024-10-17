@@ -52,6 +52,10 @@ class Products extends Api
     {
         $id = $data["id"];
         $product = (new Product())->findById($id);
+        $categories = new Category();
+        $sizes = new Size();
+        $brand = new Brand();
+
         if (!$product) {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_EXIST);
             return;
@@ -62,9 +66,10 @@ class Products extends Api
             "name" => $product->name,
             "price_brl" => $product->price_brl,
             "color" => $product->color,
-            "category_id" => $product->category_id,
-            "brand_id" => $product->brand_id,
-            "size_id" => $product->size_id,
+            "category" => $product->category_id,
+            "brand" => $product->brand_id,
+            "size" => $product->size_id,
+            "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
         ];
 
         $this->success($response);
@@ -72,6 +77,13 @@ class Products extends Api
 
     public function createProduct(array $data)
     {
+//        echo json_encode($data);
+//        echo json_encode($_FILES["principal_image"]["name"]);
+//        for($i = 1; $i <= 4; $i++){
+//            echo json_encode($_FILES["additional_image_$i"]["name"]);
+//        }
+
+        //$this->auth();
         //$this->authAdmin();
 
         $product = new Product();
@@ -83,6 +95,7 @@ class Products extends Api
                 die();
             }
         }
+        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
 
         $product->name = $data["name"];
         $product->price_brl = $data["price_brl"];
@@ -95,41 +108,26 @@ class Products extends Api
             $this->error(message: $product->getMessage());
             return;
         }
-
         chdir("..");
+        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
 
+            $product->SaveImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
 
-        if ($_FILES['product-image']['size'] > 5000000) { // 5MB
-            $this->error(message: "O arquivo é muito grande.");
-            return;
-        }
-        if (isset($_FILES['product-image']) && $_FILES['product-image']['error'] === UPLOAD_ERR_OK) {
-            $this->addProductImage($product->id, $_FILES['product-image'], "PRINCIPAL");
         }else{
             $this->error(message: 'Erro ao fazer upload da imagem principal');
             return;
         }
-        if (isset($_FILES['comp-images'])) {
-            for ($i = 0; $i < count($_FILES['comp-images']['name']); $i++) {
-                if ($_FILES['comp-images']['size'][$i] > 5000000) { // 5MB
-                    $this->error(message: "O arquivo $i é muito grande.");
-                    continue;
-                }
 
-                if ($_FILES['comp-images']['error'][$i] === UPLOAD_ERR_OK) {
-                    $img = [
-                        'name' => $_FILES['comp-images']['name'][$i],
-                        'tmp_name' => $_FILES['comp-images']['tmp_name'][$i],
-                        'error' => $_FILES['comp-images']['error'][$i],
-                        'size' => $_FILES['comp-images']['size'][$i]
-                    ];
-                    $this->addProductImage($product->id, $img, "SECONDARY");
-                } else {
-                    $this->error(message: "Erro ao enviar a imagem de índice $i.");
-                }
+        echo json_encode(getcwd());
+        for($i = 1; $i <= 4 ; $i++){
+            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[$i]]['error'] === UPLOAD_ERR_OK) {
+                $product->SaveImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY);
+            }else {
+                $this->error(message: "Erro ao enviar a imagem de índice $i.");
+                die();
             }
         }
-
+        chdir("api");
         $response[] = [
             "id" => $product->id,
             "name" => $product->name,
@@ -147,51 +145,56 @@ class Products extends Api
 
     public function updateProduct(array $data)
     {
-        $this->auth();
-
-        $id = $data["id"];
-
-        $instance = new Product();
-        $product = $instance->findById($id);
-        if (!$product) {
-            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
-            return;
-        }
-
-        if (isset($data["name"])) {
-            $product->name = $data["name"];
-        }
-        if (isset($data["price_brl"])) {
-            $product->price = $data["price"];
-        }
-        if (isset($data["color"])) {
-            $product->color = $data["color"];
-        }
-        if (isset($data["category_id"])) {
-            $product->category_id = $data["category_id"];
-        }
-        if (isset($data["brand_id"])) {
-            $product->brand_id = $data["brand_id"];
-        }
-        if (isset($data["size_id"])) {
-            $product->size_id = $data["size_id"];
-        }
-
-        if($product->save()){
-            $response[] = $product->data();
-            $this->success($response, message: "Produto atualizado com sucesso!");
-        };
+        //$this->auth();
+//        echo json_encode($data);
+//        echo json_encode($_FILES["principal_image"]["name"]);
+//        for($i = 1; $i <= 4; $i++){
+//            echo json_encode($_FILES["additional_image_$i"]["name"]);
+//        }
+//        $id = $data["id"];
+//
+//        $instance = new Product();
+//        $product = $instance->findById($id);
+//        if (!$product) {
+//            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
+//            return;
+//        }
+//        $product->setData($data);
+//        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
+//
+//        chdir("..");
+//
+//        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+//            $product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
+//        }
+//
+//        for($i = 1; $i <= (count($ALLOWED_IMAGES) - 1) ; $i++){
+//            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+//                $product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
+//            }
+//        }
+//
+//        chdir("api");
+//        if($product->save()){
+//            $response[] = $product->data();
+//            $this->success($response, message: "Produto atualizado com sucesso!");
+//        };
     }
 
     public function deleteProduct(array $data)
     {
-        $this->auth();
+        //$this->auth();
 
         $id = $data["id"];
         $product = (new Product())->findById($id);
+        if ($product->getImage()){
+            foreach ($product->getImage() as $img){
+                $product->deleteImage($img->id);
+            }
+        }
 
         if ($product) {
-            $product->destroy();
+            //$product->destroy();
             $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
@@ -207,28 +210,4 @@ class Products extends Api
         }
         $this->success($response);
     }
-
-    public function addProductImage( int $productId, array $img, string $type)
-    {
-        $imageName = basename($img['name']);
-        $uniqueName = $type . uniqid() . '_' . str_replace(' ', '_', $imageName);
-
-        if (!move_uploaded_file($img["tmp_name"], "storage/images/products/" . $uniqueName)) {
-            $this->error(message: "Erro ao mover o arquivo: " . $img['name']);
-            die();
-        }
-
-        $images = new ProductImage();
-        $images->image = $uniqueName;
-        $images->type = $type;
-        $images->product_id = $productId;
-
-        if (!$images->addImages()) {
-            $this->error(message: $images->getMessage());
-            die();
-        }
-
-        $this->success(message: "Imagem adicionada com sucesso!");
-    }
-
 }

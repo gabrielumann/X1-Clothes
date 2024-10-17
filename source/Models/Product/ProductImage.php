@@ -20,7 +20,7 @@ class ProductImage extends DataLayer
         $image = $this->find("product_id = :product_id", $params);
         $image->fetch(true);
 
-        if($image->count() > 4) {
+        if($image->count() > 5) {
             $this->message = "Voce já atingiu o limite de fotos!";
             return false;
         };

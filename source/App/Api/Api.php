@@ -22,7 +22,7 @@ abstract class Api
             if($jwt->verify($this->headers["token"])){
                 $this->userAuth = $jwt->token->data;
             }
-            if($jwt->verify($this->headers["token"])){
+            if($jwt->verifyAdminPermission($this->headers["token"])){
                 $this->admin = $jwt->token->data;
             }
         }
