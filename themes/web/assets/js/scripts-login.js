@@ -1,4 +1,4 @@
-import {getBackendUrl, getBackendUrlApi, getList, showToast} from "../../../shared/js/functions.js";
+import {getBackendUrl, getBackendUrlApi, getList, showToast} from "../../../shared/js/functions.js"
 
 
 const regForm = document.querySelector("#regForm");
@@ -9,7 +9,7 @@ regForm.addEventListener("submit", async (e) => {
         body: new FormData(regForm)
     }).then((response) => {
         response.json().then((data) => {
-            showToast(data.message);
+            showToast(data.message).then();
         });
     });
 });
@@ -23,9 +23,11 @@ loginForm.addEventListener("submit", async (e) => {
     })).json();
     localStorage.setItem('session', JSON.stringify(response.data.token));
     //console.log(JSON.stringify(response.data.token))
-    showToast(`Seja Bem Vindo ${response.data.first_name}!`);
+    showToast(`Seja Bem Vindo ${response.data.first_name}!`).then();
     if (response.data.role !== "DEFAULT"){
-        window.location.href = getBackendUrl("adm");
+        setTimeout(() => {
+            window.location.href = getBackendUrl("adm");
+        }, 2000);
     }
     setTimeout(() => {
         window.location.href = getBackendUrl("app");

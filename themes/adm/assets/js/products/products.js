@@ -5,7 +5,7 @@ import {
     showDataForm,
     showToast,
     clearForm, clearImages, destroy
-} from "../../../shared/js/functions.js";
+} from "../../../../shared/js/functions.js"
 let ImagesLocalPath = '/X1-Clothes/storage/images/products/';
 
 let tbody = document.querySelector("tbody.products-list")

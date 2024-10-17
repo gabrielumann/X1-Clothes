@@ -44,7 +44,7 @@ class Product extends DataLayer
     {
         if (!move_uploaded_file($imageFile["tmp_name"], "storage/images/products/" . $name)) {
             $this->message = "Erro ao mover o arquivo: " . $imageFile['name'];
-            die();
+            return false;
         }
 
         return $name;
@@ -94,36 +94,33 @@ class Product extends DataLayer
         return parent::save();
     }
 
-    public function SaveImage(array $imageFile, string $type): void
+    public function SaveImage(array $imageFile, string $type, $order = null): void
     {
         if(!$this->verifySize($imageFile)){
             return;
         }
         $productId = $this->id;
-        $newItemValue = null;
         $uniqueName = $this->generateName($imageFile, $type);
-
-        if ($type === ProductImage::$SECONDARY) {
-            $uniqueName = $this->generateName($imageFile, $type);
-            $params = http_build_query(["product_id" => $productId, "type" => $type]);
-            $imageFound = (new ProductImage())->find("product_id = :product_id AND type = :type ORDER BY complementary_order DESC", $params);
-            echo json_encode($imageFound);
-            if (!isset($imageFound)) {
-                $newItemValue = 1;
-            } else {
-                $newItemValue = $imageFound->additional_order + 1;
-            }
-        }
+//        if ($type === ProductImage::$SECONDARY) {
+//            $params = http_build_query(["product_id" => $productId, "type" => $type]);
+//            $imageFound = (new ProductImage())->find("product_id = :product_id AND type = :type ORDER BY complementary_order DESC;", $params)->fetch(true);
+//            echo json_encode($imageFound);
+//            if (!isset($imageFound)) {
+//                $newItemValue = 1;
+//            } else {
+//                $newItemValue = $imageFound->additional_order + 1;
+//            }
+//        }
         $upload = $this->storageUploadImage($imageFile, $uniqueName);
         if ($upload){
             $productImages = new ProductImage();
             $productImages->product_id = $productId;
             $productImages->image = $upload;
             $productImages->type = $type;
-            $productImages->complementary_order = $newItemValue;
+            $productImages->complementary_order = $order;
 
             if (!$productImages->addImages()) {
-                $this->message = $productImages->getMessage() . 'SECONDARY ERROR';
+                $this->message = $productImages->getMessage();
             }
         }
     }

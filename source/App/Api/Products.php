@@ -118,10 +118,10 @@ class Products extends Api
             return;
         }
 
-        echo json_encode(getcwd());
+        //echo json_encode(getcwd());
         for($i = 1; $i <= 4 ; $i++){
             if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[$i]]['error'] === UPLOAD_ERR_OK) {
-                $product->SaveImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY);
+                $product->SaveImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
             }else {
                 $this->error(message: "Erro ao enviar a imagem de índice $i.");
                 die();
@@ -145,40 +145,49 @@ class Products extends Api
 
     public function updateProduct(array $data)
     {
-        //$this->auth();
+//        $this->auth();
 //        echo json_encode($data);
 //        echo json_encode($_FILES["principal_image"]["name"]);
 //        for($i = 1; $i <= 4; $i++){
 //            echo json_encode($_FILES["additional_image_$i"]["name"]);
 //        }
-//        $id = $data["id"];
-//
-//        $instance = new Product();
-//        $product = $instance->findById($id);
-//        if (!$product) {
-//            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
-//            return;
-//        }
-//        $product->setData($data);
-//        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
-//
-//        chdir("..");
-//
-//        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-//            $product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
-//        }
-//
-//        for($i = 1; $i <= (count($ALLOWED_IMAGES) - 1) ; $i++){
-//            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-//                $product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
-//            }
-//        }
-//
-//        chdir("api");
-//        if($product->save()){
-//            $response[] = $product->data();
-//            $this->success($response, message: "Produto atualizado com sucesso!");
-//        };
+        $id = $data["id"];
+
+        $instance = new Product();
+        $product = $instance->findById($id);
+        if (!$product) {
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
+            return;
+        }
+        $product->setData($data);
+        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
+
+        chdir("..");
+
+        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+            $product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
+        }
+
+        for($i = 1; $i <= (count($ALLOWED_IMAGES) - 1) ; $i++){
+            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+                $product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
+            }
+        }
+
+        chdir("api");
+        if($product->save()){
+            $response[] = [
+                "id" => $product->id,
+                "name" => $product->name,
+                "price_brl" => $product->price_brl,
+                "color" => $product->color,
+                "category_id" => $product->category_id,
+                "brand_id" => $product->brand_id,
+                "size_id" => $product->size_id,
+                "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
+            ];
+            $this->success($response, message: "Produto atualizado com sucesso!");
+        };
     }
 
     public function deleteProduct(array $data)

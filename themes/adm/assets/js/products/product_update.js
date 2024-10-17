@@ -5,7 +5,7 @@ import {
     getList,
     showDataForm,
     showToast
-} from "../../../shared/js/functions.js";
+} from "../../../../shared/js/functions.js"
 import {validateForm} from "./products.js";
 const POSITION = 1;
 let ImagesLocalPath = '/X1-Clothes/storage/images/products/';

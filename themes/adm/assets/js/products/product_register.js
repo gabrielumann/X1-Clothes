@@ -1,4 +1,4 @@
-import {formAppendImages, getBackendUrlApi, showToast} from "../../../shared/js/functions.js";
+import {formAppendImages, getBackendUrlApi, showToast} from "../../../../shared/js/functions.js";
 import {validateForm} from "./products.js";
 
 const productForm = document.querySelector("#form-register");
