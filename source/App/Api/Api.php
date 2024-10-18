@@ -16,9 +16,9 @@ abstract class Api
     {
         header('Content-Type: application/json; charset=UTF-8');
         $this->headers = getallheaders();
-
         if(!empty($this->headers["token"]) || isset($this->headers["token"])){
             $jwt = new TokenJWT();
+
             if($jwt->verify($this->headers["token"])){
                 $this->userAuth = $jwt->token->data;
             }

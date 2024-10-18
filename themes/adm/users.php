@@ -1,9 +1,14 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
+<?php $this->start("specific-script")?>
+<script src="<?=url("themes/adm/assets/js/user/users.js")?>" type="module" async></script>
+<script src="<?=url("themes/adm/assets/js/user/user_register.js")?>" type="module" async></script>
+<script src="<?=url("themes/adm/assets/js/user/user_update.js")?>" type="module" async></script>
+<?php $this->end(); ?>
 
 <section id="usuarios-section" class="section">
     <div class="section-header">
         <h1>Usuários</h1>
-        <button class="add-btn">Adicionar Usuário</button>
+        <button class="add-btn" id="btn-open-create-modal">Adicionar Usuário</button>
     </div>
     <table>
         <thead>
@@ -14,7 +19,7 @@
             <th>Ações</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="user-list">
         <tr>
             <td>1</td>
             <td>Usuário A</td>
@@ -27,34 +32,77 @@
         </tbody>
     </table>
 </section>
-<div id="myModal" class="modal">
+<div id="createModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn close-create-modal">&times;</span>
         <h2>Cadastro de Usuário</h2>
-        <form action="/submit" method="POST">
-            <label for="first_name">Primeiro Nome:</label>
-            <input type="text" id="first_name" name="first_name" required><br><br>
-
-            <label for="last_name">Último Nome:</label>
-            <input type="text" id="last_name" name="last_name" required><br><br>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
-
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required><br><br>
-
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="XXX.XXX.XXX-XX" required><br><br>
-
-            <label for="role">Papel:</label>
-            <select id="role" name="role" required>
-                <option value="">Selecione um papel</option>
-                <option value="ADMIN">Admin</option>
-                <option value="DEFAULT">Default</option>
-            </select><br><br>
-
+        <form id="form-register" method="POST">
+            <div class="form-group">
+                <label for="first_name">Primeiro Nome:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Último Nome:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="text" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordConfirmed">Confirme a Senha:</label>
+                <input type="text" id="passwordConfirmed" name="passwordConfirmed" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="XXX.XXX.XXX-XX" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+            </div>
+            <div class="form-group">
+                <label for="role">Papel:</label>
+                <select id="role" name="role" required>
+                    <option value="">Selecione um papel</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="DEFAULT">Default</option>
+                </select><br><br>
+            </div>
             <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+<div id="updateModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn close-update-modal">&times;</span>
+        <h2>Edição de Usuário</h2>
+        <form id="form-update" method="post">
+            <div class="form-group">
+                <label for="first_name">Primeiro Nome:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Último Nome:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="XXX.XXX.XXX-XX" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+            </div>
+            <div class="form-group">
+                <label for="role">Papel:</label>
+                <select id="role" name="role" required>
+                    <option value="">Selecione um papel</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="DEFAULT">Default</option>
+                </select><br><br>
+            </div>
+            <button type="submit">Editar</button>
         </form>
     </div>
 </div>

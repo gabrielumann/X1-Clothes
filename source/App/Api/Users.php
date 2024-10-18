@@ -18,7 +18,7 @@ class Users extends Api
 
     public function listUsers()
     {
-        $this->authAdmin();
+        //$this->authAdmin();
 
         $users = (new User())->find()->fetch(true);
 
@@ -44,7 +44,7 @@ class Users extends Api
 
     public function getUser(array $data)
     {
-        //nao sei como usar isso ainda
+
 
         $id = $data["id"];
         $user = (new User())->findById($id);
@@ -80,8 +80,8 @@ class Users extends Api
             return;
         }
 
-        $user->first_name = $data["first_name"];
-        $user->last_name = $data["last_name"];
+        $user->first_name = ucfirst($data["first_name"]);
+        $user->last_name = ucfirst($data["last_name"]);
         $user->email = $data["email"];
         $password = password_hash($data["password"], PASSWORD_DEFAULT);
         $user->password = $password;
@@ -104,7 +104,7 @@ class Users extends Api
 
     public function updateUser(array $data)
     {
-        $this->authAdmin();
+        //$this->authAdmin();
 
         $id = $data["id"];
         $user = (new User())->findById($id);
@@ -112,25 +112,16 @@ class Users extends Api
             $this->messageUser(self::$KEY_NOT_FOUND_USER);
             return;
         }
-
-        if (isset($data["first_name"])) {
-            $user->first_name = $data["first_name"];
-        }
-        if (isset($data["last_name"])) {
-            $user->last_name = $data["last_name"];;
-        }
-        if (isset($data["email"])) {
-            $user->email = $data["email"];
-        }
+        $user->setData($data);
 
         if($user->save()){
             $this->success(message: "Usuário atualizado com sucesso!");
-        };
+        }
     }
 
     public function deleteUser(array $data)
     {
-        $this->auth();
+        //$this->auth();
 
         if (isset($data["id"])) {
             $id = $data["id"];
@@ -176,7 +167,7 @@ class Users extends Api
 
     public function changePassword(array $data)
     {
-        $this->auth();
+        //$this->auth();
 
         $id = $data["id"];
         $user = (new User())->findById($id);
