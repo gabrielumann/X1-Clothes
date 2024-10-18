@@ -30,10 +30,10 @@ tbody.addEventListener("click", async (e) => {
     if(e.target.matches("button.delete-btn")){
         productID = e.target.parentElement.parentElement.getAttribute("id")
         let DeleteProductID = await destroy(`/products/delete/${productID}`)
-        console.log(DeleteProductID)
-        // showToast(DeleteProductID.message).then(() => {
-        //     window.location.reload();
-        // })
+        //console.log(DeleteProductID)
+        showToast(DeleteProductID.message).then(() => {
+            window.location.reload();
+        })
     }
 });
 function ShowImagesForm(arrayImg) {
@@ -73,7 +73,8 @@ updateProductForm.addEventListener("submit", async (e) => {
         body: Form
 
     })).json();
-    console.log(response)
-
+    showToast(response.message).then(() => {
+        window.location.reload();
+    })
 });
 
