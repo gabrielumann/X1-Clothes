@@ -24,7 +24,7 @@
             <div class="container1">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="<?= url(); ?>"><img src="themes/shared/images/icon/logox1.png">
+                        <a href="<?= url(); ?>"><img src="<?= url("themes/shared/images/icon/logox1.png"); ?>" alt="logo">
                         </a>
                     </div>
                     <nav>

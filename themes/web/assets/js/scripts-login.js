@@ -4,14 +4,11 @@ import {getBackendUrl, getBackendUrlApi, getList, showToast} from "../../../shar
 const regForm = document.querySelector("#regForm");
 regForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    fetch(getBackendUrlApi("users"),{
+    let response = await (await fetch(getBackendUrlApi("/users"), {
         method: "POST",
         body: new FormData(regForm)
-    }).then((response) => {
-        response.json().then((data) => {
-            showToast(data.message).then();
-        });
-    });
+    })).json();
+    console.log(response)
 });
 
 const loginForm = document.querySelector("#loginForm");
@@ -21,15 +18,21 @@ loginForm.addEventListener("submit", async (e) => {
         method: "POST",
         body: new FormData(e.target)
     })).json();
-    localStorage.setItem('session', JSON.stringify(response.data.token));
-    //console.log(JSON.stringify(response.data.token))
-    showToast(`Seja Bem Vindo ${response.data.first_name}!`).then();
-    if (response.data.role !== "DEFAULT"){
-        setTimeout(() => {
-            window.location.href = getBackendUrl("adm");
-        }, 2000);
+    if (response.type === 'error'){
+        showToast(response.message).then(() => {
+            window.location.reload();
+        })
     }
-    setTimeout(() => {
-        window.location.href = getBackendUrl("app");
-    }, 3000);
+    if(response.type === "success"){
+        localStorage.setItem('session', JSON.stringify(response.data.token));
+        showToast(`Seja Bem Vindo ${response.data.first_name}!`).then();
+        if (response.data.role !== "DEFAULT"){
+            setTimeout(() => {
+                window.location.href = getBackendUrl("adm");
+            }, 2000);
+        }
+        setTimeout(() => {
+            window.location.href = getBackendUrl("app");
+        }, 3000);
+    }
 });

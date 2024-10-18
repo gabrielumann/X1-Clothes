@@ -22,7 +22,10 @@
     <body>
         <header class="header">
             <div class="logo">
-                <img src="<?= url("themes/shared/images/icon/logo2x1.png")?>" alt="Logo da Empresa">
+                <a href="<?= url("app"); ?>">
+                    <img src="<?= url("themes/shared/images/icon/logo2x1.png")?>" alt="Logo da Empresa">
+                </a>
+
             </div>
             <div class="admin-area">
                 Área de Administração
