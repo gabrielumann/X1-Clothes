@@ -1,12 +1,11 @@
 import {
-    clearForm , destroy, formAppendImages,
+    destroy,
     getBackendUrlApi,
     getList,
     showDataForm,
     showToast
 } from "../../../../shared/js/functions.js"
 let tbody = document.querySelector("tbody#user-list")
-const POSITION = 1;
 let userID;
 const updateModal = document.getElementById('updateModal');
 tbody.addEventListener("click", async (e) => {

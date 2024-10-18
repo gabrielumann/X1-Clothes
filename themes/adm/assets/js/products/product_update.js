@@ -1,22 +1,23 @@
 import {
     clearForm,
-    clearImages, destroy, formAppendImages,
+     destroy,
+    formAppendImages,
     getBackendUrlApi,
     getList,
     showDataForm,
     showToast
 } from "../../../../shared/js/functions.js"
-import {validateForm} from "./products.js";
-const POSITION = 1;
+let tbody = document.querySelector("tbody#products-list")
 let ImagesLocalPath = '/X1-Clothes/storage/images/products/';
-let tbody = document.querySelector("tbody.products-list")
+let productID;
 const updateModal = document.getElementById('updateModal');
-let productID = null;
+const closeUpdateModalBtn = document.querySelector('.close-update-modal');
 tbody.addEventListener("click", async (e) => {
     if(e.target.matches("button.edit-btn")){
         productID = e.target.parentElement.parentElement.getAttribute("id")
         clearForm(['name', 'price_brl', 'color', 'category', 'size', 'brand'])
         clearImages(['current-main-image', 'current-comp-image-1', 'current-comp-image-2', 'current-comp-image-3', 'current-comp-image-4'])
+
         let getProductID = await getList(`/products/${productID}`)
         getProductID.forEach((e) => {
             updateModal.style.display = "block";
@@ -27,10 +28,12 @@ tbody.addEventListener("click", async (e) => {
         })
     }
     if(e.target.matches("button.delete-btn")){
+        productID = e.target.parentElement.parentElement.getAttribute("id")
         let DeleteProductID = await destroy(`/products/delete/${productID}`)
-        showToast(DeleteProductID.message).then(() => {
-            window.location.reload();
-        })
+        console.log(DeleteProductID)
+        // showToast(DeleteProductID.message).then(() => {
+        //     window.location.reload();
+        // })
     }
 });
 function ShowImagesForm(arrayImg) {
@@ -42,16 +45,20 @@ function ShowImagesForm(arrayImg) {
         }
     })
 }
+function clearImages(arrayImgId, fieldPosition = 0) {
+    arrayImgId.forEach(field => {
+        if (document.querySelectorAll(`#${field}`)[fieldPosition].tagName === 'IMG') {
+            document.querySelectorAll(`#${field}`)[fieldPosition].src = ' ';
+        }
+
+    });
+}
 //
 // update product
 //
 const updateProductForm = document.getElementById("form-update-product")
 updateProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!validateForm(POSITION)) {
-        showToast("Por favor, preencha todos os campos obrigatórios.").then();
-        return;
-    }
     let principal_images =  document.querySelector("#new-product-image")
     let comp_images = [
         document.querySelector("#new-comp-image-1"),

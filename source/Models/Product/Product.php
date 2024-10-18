@@ -114,7 +114,25 @@ class Product extends DataLayer
             }
         }
     }
+    public function findImage($product_id, $type, $order = false)
+    {
+        if ($order){
+            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
+            $productImage =  (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
+            if ($productImage){
+                return $productImage;
+            }
 
+        }else{
+            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
+            $productImage = (new ProductImage())->find("product_id = :product_id AND type = :type", $params)->fetch();
+            if ($productImage){
+                return $productImage;
+            }
+
+        }
+        return null;
+    }
     public function UpdateImage($imageFile, $type, $order = null)
     {
         if(!$this->verifySize($imageFile)){
@@ -128,14 +146,14 @@ class Product extends DataLayer
         }
 
         if ($type === ProductImage::$PRINCIPAL) {
-            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
-            $imageFound = (new ProductImage())->find("product_id = :product_id AND `type` = :type", $params)->fetch();
-            if (!isset($ImageFound->id)) {
+            $imageFound = $this->findImage($product_id, $type);
+            //echo json_encode($imageFound);
+            if (!$imageFound) {
                 $this->saveImage($imageFile, $type);
                 return true;
             }
 
-            $this->deleteImage($imageFound->id);
+            $this->deleteImage($imageFound->id, true);
 
             $upload = $this->storageUploadImage($imageFile, $imageFound->image);
             if(!$upload){
@@ -169,17 +187,13 @@ class Product extends DataLayer
             return false;
         }
         $pathCurrentImage = "storage/images/products/" . $image->image;
-        if (is_writable($pathCurrentImage)) {
             if (unlink($pathCurrentImage)) {
                 $this->message = "Arquivo excluído com sucesso.";
             } else {
                 $this->message =  "Erro ao excluir o arquivo de caminho $pathCurrentImage.";
                 return false;
             }
-        } else {
-            $this->message = "Arquivo não existe.";
-            return false;
-        }
+
 
         if ($deleteOnDatabase) {
             if (!$image->destroy()) {

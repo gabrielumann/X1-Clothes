@@ -74,14 +74,6 @@ export function clearForm(arrayElementId, fieldPosition = 1) {
         document.querySelectorAll(`#${field}`)[fieldPosition].value = ' ';
     });
 }
-export function clearImages(arrayImgId, fieldPosition = 0) {
-    arrayImgId.forEach(field => {
-        if (document.querySelectorAll(`#${field}`)[fieldPosition].tagName === 'IMG') {
-            document.querySelectorAll(`#${field}`)[fieldPosition].src = ' ';
-        }
-
-    });
-}
 export function formAppendImages(FormDATA, principal_image, comp_images){
     if(isFileInputFilled(principal_image)) FormDATA.append("principal_image", principal_image.files[0])
     if(isFileInputFilled(comp_images[0])) FormDATA.append("additional_image_1", comp_images[0].files[0])

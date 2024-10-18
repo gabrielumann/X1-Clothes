@@ -51,6 +51,9 @@ class TokenJWT
     }
     public function verifyAdminPermission (string $token) : bool
     {
+        if (!$this->verify($token)){
+            return false;
+        }
         $this->token = JWT::decode((string)$token, $this->secretKey, ['HS512']);
         if($this->token->data->role !== "ADMIN"){
             return false;

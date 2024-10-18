@@ -24,7 +24,7 @@
             <th>Ações</th>
         </tr>
         </thead>
-        <tbody class="products-list">
+        <tbody id="products-list">
 <!--        <tr id="${e.id}">-->
 <!--            <td>${e.id}</td>-->
 <!--            <td><img src="/X1-Clothes/storage/images/products/${e.product_image[0].image}" alt="Imagem do Produto" class="produto-img"></td> -->
@@ -45,45 +45,44 @@
         <form id="form-register"  method="POST" enctype='multipart/form-data'>
             <div class="form-group">
                 <label for="name">Nome do Produto:</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
                 <label for="price_brl">Preço:</label>
                 <input type="text" id="price_brl" name="price_brl" required placeholder="0.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
             </div>
-
             <div class="form-group">
                 <label for="color">Cor:</label>
-                <input type="text" id="color" name="color">
+                <input type="text" id="color" name="color" required>
             </div>
             <div class="form-group">
                 <label for="category">Categoria:</label>
-                <select id="category" name="category_id" >
+                <select id="category" name="category_id" required>
                     <option value="">Selecione uma Categoria</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="size">Tamanho:</label>
-                <select id="size" name="size_id">
+                <select id="size" name="size_id" required>
                     <option value="">Selecione uma Categoria</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="brand">Marca:</label>
-                <select id="brand" name="brand_id">
+                <select id="brand" name="brand_id" required>
                     <option value="">Selecione uma Marca</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="product-image">Imagem Principal:</label>
-                <input type="file" id="product-image" name="product-image" accept="image/*">
+                <label for="principal_image">Imagem Principal:</label>
+                <input type="file" id="principal_image" name="principal_image" accept="image/*" required>
             </div>
             <div class="form-group">
-                <label for="current-complementary-images">Imagens Complementares:</label>
-                <input type="file" id="comp-image-1" name="comp-image-1" accept="image/*">
-                <input type="file" id="comp-image-2" name="comp-image-2" accept="image/*">
-                <input type="file" id="comp-image-3" name="comp-image-3" accept="image/*">
-                <input type="file" id="comp-image-4" name="comp-image-4" accept="image/*">
+                <label for="additional_image_1">Imagens Complementares:</label>
+                <input type="file" id="additional_image_1" name="additional_image_1" accept="image/*" required>
+                <input type="file" id="additional_image_2" name="additional_image_2" accept="image/*" required>
+                <input type="file" id="additional_image_3" name="additional_image_3" accept="image/*" required>
+                <input type="file" id="additional_image_4" name="additional_image_4" accept="image/*" required>
             </div>
             <button type="submit">Cadastrar</button>
         </form>
@@ -94,65 +93,56 @@
         <span class="close-btn close-update-modal">&times;</span>
         <h2>Atualizar Produto</h2>
         <form id="form-update-product" method="POST" enctype="multipart/form-data">
-
             <div class="form-group">
                 <label for="name">Nome do Produto:</label>
                 <input type="text" id="name" name="name" value="" required>
             </div>
-
             <div class="form-group">
                 <label for="price_brl">Preço (R$):</label>
                 <input type="text" id="price_brl" name="price_brl" required placeholder="0.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');">
             </div>
-
             <div class="form-group">
                 <label for="color">Cor:</label>
                 <input type="text" id="color" name="color" value="" required>
             </div>
-
             <div class="form-group">
                 <label for="category">Categoria:</label>
                 <select id="category" name="category_id" required>
                     <option value="" selected></option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="size">Tamanho:</label>
                 <select id="size" name="size_id" required>
                     <option value="" selected></option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="brand">Marca:</label>
                 <select id="brand" name="brand_id" required>
                     <option value="" selected></option>
                 </select>
             </div>
-
             <h2>Atualizar Imagens do Produto</h2>
-
             <div class="form-group">
-                <label for="current-main-image">Imagem Principal Atual:</label>
+                <label for="principal_image">Imagem Principal Atual:</label>
                 <img id="current-main-image" src="" alt="Imagem Principal">
-                <input type="file" id="new-product-image" name="new-product-image" accept="image/*">
+                <input type="file" id="principal_image" name="principal_image" accept="image/*">
             </div>
-
             <div class="form-group">
                 <label for="current-complementary-images">Imagens Complementares Atuais:</label>
                 <div id="complementary-images-container">
                     <img id="current-comp-image-1" src="" alt="Complementar 1">
-                    <input type="file" id="new-comp-image-1" name="new-comp-images[]" accept="image/*">
+                    <input type="file" id="additional_image_1" name="additional_image_1" accept="image/*">
 
                     <img id="current-comp-image-2" src="" alt="Complementar 2">
-                    <input type="file" id="new-comp-image-2" name="new-comp-images[]" accept="image/*">
+                    <input type="file" id="additional_image_2" name="additional_image_2" accept="image/*">
 
                     <img id="current-comp-image-3" src="" alt="Complementar 3">
-                    <input type="file" id="new-comp-image-3" name="new-comp-images[]" accept="image/*">
+                    <input type="file" id="additional_image_3" name="additional_image_3" accept="image/*">
 
                     <img id="current-comp-image-4" src="" alt="Complementar 4">
-                    <input type="file" id="new-comp-image-4" name="new-comp-images[]" accept="image/*">
+                    <input type="file" id="additional_image_4" name="additional_image_4" accept="image/*">
                 </div>
             </div>
 

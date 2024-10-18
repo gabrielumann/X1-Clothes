@@ -1,14 +1,9 @@
 import {
-    getBackendUrl,
-    getBackendUrlApi,
     getList, setAllOptions,
-    showDataForm,
-    showToast,
-    clearForm, clearImages, destroy
 } from "../../../../shared/js/functions.js"
 let ImagesLocalPath = '/X1-Clothes/storage/images/products/';
 
-let tbody = document.querySelector("tbody.products-list")
+let tbody = document.querySelector("tbody#products-list")
 window.addEventListener("load", async () => {
     tbody.innerHTML = ' ';
     let products = await getList("/products")
@@ -31,22 +26,3 @@ window.addEventListener("load", async () => {
     await setAllOptions("/products/sizes", "#size");
     await setAllOptions("/products/brands", "#brand");
 })
-const updateModal = document.getElementById('updateModal');
-const closeUpdateModalBtn = document.querySelector('.close-update-modal');
-
-
-export function validateForm(position = 0) {
-    const name = document.querySelectorAll("#name")[position].value.trim();
-    const price = document.querySelectorAll("#price_brl")[position].value.trim();
-    const color = document.querySelectorAll("#color")[position].value.trim();
-    const category = document.querySelectorAll("#category")[position].value;
-    const size = document.querySelectorAll("#size")[position].value;
-    const brand = document.querySelectorAll("#brand")[position].value;
-
-
-    if (!name || !price || !color || !category || !size || !brand === 0) {
-        return false;
-    }
-
-    return true;
-}

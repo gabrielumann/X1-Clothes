@@ -171,7 +171,7 @@ class Products extends Api
             }
         }
 
-        for($i = 1; $i <= (count($ALLOWED_IMAGES) - 1) ; $i++){
+        for($i = 1; $i <= 4 ; $i++){
             if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
                 if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i)){
                     $this->error(message: $product->getMessage());
@@ -202,14 +202,18 @@ class Products extends Api
 
         $id = $data["id"];
         $product = (new Product())->findById($id);
+        chdir("..");
         if ($product->getImage()){
             foreach ($product->getImage() as $img){
-                $product->deleteImage($img->id);
+                //echo json_encode($img);
+                if(!$product->deleteImage($img->id, true)){
+                    $this->error(message: $product->getMessage());
+                    die();
+                }
             }
         }
-
-        if ($product) {
-            //$product->destroy();
+        chdir("api");
+        if ($product->destroy()) {
             $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
