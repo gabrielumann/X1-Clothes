@@ -52,7 +52,6 @@ updateProductForm.addEventListener("submit", async (e) => {
         showToast("Por favor, preencha todos os campos obrigatórios.").then();
         return;
     }
-
     let principal_images =  document.querySelector("#new-product-image")
     let comp_images = [
         document.querySelector("#new-comp-image-1"),

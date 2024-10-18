@@ -34,14 +34,7 @@ window.addEventListener("load", async () => {
 const updateModal = document.getElementById('updateModal');
 const closeUpdateModalBtn = document.querySelector('.close-update-modal');
 
-window.onclick = function(event) {
-    if (event.target === updateModal) {
-        updateModal.style.display = "none";
-    }
-}
-closeUpdateModalBtn.onclick = function() {
-    updateModal.style.display = "none";
-}
+
 export function validateForm(position = 0) {
     const name = document.querySelectorAll("#name")[position].value.trim();
     const price = document.querySelectorAll("#price_brl")[position].value.trim();

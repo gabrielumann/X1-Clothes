@@ -101,16 +101,6 @@ class Product extends DataLayer
         }
         $productId = $this->id;
         $uniqueName = $this->generateName($imageFile, $type);
-//        if ($type === ProductImage::$SECONDARY) {
-//            $params = http_build_query(["product_id" => $productId, "type" => $type]);
-//            $imageFound = (new ProductImage())->find("product_id = :product_id AND type = :type ORDER BY complementary_order DESC;", $params)->fetch(true);
-//            echo json_encode($imageFound);
-//            if (!isset($imageFound)) {
-//                $newItemValue = 1;
-//            } else {
-//                $newItemValue = $imageFound->additional_order + 1;
-//            }
-//        }
         $upload = $this->storageUploadImage($imageFile, $uniqueName);
         if ($upload){
             $productImages = new ProductImage();
@@ -125,81 +115,80 @@ class Product extends DataLayer
         }
     }
 
-    public function UpdateImage($imageFile, $type, $order = null): void
+    public function UpdateImage($imageFile, $type, $order = null)
     {
         if(!$this->verifySize($imageFile)){
-            return;
+            return false;
         }
 
         $product_id = $this->id;
-
         if ($type === ProductImage::$SECONDARY && $order == null) {
             $this->message = "Se o type for $type você tem que passar um valor para order";
-            return;
+            return false;
         }
 
         if ($type === ProductImage::$PRINCIPAL) {
             $params = http_build_query(["product_id" => $product_id, "type" => $type]);
-            $search = (new ProductImage())->find("product_id = :product_id AND `type` = :type", $params)->fetch(true);
-            echo json_encode($search);
-            if (!isset($search->id)) {
+            $imageFound = (new ProductImage())->find("product_id = :product_id AND `type` = :type", $params)->fetch();
+            if (!isset($ImageFound->id)) {
                 $this->saveImage($imageFile, $type);
-                return;
+                return true;
             }
-            $this->deleteImage($search->id, true);
 
-            $upload = $this->storageUploadImage($imageFile, $search->image);
+            $this->deleteImage($imageFound->id);
 
-            $search->image = $upload;
-            if (!$search->save()){
-                $this->message = "Erro ao enviar a imagem: $upload ao banco de dados!";
+            $upload = $this->storageUploadImage($imageFile, $imageFound->image);
+            if(!$upload){
+                return false;
             }
+            $imageFound->image = $upload;
+            $imageFound->save();
+            return true;
         }
 
         if ($type === ProductImage::$SECONDARY) {
             $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
-            $imageFinded = (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
-            if ($imageFinded === null) {
+            $ImageFound = (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
+            if ($ImageFound === null) {
                 $this->saveImage($imageFile, $type);
-                return;
+                return true;
             }
-            $this->deleteImage($imageFinded->id, true);
+            $this->deleteImage($ImageFound->id, true);
             $upload = $this->storageUploadImage($imageFile, $product_id);
-            $imageFinded->image = $upload;
 
-            if (!$imageFinded->save()){
-                $this->message = "Erro ao enviar a imagem: $upload ao banco de dados!";
-            }
+            $ImageFound->image = $upload;
+            $ImageFound->save();
         }
+        return false;
     }
-    public function deleteImage($imageId, bool $deleteOnDatabase = false): void
+    public function deleteImage($imageId, bool $deleteOnDatabase = false)
     {
         $image = (new ProductImage())->findById($imageId);
         if (!$image) {
             $this->message = "Não existe um imagem com esse ID.";
-            return;
+            return false;
         }
         $pathCurrentImage = "storage/images/products/" . $image->image;
-        if (file_exists($pathCurrentImage)) {
+        if (is_writable($pathCurrentImage)) {
             if (unlink($pathCurrentImage)) {
                 $this->message = "Arquivo excluído com sucesso.";
             } else {
                 $this->message =  "Erro ao excluir o arquivo de caminho $pathCurrentImage.";
-                return;
+                return false;
             }
         } else {
-            $this->message = "Arquivo não encontrado.";
-            return;
+            $this->message = "Arquivo não existe.";
+            return false;
         }
 
         if ($deleteOnDatabase) {
             if (!$image->destroy()) {
                 $this->message = "Erro ao apagar a imagem!";
-                return;
+                return false;
             }
             $this->message = "Imagem: $image->image foi removida com sucesso!";
         }
-
+        return true;
     }
 
     public function getMessage()

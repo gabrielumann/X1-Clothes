@@ -21,5 +21,7 @@ productForm.addEventListener("submit", async (e) => {
         method: "POST",
         body: Form
     })).json();
-    console.log(response)
+    showToast(response.message).then(() => {
+        window.location.reload();
+    })
 });

@@ -165,12 +165,18 @@ class Products extends Api
         chdir("..");
 
         if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-            $product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
+            if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL)){
+                $this->error(message: $product->getMessage());
+                return;
+            }
         }
 
         for($i = 1; $i <= (count($ALLOWED_IMAGES) - 1) ; $i++){
             if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-                $product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
+                if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i)){
+                    $this->error(message: $product->getMessage());
+                    die();
+                }
             }
         }
 

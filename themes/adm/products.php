@@ -1,8 +1,8 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
 <?php $this->start("specific-script")?>
         <script src="<?=url("themes/adm/assets/js/products/products.js")?>" type="module" async></script>
-        <script src="<?=url("themes/adm/assets/js/products/_register.js")?>" type="module" async></script>
-        <script src="<?=url("themes/adm/assets/js/products/_update.js")?>" type="module" async></script>
+        <script src="<?=url("themes/adm/assets/js/products/product_register.js")?>" type="module" async></script>
+        <script src="<?=url("themes/adm/assets/js/products/product_update.js")?>" type="module" async></script>
 <?php $this->end(); ?>
 <?php $this->start("specific-style")?>
 <link rel="stylesheet" href="<?= url("themes/adm/assets/css/products.css")?>">
