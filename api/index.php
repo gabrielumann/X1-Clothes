@@ -20,6 +20,7 @@ $route->post("/","Faqs:createFaqCategories");
 $route->post("/update/{id}", "Faqs:updateFaqCategories");
 $route->delete("/delete/{id}","Faqs:deleteFaqCategories");
 
+
 $route->group("/users");
 $route->get("/", "Users:listUsers");
 $route->get("/{id}", "Users:getUser");
