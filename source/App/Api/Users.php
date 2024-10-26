@@ -18,7 +18,7 @@ class Users extends Api
 
     public function listUsers()
     {
-        //$this->auth();
+        //$this->authAdmin();
 
         $users = (new User())->find()->fetch(true);
 
@@ -68,16 +68,20 @@ class Users extends Api
     {
         $user = new User();
 
-        $requiredFields = ["first_name", "last_name", "email", "password", "cpf"];
+        $requiredFields = ["first_name", "last_name", "email", "password", "passwordConfirmed", "cpf"];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
                 $this->error(message: "Está faltando o campo $field");
                 die();
             }
         }
+        if ($data["password"] !== $data["passwordConfirmed"]) {
+            $this->error(message: "As senhas devem coincidir!");
+            return;
+        }
 
-        $user->first_name = $data["first_name"];
-        $user->last_name = $data["last_name"];
+        $user->first_name = ucfirst($data["first_name"]);
+        $user->last_name = ucfirst($data["last_name"]);
         $user->email = $data["email"];
         $password = password_hash($data["password"], PASSWORD_DEFAULT);
         $user->password = $password;
@@ -100,28 +104,19 @@ class Users extends Api
 
     public function updateUser(array $data)
     {
-        //$this->auth();
-        //$this->userAuth->id   ||
+        //$this->authAdmin();
+
         $id = $data["id"];
         $user = (new User())->findById($id);
         if (!$user) {
             $this->messageUser(self::$KEY_NOT_FOUND_USER);
             return;
         }
-
-        if (isset($data["first_name"])) {
-            $user->first_name = $data["first_name"];
-        }
-        if (isset($data["last_name"])) {
-            $user->last_name = $data["last_name"];;
-        }
-        if (isset($data["email"])) {
-            $user->email = $data["email"];
-        }
+        $user->setData($data);
 
         if($user->save()){
             $this->success(message: "Usuário atualizado com sucesso!");
-        };
+        }
     }
 
     public function deleteUser(array $data)
@@ -161,8 +156,10 @@ class Users extends Api
 
         $this->success([
             "id" => $user->id,
-            "name" => $user->first_name . " ". $user->last_name,
+            "first_name" => $user->first_name,
+            "last_name" => $user->last_name,
             "email" => $user->email,
+            "role" => $user->role,
             "token" => $signature
         ], message: $user->getMessage());
 
@@ -170,6 +167,7 @@ class Users extends Api
 
     public function changePassword(array $data)
     {
+        //$this->auth();
 
         $id = $data["id"];
         $user = (new User())->findById($id);

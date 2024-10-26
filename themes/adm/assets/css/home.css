@@ -1,48 +1,151 @@
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.dashboard {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    overflow-y: hidden;
+}
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
 }
 
-.dashboard h1 {
-    margin: 0;
-    color: #ffffff;
+.header .logo img {
+    height: 70px;
 }
 
-#date-range {
-    padding: 10px;
-    font-size: 16px;
+.header .admin-area {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.cardMain {
-    margin-top: 20px;
+.container {
+    display: flex;
+    height: calc(100vh - 70px);
 }
 
-.card {
-    background-color: #fff;
+.sidebar {
+    width: 250px;
+    background-color: #333;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
-.card h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #666;
+.sidebar ul {
+    list-style: none;
 }
 
-.card p {
-    font-size: 48px;
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    display: block;
+    flex-grow: 1;
+}
+
+
+h1 {
     color: #333;
-    margin: 20px 0 0;
 }
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    padding: 10px 15px;
+    background: #9600ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition:  0.5s;
+}
+
+.add-btn:hover{
+    background: #7802cc;
+    transform: translateY(-2px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background: #9600ff;
+    color: white;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #28a745;
+    color: white;
+    margin-right: 5px;
+    border-radius: 5px;
+    transition:  0.3s;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    transition:  0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+
+

@@ -12,6 +12,24 @@ class User extends DataLayer {
         //string $entity, array $required, string $primary = 'id', bool $timestamps = true, array $database = null
         parent::__construct("users", ["first_name","last_name" ,"email", "password", "cpf", "role"], timestamps:  false);
     }
+    public function setData($data): void
+    {
+        if (isset($data["first_name"])) {
+            $this->first_name = ucfirst($data["first_name"]);
+        }
+        if (isset($data["last_name"])) {
+            $this->last_name = ucfirst($data["last_name"]);
+        }
+        if (isset($data["email"])) {
+            $this->email = $data["email"];
+        }
+        if (isset($data["cpf"])) {
+            $this->cpf = $data["cpf"];
+        }
+        if (isset($data["role"])) {
+            $this->role = $data["role"];
+        }
+    }
 
     public function createUser(): bool
     {

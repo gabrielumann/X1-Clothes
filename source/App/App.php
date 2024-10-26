@@ -3,8 +3,9 @@
 namespace Source\App;
 
 use League\Plates\Engine;
+use Source\App\Api\Api;
 
-class App{
+class App {
     private $view;
 
     public function __construct()

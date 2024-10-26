@@ -3,6 +3,7 @@
 namespace Source\App;
 
 use League\Plates\Engine;
+use Source\App\Api\Api;
 
 class Admin{
     private $view;
@@ -15,7 +16,7 @@ class Admin{
     public function home ()
     {
         echo $this->view->render("home",[
-            "title" => "Home | ADM",
+            "title" => "Pedidos | ADM",
         ]);
     }
     public function products ()
@@ -24,16 +25,34 @@ class Admin{
             "title" => "Produtos | ADM",
         ]);
     }
-    public function orders ()
+    public function stock()
     {
-        echo $this->view->render("orders",[
-            "title" => "Pedidos | ADM",
+        echo $this->view->render("stock",[
+            "title" => "Estoque | ADM",
+        ]);
+    }
+    public function categories()
+    {
+        echo $this->view->render("categories",[
+            "title" => "Categorias | ADM",
+        ]);
+    }
+    public function brands ()
+    {
+        echo $this->view->render("brands",[
+            "title" => "Marcas | ADM",
         ]);
     }
     public function users ()
     {
         echo $this->view->render("users",[
-            "title" => "Usuarios | ADM",
+            "title" => "Usuários | ADM",
+        ]);
+    }
+    public function addresses ()
+    {
+        echo $this->view->render("addresses",[
+            "title" => "Endereços | ADM",
         ]);
     }
     public function faqs ()
@@ -42,10 +61,5 @@ class Admin{
             "title" => "FAQS | ADM",
         ]);
     }
-    public function rating ()
-    {
-        echo $this->view->render("rating",[
-            "title" => "Avaliações | ADM",
-        ]);
-    }
+
 }

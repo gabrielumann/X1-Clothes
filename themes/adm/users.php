@@ -1,57 +1,109 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
-<h1> oi eu sou a <?= $title?></h1>
+<?php $this->start("specific-script")?>
+<script src="<?=url("themes/adm/assets/js/user/users.js")?>" type="module" async></script>
+<script src="<?=url("themes/adm/assets/js/user/user_register.js")?>" type="module" async></script>
+<script src="<?=url("themes/adm/assets/js/user/user_update.js")?>" type="module" async></script>
+<?php $this->end(); ?>
 
-<div class="container">
-    <h2>Formulário de Cadastro de Usuários</h2>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-        </div>
-        <div class="form-group">
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="papel">Papel:</label>
-            <select id="papel" name="papel" required>
-                <option value="admin">Admin</option>
-                <option value="padrao">Padrão</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="imagem">Imagem do Usuário:</label>
-            <input type="file" id="imagem" name="imagem" accept="image/*">
-        </div>
-        <button type="submit">Cadastrar</button>
-    </form>
+<section id="usuarios-section" class="section">
+    <div class="section-header">
+        <h1>Usuários</h1>
+        <button class="add-btn" id="btn-open-create-modal">Adicionar Usuário</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="user-list">
+        <tr>
+            <td>1</td>
+            <td>Usuário A</td>
+            <td>usera@email.com</td>
+            <td>
+                <button class="edit-btn">Editar</button>
+                <button class="delete-btn">Excluir</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<div id="createModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn close-create-modal">&times;</span>
+        <h2>Cadastro de Usuário</h2>
+        <form id="form-register" method="POST">
+            <div class="form-group">
+                <label for="first_name">Primeiro Nome:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Último Nome:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="text" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordConfirmed">Confirme a Senha:</label>
+                <input type="text" id="passwordConfirmed" name="passwordConfirmed" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="XXX.XXX.XXX-XX" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+            </div>
+            <div class="form-group">
+                <label for="role">Papel:</label>
+                <select id="role" name="role" required>
+                    <option value="">Selecione um papel</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="DEFAULT">Default</option>
+                </select><br><br>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+<div id="updateModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn close-update-modal">&times;</span>
+        <h2>Edição de Usuário</h2>
+        <form id="form-update" method="post">
+            <div class="form-group">
+                <label for="first_name">Primeiro Nome:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Último Nome:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="XXX.XXX.XXX-XX" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+            </div>
+            <div class="form-group">
+                <label for="role">Papel:</label>
+                <select id="role" name="role" required>
+                    <option value="">Selecione um papel</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="DEFAULT">Default</option>
+                </select><br><br>
+            </div>
+            <button type="submit">Editar</button>
+        </form>
+    </div>
 </div>
 
-<div class="container">
-    <h2>Formulário de Cadastro de Endereço</h2>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" required>
-        </div>
-        <div class="form-group">
-            <label for="cep">CEP:</label>
-            <input type="text" id="cep" name="cep" required>
-        </div>
-        <div class="form-group">
-            <label for="estado">Estado:</label>
-            <select id="estado" name="estado" required>
-                <!-- Opções para os estados do Brasil -->
-            </select>
-        </div>
-        <button type="submit">Cadastrar</button>
-    </form>
-</div>

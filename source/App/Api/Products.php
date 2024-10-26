@@ -2,14 +2,15 @@
 
 namespace Source\App\Api;
 
-use Source\Models\Product\Brands;
+use Source\Models\Product\Brand;
 use Source\Models\Product\Category;
 use Source\Models\Product\Product;
+use Source\Models\Product\ProductImage;
+use Source\Models\Product\Size;
 
 class Products extends Api
 {
-    public static string $KEY_NOT_FOUND_PRODUCT = "KEY_NOT_FOUND_PRODUCT";
-    public static string $KEY_NOT_EXIST_PRODUCT = "KEY_NOT_EXIST_PRODUCT";
+    private static string $CLASSNAME = "produto";
 
     public function __construct()
     {
@@ -19,9 +20,11 @@ class Products extends Api
     public function listProducts()
     {
         $products = (new Product())->find()->fetch(true);
-
+        $categories = new Category();
+        $sizes = new Size();
+        $brand = new Brand();
         if (!$products) {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
             return;
         }
 
@@ -33,10 +36,12 @@ class Products extends Api
                 "price_brl" => $product->price_brl,
                 "color" => $product->color,
                 "category_id" => $product->category_id,
-                //"category" => $product->getCategory(),
+                "category" => $product->getName($categories, "category_id"),
                 "brand_id" => $product->brand_id,
-                //"brand" => $product->getBrand(),
+                "brand" => $product->getName($brand, "brand_id"),
                 "size_id" => $product->size_id,
+                "size" => $product->getName($sizes, "size_id"),
+                "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
             ];
         }
 
@@ -47,8 +52,12 @@ class Products extends Api
     {
         $id = $data["id"];
         $product = (new Product())->findById($id);
+        $categories = new Category();
+        $sizes = new Size();
+        $brand = new Brand();
+
         if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_EXIST_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_EXIST);
             return;
         }
 
@@ -57,26 +66,36 @@ class Products extends Api
             "name" => $product->name,
             "price_brl" => $product->price_brl,
             "color" => $product->color,
-            "category_id" => $product->category_id,
-            "brand_id" => $product->brand_id,
-            "size_id" => $product->size_id,
+            "category" => $product->category_id,
+            "brand" => $product->brand_id,
+            "size" => $product->size_id,
+            "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
         ];
+
         $this->success($response);
     }
 
     public function createProduct(array $data)
     {
-        $this->auth();
+//        echo json_encode($data);
+//        echo json_encode($_FILES["principal_image"]["name"]);
+//        for($i = 1; $i <= 4; $i++){
+//            echo json_encode($_FILES["additional_image_$i"]["name"]);
+//        }
+
+        //$this->auth();
+        //$this->authAdmin();
 
         $product = new Product();
 
         $requiredFields = ["name", "price_brl", "color", "category_id", "brand_id", "size_id"];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
-                $this->error(message: "Está faltando o campo $field");
+                $this->error(message: "Está faltando o campo '$field'");
                 die();
             }
         }
+        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
 
         $product->name = $data["name"];
         $product->price_brl = $data["price_brl"];
@@ -89,6 +108,26 @@ class Products extends Api
             $this->error(message: $product->getMessage());
             return;
         }
+        chdir("..");
+        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+
+            $product->SaveImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
+
+        }else{
+            $this->error(message: 'Erro ao fazer upload da imagem principal');
+            return;
+        }
+
+        //echo json_encode(getcwd());
+        for($i = 1; $i <= 4 ; $i++){
+            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[$i]]['error'] === UPLOAD_ERR_OK) {
+                $product->SaveImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
+            }else {
+                $this->error(message: "Erro ao enviar a imagem de índice $i.");
+                die();
+            }
+        }
+        chdir("api");
         $response[] = [
             "id" => $product->id,
             "name" => $product->name,
@@ -97,91 +136,97 @@ class Products extends Api
             "category_id" => $product->category_id,
             "brand_id" => $product->brand_id,
             "size_id" => $product->size_id,
+            "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
         ];
 
         $this->success($response ,message: "Produto criado com sucesso!");
+
     }
 
     public function updateProduct(array $data)
     {
-        $this->auth();
-
+//        $this->auth();
+//        echo json_encode($data);
+//        echo json_encode($_FILES["principal_image"]["name"]);
+//        for($i = 1; $i <= 4; $i++){
+//            echo json_encode($_FILES["additional_image_$i"]["name"]);
+//        }
         $id = $data["id"];
 
         $instance = new Product();
         $product = $instance->findById($id);
         if (!$product) {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
             return;
         }
+        $product->setData($data);
+        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
 
-        if (isset($data["name"])) {
-            $product->name = $data["name"];
-            echo $product->name;
-        }
-        if (isset($data["price_brl"])) {
-            $product->price = $data["price"];
-        }
-        if (isset($data["color"])) {
-            $product->color = $data["color"];
-        }
-        if (isset($data["category_id"])) {
-            $product->category_id = $data["category_id"];
-        }
-        if (isset($data["brand_id"])) {
-            $product->brand_id = $data["brand_id"];
-        }
-        if (isset($data["size_id"])) {
-            $product->size_id = $data["size_id"];
+        chdir("..");
+
+        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+            if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL)){
+                $this->error(message: $product->getMessage());
+                return;
+            }
         }
 
+        for($i = 1; $i <= 4 ; $i++){
+            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+                if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i)){
+                    $this->error(message: $product->getMessage());
+                    die();
+                }
+            }
+        }
+
+        chdir("api");
         if($product->save()){
-            $this->success(message: "Produto atualizado com sucesso!");
+            $response[] = [
+                "id" => $product->id,
+                "name" => $product->name,
+                "price_brl" => $product->price_brl,
+                "color" => $product->color,
+                "category_id" => $product->category_id,
+                "brand_id" => $product->brand_id,
+                "size_id" => $product->size_id,
+                "product_image" => ($product->getImage()) ? $product->getImage() : $product->getMessage()
+            ];
+            $this->success($response, message: "Produto atualizado com sucesso!");
         };
-
-
     }
 
     public function deleteProduct(array $data)
     {
-        $this->auth();
+        //$this->auth();
 
         $id = $data["id"];
         $product = (new Product())->findById($id);
-
-        if ($product) {
-            $product->destroy();
+        chdir("..");
+        if ($product->getImage()){
+            foreach ($product->getImage() as $img){
+                //echo json_encode($img);
+                if(!$product->deleteImage($img->id, true)){
+                    $this->error(message: $product->getMessage());
+                    die();
+                }
+            }
+        }
+        chdir("api");
+        if ($product->destroy()) {
             $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
-            $this->messageProduct(self::$KEY_NOT_FOUND_PRODUCT);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
         }
-
     }
 
-    public function listCategories()
+    public function listImageProducts()
     {
-        $category = new Category();
-        $categories = $category->find()->fetch(true);
-
+        $images = (new ProductImage())->find()->fetch(true);
         $response = [];
-        foreach ($categories as $category) {
-
-            $response[] = $category->data();
+        foreach ($images as $image) {
+            $response[] = $image->data();
         }
-
         $this->success($response);
-    }
-
-
-    public function messageProduct(string $KEY)
-    {
-        switch ($KEY) {
-            case self::$KEY_NOT_EXIST_PRODUCT:
-                $this->success(message: "Não existem produtos cadastrados.");
-                break;
-            case self::$KEY_NOT_FOUND_PRODUCT:
-                $this->error(message: "Produto inexistente.", code: 404);
-                break;
-        }
     }
 }

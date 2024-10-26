@@ -1,0 +1,1 @@
+export let session = JSON.parse(localStorage.getItem('session'));
