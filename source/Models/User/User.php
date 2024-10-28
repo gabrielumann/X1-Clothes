@@ -30,7 +30,10 @@ class User extends DataLayer {
             $this->role = $data["role"];
         }
     }
-
+    public function hasImage(): bool
+    {
+        return !empty($this->image);
+    }
     public function createUser(): bool
     {
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){

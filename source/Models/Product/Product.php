@@ -35,20 +35,7 @@ class Product extends DataLayer
             $this->size_id = $data["size_id"];
         }
     }
-    private function generateName($imageFile, $type)
-    {
-        $imageName = basename($imageFile['name']);
-        return $type . uniqid() . '_' . str_replace(' ', '_', $imageName);
-    }
-    private function storageUploadImage($imageFile, $name)
-    {
-        if (!move_uploaded_file($imageFile["tmp_name"], "storage/images/products/" . $name)) {
-            $this->message = "Erro ao mover o arquivo: " . $imageFile['name'];
-            return false;
-        }
 
-        return $name;
-    }
     public function verifySize($imgFile)
     {
         if ($imgFile['size'] > 5000000) { // 5MB
@@ -187,12 +174,7 @@ class Product extends DataLayer
             return false;
         }
         $pathCurrentImage = "storage/images/products/" . $image->image;
-            if (unlink($pathCurrentImage)) {
-                $this->message = "Arquivo excluído com sucesso.";
-            } else {
-                $this->message =  "Erro ao excluir o arquivo de caminho $pathCurrentImage.";
-                return false;
-            }
+
 
 
         if ($deleteOnDatabase) {

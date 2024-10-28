@@ -5,6 +5,7 @@ namespace Source\App\Api;
 use CoffeeCode\DataLayer\Connect;
 use Source\Core\TokenJWT;
 use Source\Models\User\User;
+use Source\Support\ImageUploader;
 
 class Users extends Api
 {
@@ -36,6 +37,7 @@ class Users extends Api
                 "email" => $user->email,
                 "cpf" => $user->cpf,
                 "role" => $user->role,
+                "image" => $user->image,
             ];
         }
         $this->success($response);
@@ -119,6 +121,34 @@ class Users extends Api
         }
     }
 
+    public function updateImage(array $data)
+    {
+        $user = (new User())->findById($data['id']);
+        $imageUploader = new ImageUploader();
+        if ($user->hasImage()) {
+            if (!$imageUploader->delete($user->image)){
+                $this->error(message: $imageUploader->getMessage());
+                return;
+            }
+        }
+        $userImg = (!empty($_FILES["image"]["name"]) ? $_FILES["image"] : null);
+        if (!$userImg) {
+            $this->error(message: "Por favor, envie uma foto");
+            return;
+        }
+
+        $upload = $imageUploader->upload($userImg);
+
+
+        $user->image = $upload;
+
+        if($user->save()){
+            $this->success( ["id" => $user->id, "image" => $user->image],"Imagem do usuário atualizada com sucesso!");
+            return;
+        }
+        $this->error(message: "Erro ao atualizar no banco de dados!");
+
+    }
     public function deleteUser(array $data)
     {
         //$this->auth();
