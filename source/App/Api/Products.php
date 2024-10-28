@@ -146,23 +146,9 @@ class Products extends Api
             return;
         }
         $product->setData($data);
-        chdir("..");
-
-        if (isset($_FILES[self::ALLOWED_IMAGES[0]]) && $_FILES[self::ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-            if(!$product->UpdateImage($_FILES[self::ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL, $product_id)){
-                $this->error(message: $product->getMessage());
-                return;
-            }
-        }
-        for($i = 1; $i <= 4 ; $i++){
-            if (isset($_FILES[self::ALLOWED_IMAGES[$i]]) && $_FILES[self::ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-                if(!$product->UpdateImage($_FILES[self::ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY,$product_id, $i)){
-                    $this->error(message: $product->getMessage());
-                    die();
-                }
-            }
-        }
-        chdir("api");
+        self::changeDirectory(function () use ($product) {
+            $this->handleProductImages($product, true);
+        });
         if($product->save()){
             $response[] = [
                 "id" => $product->id,

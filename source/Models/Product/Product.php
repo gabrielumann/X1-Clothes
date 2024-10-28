@@ -22,7 +22,7 @@ class Product extends DataLayer
             $this->name = $data["name"];
         }
         if (isset($data["price_brl"])) {
-            $this->price = $data["price_brl"];
+            $this->price_brl = $data["price_brl"];
         }
         if (isset($data["color"])) {
             $this->color = $data["color"];
@@ -103,7 +103,8 @@ class Product extends DataLayer
             $this->saveImage($imageFile, $type, $order);
             return true;
         }
-        $this->deleteImage($imageFound->id, $type);
+        echo json_encode($imageFound->image);
+        $this->deleteImage($imageFound->id);
         $upload = $imageUploader->upload($imageFile);
         if(!$upload){
             $this->message = $imageUploader->getMessage();
