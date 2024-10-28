@@ -4,9 +4,11 @@ namespace Source\Models\Product;
 
 use CoffeeCode\DataLayer\DataLayer;
 use PDOException;
+use Source\Support\ImageUploader;
 
 class Product extends DataLayer
 {
+    private static $DIR = 'products';
     private $message;
 
     public function __construct()
@@ -36,13 +38,102 @@ class Product extends DataLayer
         }
     }
 
-    public function verifySize($imgFile)
+    public function verifySize($imageFile)
     {
-        if ($imgFile['size'] > 5000000) { // 5MB
+        if ($imageFile['size'] > 5000000) { // 5MB
             $this->message = "Imagem muito grande";
             return false;
         }
         return true;
+    }
+
+
+    public function createProduct(): bool
+    {
+        $params = http_build_query(["name" => $this->name]);
+        $product = $this->find("name = :name", $params);
+        $product->fetch(true);
+
+        if ($product->count() == 1) {
+            $this->message = "Ja existe um produto com esse nome";
+            return false;
+        };
+
+        return parent::save();
+    }
+
+    public function SaveImage(array $imageFile, string $type, int $order = null)
+    {
+        //echo json_encode($imageFile);
+        $imageUploader = new ImageUploader(self::$DIR);
+        if(!$this->verifySize($imageFile)){
+            return false;
+        }
+        $upload = $imageUploader->upload($imageFile);
+        if ($upload){
+            $productImages = new ProductImage();
+            $productImages->product_id = $this->id;
+            $productImages->image = $upload;
+            $productImages->type = $type;
+            $productImages->complementary_order = $order;
+
+            if (!$productImages->addImages()) {
+                $this->message = $productImages->getMessage();
+                return false;
+            }
+            return true;
+        }
+        $this->message = $imageUploader->getMessage();
+        return false;
+    }
+    public function UpdateImage(array $imageFile, string $type, int $product_id, int $order = null)
+    {
+        $imageUploader = new ImageUploader(self::$DIR);
+        if(!$this->verifySize($imageFile)){
+            return false;
+        }
+
+        if ($type === ProductImage::$SECONDARY && $order == null) {
+            $this->message = "Se o type for $type você tem que passar um valor para order";
+            return false;
+        }
+
+        $imageFound = $this->findImage($product_id, $type, $order);
+        if (empty($imageFound)) {
+            $this->saveImage($imageFile, $type, $order);
+            return true;
+        }
+        $this->deleteImage($imageFound->id, $type);
+        $upload = $imageUploader->upload($imageFile);
+        if(!$upload){
+            $this->message = $imageUploader->getMessage();
+            return false;
+        }
+        $imageFound->image = $upload;
+        if (!$imageFound->addImages()) {
+            $this->message = $imageFound->getMessage();
+            return false;
+        }
+        return true;
+    }
+    private function findImage($product_id, $type, $order)
+    {
+        if (!empty($order)){
+            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
+            $productImage =  (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
+            if (!empty($productImage)){
+                return $productImage;
+            }
+
+        }else{
+            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
+            $productImage = (new ProductImage())->find("product_id = :product_id AND type = :type", $params)->fetch();
+            if (!empty($productImage)){
+                return $productImage;
+            }
+
+        }
+        return null;
     }
 
     public function getImage()
@@ -66,116 +157,21 @@ class Product extends DataLayer
         }
         return null;
     }
-
-    public function createProduct(): bool
+    public function getMessage()
     {
-        $params = http_build_query(["name" => $this->name]);
-        $product = $this->find("name = :name", $params);
-        $product->fetch(true);
-
-        if ($product->count() == 1) {
-            $this->message = "Ja existe um produto com esse nome";
-            return false;
-        };
-
-        return parent::save();
+        return $this->message;
     }
-
-    public function SaveImage(array $imageFile, string $type, $order = null): void
-    {
-        if(!$this->verifySize($imageFile)){
-            return;
-        }
-        $productId = $this->id;
-        $uniqueName = $this->generateName($imageFile, $type);
-        $upload = $this->storageUploadImage($imageFile, $uniqueName);
-        if ($upload){
-            $productImages = new ProductImage();
-            $productImages->product_id = $productId;
-            $productImages->image = $upload;
-            $productImages->type = $type;
-            $productImages->complementary_order = $order;
-
-            if (!$productImages->addImages()) {
-                $this->message = $productImages->getMessage();
-            }
-        }
-    }
-    public function findImage($product_id, $type, $order = false)
-    {
-        if ($order){
-            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
-            $productImage =  (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
-            if ($productImage){
-                return $productImage;
-            }
-
-        }else{
-            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
-            $productImage = (new ProductImage())->find("product_id = :product_id AND type = :type", $params)->fetch();
-            if ($productImage){
-                return $productImage;
-            }
-
-        }
-        return null;
-    }
-    public function UpdateImage($imageFile, $type, $order = null)
-    {
-        if(!$this->verifySize($imageFile)){
-            return false;
-        }
-
-        $product_id = $this->id;
-        if ($type === ProductImage::$SECONDARY && $order == null) {
-            $this->message = "Se o type for $type você tem que passar um valor para order";
-            return false;
-        }
-
-        if ($type === ProductImage::$PRINCIPAL) {
-            $imageFound = $this->findImage($product_id, $type);
-            //echo json_encode($imageFound);
-            if (!$imageFound) {
-                $this->saveImage($imageFile, $type);
-                return true;
-            }
-
-            $this->deleteImage($imageFound->id, true);
-
-            $upload = $this->storageUploadImage($imageFile, $imageFound->image);
-            if(!$upload){
-                return false;
-            }
-            $imageFound->image = $upload;
-            $imageFound->save();
-            return true;
-        }
-
-        if ($type === ProductImage::$SECONDARY) {
-            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
-            $ImageFound = (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
-            if ($ImageFound === null) {
-                $this->saveImage($imageFile, $type);
-                return true;
-            }
-            $this->deleteImage($ImageFound->id, true);
-            $upload = $this->storageUploadImage($imageFile, $product_id);
-
-            $ImageFound->image = $upload;
-            $ImageFound->save();
-        }
-        return false;
-    }
-    public function deleteImage($imageId, bool $deleteOnDatabase = false)
-    {
+    public function deleteImage($imageId, bool $deleteOnDatabase = false){
         $image = (new ProductImage())->findById($imageId);
         if (!$image) {
             $this->message = "Não existe um imagem com esse ID.";
             return false;
         }
-        $pathCurrentImage = "storage/images/products/" . $image->image;
-
-
+        $imageUploader = new ImageUploader(self::$DIR);
+        if(!$imageUploader->delete($image->image)){
+            $this->message = $imageUploader->getMessage();
+            return false;
+        }
 
         if ($deleteOnDatabase) {
             if (!$image->destroy()) {
@@ -185,10 +181,5 @@ class Product extends DataLayer
             $this->message = "Imagem: $image->image foi removida com sucesso!";
         }
         return true;
-    }
-
-    public function getMessage()
-    {
-        return $this->message;
     }
 }

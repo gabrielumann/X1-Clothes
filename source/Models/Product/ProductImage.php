@@ -21,7 +21,7 @@ class ProductImage extends DataLayer
         $image->fetch(true);
 
         if($image->count() > 5) {
-            $this->message = "Voce já atingiu o limite de fotos!";
+            $this->message = "Voce já atingiu o limite de fotos deste produto!";
             return false;
         };
 

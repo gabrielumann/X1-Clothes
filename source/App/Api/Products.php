@@ -10,6 +10,13 @@ use Source\Models\Product\Size;
 
 class Products extends Api
 {
+    private const ALLOWED_IMAGES = [
+        "principal_image",
+        "additional_image_1",
+        "additional_image_2",
+        "additional_image_3",
+        "additional_image_4"
+    ];
     private static string $CLASSNAME = "produto";
 
     public function __construct()
@@ -24,7 +31,7 @@ class Products extends Api
         $sizes = new Size();
         $brand = new Brand();
         if (!$products) {
-            parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
+            parent::message( self::$CLASSNAME, parent::$KEY_NOT_EXIST);
             return;
         }
 
@@ -77,10 +84,10 @@ class Products extends Api
 
     public function createProduct(array $data)
     {
-//        echo json_encode($data);
-//        echo json_encode($_FILES["principal_image"]["name"]);
+        //echo json_encode($data);
+//        echo json_encode($_FILES["principal_image"]);
 //        for($i = 1; $i <= 4; $i++){
-//            echo json_encode($_FILES["additional_image_$i"]["name"]);
+//            echo json_encode($_FILES["additional_image_$i"]);
 //        }
 
         //$this->auth();
@@ -95,7 +102,6 @@ class Products extends Api
                 die();
             }
         }
-        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
 
         $product->name = $data["name"];
         $product->price_brl = $data["price_brl"];
@@ -108,26 +114,10 @@ class Products extends Api
             $this->error(message: $product->getMessage());
             return;
         }
-        chdir("..");
-        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+        self::changeDirectory(function () use ($product) {
+            $this->handleProductImages($product);
+        });
 
-            $product->SaveImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);
-
-        }else{
-            $this->error(message: 'Erro ao fazer upload da imagem principal');
-            return;
-        }
-
-        //echo json_encode(getcwd());
-        for($i = 1; $i <= 4 ; $i++){
-            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[$i]]['error'] === UPLOAD_ERR_OK) {
-                $product->SaveImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
-            }else {
-                $this->error(message: "Erro ao enviar a imagem de índice $i.");
-                die();
-            }
-        }
-        chdir("api");
         $response[] = [
             "id" => $product->id,
             "name" => $product->name,
@@ -145,41 +135,33 @@ class Products extends Api
 
     public function updateProduct(array $data)
     {
-//        $this->auth();
-//        echo json_encode($data);
-//        echo json_encode($_FILES["principal_image"]["name"]);
-//        for($i = 1; $i <= 4; $i++){
-//            echo json_encode($_FILES["additional_image_$i"]["name"]);
-//        }
-        $id = $data["id"];
+        //$this->auth();
+        //echo json_encode($data);
+        $product_id = $data["id"];
 
         $instance = new Product();
-        $product = $instance->findById($id);
+        $product = $instance->findById($product_id);
         if (!$product) {
             parent::message( self::$CLASSNAME, parent::$KEY_NOT_FOUND);
             return;
         }
         $product->setData($data);
-        $ALLOWED_IMAGES = ["principal_image", "additional_image_1", "additional_image_2", "additional_image_3", "additional_image_4"];
-
         chdir("..");
 
-        if (isset($_FILES[$ALLOWED_IMAGES[0]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-            if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL)){
+        if (isset($_FILES[self::ALLOWED_IMAGES[0]]) && $_FILES[self::ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+            if(!$product->UpdateImage($_FILES[self::ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL, $product_id)){
                 $this->error(message: $product->getMessage());
                 return;
             }
         }
-
         for($i = 1; $i <= 4 ; $i++){
-            if (isset($_FILES[$ALLOWED_IMAGES[$i]]) && $_FILES[$ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
-                if(!$product->UpdateImage($_FILES[$ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i)){
+            if (isset($_FILES[self::ALLOWED_IMAGES[$i]]) && $_FILES[self::ALLOWED_IMAGES[0]]['error'] === UPLOAD_ERR_OK) {
+                if(!$product->UpdateImage($_FILES[self::ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY,$product_id, $i)){
                     $this->error(message: $product->getMessage());
                     die();
                 }
             }
         }
-
         chdir("api");
         if($product->save()){
             $response[] = [
@@ -202,7 +184,6 @@ class Products extends Api
 
         $id = $data["id"];
         $product = (new Product())->findById($id);
-        chdir("..");
         if ($product->getImage()){
             foreach ($product->getImage() as $img){
                 //echo json_encode($img);
@@ -212,7 +193,6 @@ class Products extends Api
                 }
             }
         }
-        chdir("api");
         if ($product->destroy()) {
             $this->success(message: "Produto do id: $id foi removido com sucesso!");
         } else {
@@ -228,5 +208,25 @@ class Products extends Api
             $response[] = $image->data();
         }
         $this->success($response);
+    }
+    private function handleProductImages(Product $product, bool $isUpdate = false): void
+    {
+        if (isset($_FILES[self::ALLOWED_IMAGES[0]])) {
+            if ($isUpdate) {
+                $product->updateImage($_FILES[self::ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL, $product->id);;
+            } else {
+                $product->saveImage($_FILES[self::ALLOWED_IMAGES[0]], ProductImage::$PRINCIPAL);;
+            }
+        }
+
+        for ($i = 1; $i < count(self::ALLOWED_IMAGES); $i++) {
+            if (isset($_FILES[self::ALLOWED_IMAGES[$i]])) {
+                if ($isUpdate) {
+                    $product->updateImage($_FILES[self::ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $product->id, $i);
+                } else {
+                    $product->saveImage($_FILES[self::ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $i);
+                }
+            }
+        }
     }
 }

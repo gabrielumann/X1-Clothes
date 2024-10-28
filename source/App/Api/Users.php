@@ -9,6 +9,7 @@ use Source\Support\ImageUploader;
 
 class Users extends Api
 {
+    private static string $DIR = "user";
     public static string $KEY_NOT_FOUND_USER = "KEY_NOT_FOUND_USER";
     public static string $KEY_NOT_EXIST_USER = "KEY_NOT_EXIST_USER";
     public function __construct()
@@ -124,7 +125,8 @@ class Users extends Api
     public function updateImage(array $data)
     {
         $user = (new User())->findById($data['id']);
-        $imageUploader = new ImageUploader();
+        $imageUploader = new ImageUploader(self::$DIR);
+
         if ($user->hasImage()) {
             if (!$imageUploader->delete($user->image)){
                 $this->error(message: $imageUploader->getMessage());
@@ -136,10 +138,13 @@ class Users extends Api
             $this->error(message: "Por favor, envie uma foto");
             return;
         }
-
+        chdir("..");
         $upload = $imageUploader->upload($userImg);
-
-
+        if(!$upload){
+            $this->error(message: $imageUploader->getMessage());
+            return;
+        }
+        chdir("api");
         $user->image = $upload;
 
         if($user->save()){

@@ -93,5 +93,10 @@ abstract class Api
                 break;
         }
     }
-
+    protected function changeDirectory(callable $callable)
+    {
+        chdir("..");
+        call_user_func($callable);
+        chdir("api");
+    }
 }
