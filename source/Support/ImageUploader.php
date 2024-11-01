@@ -34,10 +34,11 @@ class ImageUploader
 
     public function delete($imagePath)
     {
+        //echo json_encode($imagePath);
         if (unlink($imagePath)) {
             return true;
         } else {
-            $this->message =  "Erro ao excluir o arquivo de caminho $imagePath.";
+            $this->message =  "Erro ao excluir o arquivo de caminho $imagePath";
             return false;
         }
     }

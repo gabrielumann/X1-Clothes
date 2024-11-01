@@ -22,3 +22,5 @@ window.addEventListener("load", async () => {
     })
 
 })
+const updateImageModal = document.getElementById('updateImageModal');
+const closeUpdateImageModalBtn = document.querySelector('.close-update-image-modal');

@@ -62,6 +62,7 @@ export async function destroy ($path) {
 export async function setAllOptions($path, $htmlElement) {
     let field = document.querySelectorAll($htmlElement);
     let arr = await getList($path)
+    //console.log(field);
     field.forEach((htmlElement) => {
         arr.forEach((e) => {
             htmlElement.innerHTML += `<option value="${e.id}">${e.name}</option>`

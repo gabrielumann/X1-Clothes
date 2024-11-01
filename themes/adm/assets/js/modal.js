@@ -5,8 +5,8 @@ const closeCreateModalBtn = document.querySelector('.close-create-modal');
 const updateModal = document.getElementById('updateModal');
 const closeUpdateModalBtn = document.querySelector('.close-update-modal');
 
-const updateImageModal = document.getElementById('updateImageModal');
-const closeUpdateImageModalBtn = document.querySelector('.close-update-image-modal');
+const updateImageModal = document.getElementById('updateImageModal') != null ? document.getElementById('updateImageModal'): updateModal;
+const closeUpdateImageModalBtn = document.querySelector('.close-update-image-modal') != null ? document.querySelector('.close-update-image-modal'): closeUpdateModalBtn;
 
 btnOpenCreateModal.onclick = function() {
     createModal.style.display = "block";

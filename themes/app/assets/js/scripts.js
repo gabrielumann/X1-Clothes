@@ -8,7 +8,7 @@ async function renderProfileImage(){
 
     allProfileImagesFields.forEach((e, i) => {
         e.src = "../" + imageSrc
-        //console.log(e.src)
+        console.log(e.src)
     })
 }
 await renderProfileImage();

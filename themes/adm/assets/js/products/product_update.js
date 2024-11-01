@@ -8,7 +8,7 @@ import {
     showToast
 } from "../../../../shared/js/functions.js"
 let tbody = document.querySelector("tbody#products-list")
-let ImagesLocalPath = '/X1-Clothes/storage/images/products/';
+let ImagesLocalPath = '/X1-Clothes/';
 let productID;
 const updateModal = document.getElementById('updateModal');
 const closeUpdateModalBtn = document.querySelector('.close-update-modal');

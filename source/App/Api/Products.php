@@ -172,11 +172,13 @@ class Products extends Api
         $product = (new Product())->findById($id);
         if ($product->getImage()){
             foreach ($product->getImage() as $img){
-                //echo json_encode($img);
-                if(!$product->deleteImage($img->id, true)){
-                    $this->error(message: $product->getMessage());
-                    die();
-                }
+                self::changeDirectory(function () use ($product, $img) {
+                    if(!$product->deleteImage($img->id, true)){
+                        $this->error(message: $product->getMessage());
+                        die();
+                    }
+                });
+
             }
         }
         if ($product->destroy()) {

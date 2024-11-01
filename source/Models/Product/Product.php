@@ -168,6 +168,7 @@ class Product extends DataLayer
             $this->message = "Não existe um imagem com esse ID.";
             return false;
         }
+        echo json_encode(getcwd());
         $imageUploader = new ImageUploader(self::$DIR);
         if(!$imageUploader->delete($image->image)){
             $this->message = $imageUploader->getMessage();

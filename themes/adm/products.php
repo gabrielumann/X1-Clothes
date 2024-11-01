@@ -25,16 +25,16 @@
         </tr>
         </thead>
         <tbody id="products-list">
-        <tr id="1">
-            <td>${e.id}</td>
-            <td><img src="" alt="Imagem do Produto" class="product-img"></td>
-            <td>${e.name}</td>
-            <td>R$ </td>
-            <td>
-                <button class="edit-btn">Editar</button>
-                <button class="delete-btn">Excluir</button>
-            </td>
-        </tr>`
+<!--        <tr id="1">-->
+<!--            <td>${e.id}</td>-->
+<!--            <td><img src="" alt="Imagem do Produto" class="product-img"></td>-->
+<!--            <td>${e.name}</td>-->
+<!--            <td>R$ </td>-->
+<!--            <td>-->
+<!--                <button class="edit-btn">Editar</button>-->
+<!--                <button class="delete-btn">Excluir</button>-->
+<!--            </td>-->
+<!--        </tr>`-->
         </tbody>
     </table>
 </section>
