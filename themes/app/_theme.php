@@ -16,8 +16,8 @@
     <?php if ($this->section("specific-script")): ?>
         <?= $this->section("specific-script"); ?>
     <?php endif; ?>
-    <script src="<?= url("themes/app/assets/js/modal.js")?>" async></script>
-    <script src="<?= url("themes/app/assets/js/_theme.js")?>" type="module" async ></script>
+    <script src="<?= url("themes/app/assets/js/_theme.js"); ?>" type="module" async></script>
+    <script src="<?= url("themes/app/assets/js/scripts.js"); ?>" type="module"  async></script>
 </head>
 <body>
 
@@ -25,28 +25,26 @@
     <div class="container1">
         <div class="navbar">
             <div class="logo">
-                <a href="<?= url("/app"); ?>"><img src="themes/shared/images/icon/logox1.png">
+                <a href="<?= url('app/'); ?>"><img src="<?= url("themes/shared/images/icon/logox1.png"); ?>" alt="logo">
                 </a>
             </div>
             <nav>
                 <ul id="menuItems">
-                    <li><p><a href="<?= url("/app"); ?>">Home</a></p></li>
-                    <li><p><a href="<?= url("/app/produtos"); ?>">Produtos</a></p></li>
-                    <li><p><a href="<?= url("/app/sobre"); ?>">Sobre</a></p></li>
-                    <li><p><a href="<?= url("/app/faqs"); ?>">Ajuda</a></p></li>
-                    <li><p><a href="<?= url("/app/perfil"); ?>">Seu Perfil</a></p></li>
-
+                    <li><p><a href="<?= url("app/"); ?>">Home</a></p></li>
+                    <li><p><a href="<?= url("app/produtos"); ?>">Produtos</a></p></li>
+                    <li><p><a href="<?= url("app/sobre"); ?>">Sobre</a></p></li>
+                    <li><p><a href="<?= url("app/faqs"); ?>">Ajuda</a></p></li>
                 </ul>
             </nav>
-            <a href="<?= url("/app/carrinho"); ?>"><img src="themes/shared/images/interface/cart.png" width="30px" height="30px">
-            </a>
+            <a href="<?= url("carrinho"); ?>"><img src="<?= url("themes/shared/images/interface/cart.png"); ?>" width="30px" height="30px" alt="Carrinho"> </a>
+            <a href="<?= url('app/perfil'); ?>"><img class="profile-image" id="userImg" src="<?= url("themes/shared/images/interface/user-base-icon.jfif"); ?>" alt="Perfil"> </a>
         </div>
     </div>
 </div>
 
 
-
 <div id="toast-container"></div>
+
 <div id="content">
     <!-- Your content goes here -->
     <?php
@@ -62,27 +60,27 @@
         <div class="row">
             <div class="col-5">
                 <a href="https://int.bape.com/">
-                    <img src="themes/shared/images/icon/logo-bape.png">
+                    <img src="<?= url('themes/shared/images/icon/logo-bape.png'); ?>">
                 </a>
             </div>
             <div class="col-5">
                 <a href="https://www.adidas.com.br/">
-                    <img src="themes/shared/images/icon/logo-adidas.png">
+                    <img src="<?= url('themes/shared/images/icon/logo-adidas.png'); ?>">
                 </a>
             </div>
             <div class="col-5">
                 <a href="https://www.crtz.xyz/password">
-                    <img src="themes/shared/images/icon/logo-corteiz.png  ">
+                    <img src="<?= url('themes/shared/images/icon/logo-corteiz.png  '); ?>">
                 </a>
             </div>
             <div class="col-5">
                 <a href="https://uk.trapstarlondon.com/">
-                    <img src="themes/shared/images/icon/logo-trapstar.png">
+                    <img src="<?= url('themes/shared/images/icon/logo-trapstar.png'); ?>">
                 </a>
             </div>
             <div class="col-5">
                 <a href="https://www.nike.com.br/">
-                    <img src="themes/shared/images/icon/logo-nike.png">
+                    <img src="<?= url('themes/shared/images/icon/logo-nike.png'); ?>">
                 </a>
             </div>
         </div>
@@ -99,16 +97,16 @@
             <div class="footer-col-1">
                 <h3>Baixe o nosso App</h3>
                 <p>
-                    Disponível em sistemas Android.
+                    Disponível em sistemas Android e IOS.
                 </p>
                 <div class="app-logo">
-                    <img src="themes/shared/images/interface/play-store.png">
-                    <img src="themes/shared/images/interface/app-store.png">
+                    <img src="<?= url('themes/shared/images/interface/play-store.png'); ?>" alt="PlayStore">
+                    <img src="<?= url('themes/shared/images/interface/app-store.png'); ?>" alt="AppStore">
                 </div>
             </div>
             <div class="footer-col-2">
                 <div class="logo">
-                    <a href="<?= url("/app"); ?>">X1 Clothes</span>
+                    <a href="<?= url('app/'); ?>">X1 Clothes</span>
                     </a>
                 </div>
                 <p>
@@ -119,10 +117,10 @@
             <div class="footer-col-3">
                 <h3>Mapa Site</h3>
                 <ul>
-                    <li><a href="<?= url("/app"); ?>">Home</a></li>
-                    <li><a href="<?= url("/app/produtos"); ?>">Produtos</a></li>
-                    <li><a href="<?= url("/app/sobre"); ?>">Sobre</a></li>
-                    <li><a href="<?= url("/app/contato"); ?>">Contato</a></li>
+                    <li><a href="<?= url('app/'); ?>">Home</a></li>
+                    <li><a href="<?= url("app/produtos"); ?>">Produtos</a></li>
+                    <li><a href="<?= url("app/sobre"); ?>">Sobre</a></li>
+                    <li><a href="<?= url("app/contato"); ?>">Contato</a></li>
                 </ul>
             </div>
             <div class="footer-col-4">

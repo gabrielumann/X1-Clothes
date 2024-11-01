@@ -25,16 +25,16 @@
         </tr>
         </thead>
         <tbody id="products-list">
-<!--        <tr id="${e.id}">-->
-<!--            <td>${e.id}</td>-->
-<!--            <td><img src="/X1-Clothes/storage/images/products/${e.product_image[0].image}" alt="Imagem do Produto" class="produto-img"></td> -->
-<!--            <td>${e.name}</td>-->
-<!--            <td>R$ ${e.price_brl.toFixed(2).toString().replace(".", ",")}</td>-->
-<!--            <td>-->
-<!--                <button class="edit-btn">Editar</button>-->
-<!--                <button class="delete-btn">Excluir</button>-->
-<!--            </td>-->
-<!--        </tr>`-->
+        <tr id="1">
+            <td>${e.id}</td>
+            <td><img src="" alt="Imagem do Produto" class="product-img"></td>
+            <td>${e.name}</td>
+            <td>R$ </td>
+            <td>
+                <button class="edit-btn">Editar</button>
+                <button class="delete-btn">Excluir</button>
+            </td>
+        </tr>`
         </tbody>
     </table>
 </section>

@@ -1,9 +1,8 @@
 <?php $this->layout("_theme", ['title' => $title]); ?>
 
 <?php $this->start("specific-style")?>
-<link rel="stylesheet" href="themes/web/assets/css/contact.css">
+<link rel="stylesheet" href="<?= url("themes/web/assets/css/contact.css")?>">
 <?php $this->end(); ?>
-
 
     <div class="container">
         <div class="row">

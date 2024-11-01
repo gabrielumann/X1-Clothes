@@ -56,14 +56,7 @@ class Users extends Api
             return;
         }
 
-        $response[] = [
-            "id" => $user->id,
-            "first_name" => $user->first_name,
-            "last_name" => $user->last_name,
-            "email" => $user->email,
-            "cpf" => $user->cpf,
-            "role" => $user->role,
-        ];
+        $response[] = $user->data();
         $this->success($response);
     }
 
@@ -124,6 +117,7 @@ class Users extends Api
 
     public function updateImage(array $data)
     {
+        chdir("..");
         $user = (new User())->findById($data['id']);
         $imageUploader = new ImageUploader(self::$DIR);
 
@@ -138,12 +132,13 @@ class Users extends Api
             $this->error(message: "Por favor, envie uma foto");
             return;
         }
-        chdir("..");
+
         $upload = $imageUploader->upload($userImg);
         if(!$upload){
             $this->error(message: $imageUploader->getMessage());
             return;
         }
+
         chdir("api");
         $user->image = $upload;
 
@@ -192,8 +187,6 @@ class Users extends Api
         $this->success([
             "id" => $user->id,
             "first_name" => $user->first_name,
-            "last_name" => $user->last_name,
-            "email" => $user->email,
             "role" => $user->role,
             "token" => $signature
         ], message: $user->getMessage());

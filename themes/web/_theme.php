@@ -54,42 +54,43 @@
 
 
 
-            <!--    brands     -->
-        <div class="brands">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-5">
-                        <a href="https://int.bape.com/">
-                            <img src="themes/shared/images/icon/logo-bape.png">
-                        </a>
-                    </div>
-                    <div class="col-5">
-                        <a href="https://www.adidas.com.br/">
-                            <img src="themes/shared/images/icon/logo-adidas.png">
-                        </a>
-                    </div>
-                    <div class="col-5">
-                        <a href="https://www.crtz.xyz/password">
-                            <img src="themes/shared/images/icon/logo-corteiz.png  ">
-                        </a>
-                    </div>
-                    <div class="col-5">
-                        <a href="https://uk.trapstarlondon.com/">
-                            <img src="themes/shared/images/icon/logo-trapstar.png">
-                        </a>
-                    </div>
-                    <div class="col-5">
-                        <a href="https://www.nike.com.br/">
-                            <img src="themes/shared/images/icon/logo-nike.png">
-                        </a>
-                    </div>
+    <!--    brands     -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <a href="https://int.bape.com/">
+                        <img src="<?= url('themes/shared/images/icon/logo-bape.png'); ?>">
+                    </a>
+                </div>
+                <div class="col-5">
+                    <a href="https://www.adidas.com.br/">
+                        <img src="<?= url('themes/shared/images/icon/logo-adidas.png'); ?>">
+                    </a>
+                </div>
+                <div class="col-5">
+                    <a href="https://www.crtz.xyz/password">
+                        <img src="<?= url('themes/shared/images/icon/logo-corteiz.png  '); ?>">
+                    </a>
+                </div>
+                <div class="col-5">
+                    <a href="https://uk.trapstarlondon.com/">
+                        <img src="<?= url('themes/shared/images/icon/logo-trapstar.png'); ?>">
+                    </a>
+                </div>
+                <div class="col-5">
+                    <a href="https://www.nike.com.br/">
+                        <img src="<?= url('themes/shared/images/icon/logo-nike.png'); ?>">
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-<!--             footer                -->
+
+    <!--             footer                -->
 
         <div class="footer">
             <div class="container">
@@ -100,8 +101,8 @@
                             Disponível em sistemas Android.
                         </p>
                         <div class="app-logo">
-                            <img src="themes/shared/images/interface/play-store.png">
-                            <img src="themes/shared/images/interface/app-store.png">
+                            <img src="<?= url('themes/shared/images/interface/play-store.png'); ?>" alt="PlayStore">
+                            <img src="<?= url('themes/shared/images/interface/app-store.png'); ?>" alt="AppStore">
                         </div>
                     </div>
                     <div class="footer-col-2">

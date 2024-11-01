@@ -24,8 +24,9 @@ loginForm.addEventListener("submit", async (e) => {
         })
     }
     if(response.type === "success"){
-        localStorage.setItem('session', JSON.stringify(response.data.token));
+        localStorage.setItem('session', JSON.stringify(response.data));
         showToast(`Seja Bem Vindo ${response.data.first_name}!`).then();
+        //console.log(response.data.image)
         if (response.data.role !== "DEFAULT"){
             setTimeout(() => {
                 window.location.href = getBackendUrl("adm");

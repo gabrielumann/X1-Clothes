@@ -14,6 +14,7 @@ window.addEventListener("load", async () => {
             <td>${e.email}</td>
             <td>
                 <button class="edit-btn">Editar</button>
+                <button class="edit-image-btn">Editar Imagem</button>
                 <button class="delete-btn">Excluir</button>
             </td>
         </tr>
