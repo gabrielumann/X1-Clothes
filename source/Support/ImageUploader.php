@@ -22,6 +22,7 @@ class ImageUploader
         $name = $file["name"];
 
         if (!empty($file["type"])) {
+
             if (in_array($file["type"], $this->image::isAllowed())) {
                 return $this->image->upload($file, uniqid() . "-" . pathinfo($name, PATHINFO_FILENAME));
             }

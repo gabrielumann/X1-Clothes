@@ -208,7 +208,7 @@ class Products extends Api
         }
 
         for ($i = 1; $i < count(self::ALLOWED_IMAGES); $i++) {
-            if (isset($_FILES[self::ALLOWED_IMAGES[$i]])) {
+            if (!empty($_FILES[self::ALLOWED_IMAGES[$i]])) {
                 if ($isUpdate) {
                     $product->updateImage($_FILES[self::ALLOWED_IMAGES[$i]], ProductImage::$SECONDARY, $product->id, $i);
                 } else {

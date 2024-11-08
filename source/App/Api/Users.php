@@ -141,12 +141,12 @@ class Users extends Api
 
         chdir("api");
         $user->image = $upload;
-
         if($user->save()){
             $this->success( ["id" => $user->id, "image" => $user->image],"Imagem do usuário atualizada com sucesso!");
             return;
         }
         $this->error(message: "Erro ao atualizar no banco de dados!");
+
 
     }
     public function deleteUser(array $data)

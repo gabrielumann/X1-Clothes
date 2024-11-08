@@ -46,7 +46,7 @@ export function showToast (message) {
                 toastContainer.removeChild(toast);
                 resolve();
             }, 500);
-        }, 3000);
+        }, 1000);
     })
 }
 export async function getList ($path) {

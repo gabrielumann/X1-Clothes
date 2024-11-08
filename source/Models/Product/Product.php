@@ -37,7 +37,46 @@ class Product extends DataLayer
             $this->size_id = $data["size_id"];
         }
     }
+    private function findImage($product_id, $type, $order)
+    {
+        if (!empty($order)){
+            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
+            $productImage =  (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
+            if (!empty($productImage)){
+                return $productImage;
+            }
 
+        }else{
+            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
+            $productImage = (new ProductImage())->find("product_id = :product_id AND type = :type", $params)->fetch();
+            if (!empty($productImage)){
+                return $productImage;
+            }
+
+        }
+        return null;
+    }
+    public function deleteImage($imageId, bool $deleteOnDatabase = false){
+        $image = (new ProductImage())->findById($imageId);
+        if (!$image) {
+            $this->message = "Não existe um imagem com esse ID.";
+            return false;
+        }
+        $imageUploader = new ImageUploader(self::$DIR);
+        if(!$imageUploader->delete($image->image)){
+            $this->message = $imageUploader->getMessage();
+            return false;
+        }
+
+        if ($deleteOnDatabase) {
+            if (!$image->destroy()) {
+                $this->message = "Erro ao apagar a imagem!";
+                return false;
+            }
+            $this->message = "Imagem: $image->image foi removida com sucesso!";
+        }
+        return true;
+    }
     public function verifySize($imageFile)
     {
         if ($imageFile['size'] > 5000000) { // 5MB
@@ -103,7 +142,7 @@ class Product extends DataLayer
             $this->saveImage($imageFile, $type, $order);
             return true;
         }
-        echo json_encode($imageFound->image);
+        //echo json_encode($imageFound->image);
         $this->deleteImage($imageFound->id);
         $upload = $imageUploader->upload($imageFile);
         if(!$upload){
@@ -116,25 +155,6 @@ class Product extends DataLayer
             return false;
         }
         return true;
-    }
-    private function findImage($product_id, $type, $order)
-    {
-        if (!empty($order)){
-            $params = http_build_query(["product_id" => $product_id, "type" => $type, "order" => $order]);
-            $productImage =  (new ProductImage())->find("product_id = :product_id AND type = :type AND complementary_order = :order", $params)->fetch();
-            if (!empty($productImage)){
-                return $productImage;
-            }
-
-        }else{
-            $params = http_build_query(["product_id" => $product_id, "type" => $type]);
-            $productImage = (new ProductImage())->find("product_id = :product_id AND type = :type", $params)->fetch();
-            if (!empty($productImage)){
-                return $productImage;
-            }
-
-        }
-        return null;
     }
 
     public function getImage()
@@ -161,27 +181,5 @@ class Product extends DataLayer
     public function getMessage()
     {
         return $this->message;
-    }
-    public function deleteImage($imageId, bool $deleteOnDatabase = false){
-        $image = (new ProductImage())->findById($imageId);
-        if (!$image) {
-            $this->message = "Não existe um imagem com esse ID.";
-            return false;
-        }
-        echo json_encode(getcwd());
-        $imageUploader = new ImageUploader(self::$DIR);
-        if(!$imageUploader->delete($image->image)){
-            $this->message = $imageUploader->getMessage();
-            return false;
-        }
-
-        if ($deleteOnDatabase) {
-            if (!$image->destroy()) {
-                $this->message = "Erro ao apagar a imagem!";
-                return false;
-            }
-            $this->message = "Imagem: $image->image foi removida com sucesso!";
-        }
-        return true;
     }
 }

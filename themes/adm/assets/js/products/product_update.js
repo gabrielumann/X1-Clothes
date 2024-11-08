@@ -59,7 +59,7 @@ function clearImages(arrayImgId, fieldPosition = 0) {
 const updateProductForm = document.getElementById("form-update-product")
 updateProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    let principal_images =  document.querySelector("#new-product-image")
+    let principal_images =  document.querySelector("#new-principal-image")
     let comp_images = [
         document.querySelector("#new-comp-image-1"),
         document.querySelector("#new-comp-image-2"),

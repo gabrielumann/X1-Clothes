@@ -127,22 +127,22 @@
             <div class="form-group">
                 <label for="principal_image">Imagem Principal Atual:</label>
                 <img id="current-main-image" src="" alt="Imagem Principal">
-                <input type="file" id="principal_image" name="principal_image" accept="image/*">
+                <input type="file" id="new-principal-image" name="new-principal-image" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="current-complementary-images">Imagens Complementares Atuais:</label>
                 <div id="complementary-images-container">
                     <img id="current-comp-image-1" src="" alt="Complementar 1">
-                    <input type="file" id="additional_image_1" name="additional_image_1" accept="image/*">
+                    <input type="file" id="new-comp-image-1" name="new-comp-image-1" accept="image/*">
 
                     <img id="current-comp-image-2" src="" alt="Complementar 2">
-                    <input type="file" id="additional_image_2" name="additional_image_2" accept="image/*">
+                    <input type="file" id="new-comp-image-2" name="new-comp-image-2" accept="image/*">
 
                     <img id="current-comp-image-3" src="" alt="Complementar 3">
-                    <input type="file" id="additional_image_3" name="additional_image_3" accept="image/*">
+                    <input type="file" id="new-comp-image-3" name="new-comp-image-3" accept="image/*">
 
                     <img id="current-comp-image-4" src="" alt="Complementar 4">
-                    <input type="file" id="additional_image_4" name="additional_image_4" accept="image/*">
+                    <input type="file" id="new-comp-image-4" name="new-comp-image-4" accept="image/*">
                 </div>
             </div>
 

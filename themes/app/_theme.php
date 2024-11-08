@@ -36,7 +36,7 @@
                     <li><p><a href="<?= url("app/faqs"); ?>">Ajuda</a></p></li>
                 </ul>
             </nav>
-            <a href="<?= url("carrinho"); ?>"><img src="<?= url("themes/shared/images/interface/cart.png"); ?>" width="30px" height="30px" alt="Carrinho"> </a>
+            <a href="<?= url("app/carrinho"); ?>"><img src="<?= url("themes/shared/images/interface/cart.png"); ?>" width="30px" height="30px" alt="Carrinho"> </a>
             <a href="<?= url('app/perfil'); ?>"><img class="profile-image" id="userImg" src="<?= url("themes/shared/images/interface/user-base-icon.jfif"); ?>" alt="Perfil"> </a>
         </div>
     </div>

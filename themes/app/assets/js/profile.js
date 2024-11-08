@@ -45,6 +45,7 @@ userForm.addEventListener("submit", async (e) => {
 
 
 async function handleImage (userImg){
+try{
     if (userImg && userImg.files.length > 0) {
         let formData = new FormData()
         formData.append('image' , inputImage.files[0])
@@ -53,10 +54,10 @@ async function handleImage (userImg){
             body: formData
         })).json();
         console.log(response);
-        showToast(response.message).then(() => {
-            window.location.reload();
-        })
     } else{
-        //console.log('Imagem não enviada')
+        //TRAIQUÉTI CALABOKA
     }
+}catch (e){
+
+}
 }

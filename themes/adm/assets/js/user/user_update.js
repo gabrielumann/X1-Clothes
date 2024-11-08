@@ -58,17 +58,19 @@ const inputImage = document.getElementById('user-new-image');
 updateUserImage.addEventListener("submit", async (e) => {
     e.preventDefault();
     if(inputImage && inputImage.files.length > 0) {
+        try {
+            let formData = new FormData()
+            formData.append('image' , inputImage.files[0])
+            let response = await (await fetch(getBackendUrlApi(`/users/update/image/${userID}`), {
+                method: "POST",
+                body: formData
+            })).json();
+            console.log(response)
+            showToast(response.message).then(() => {
+                window.location.reload();
+            })
+        }catch (e){}
 
-        let formData = new FormData()
-        formData.append('image' , inputImage.files[0])
-        let response = await (await fetch(getBackendUrlApi(`/users/update/image/${userID}`), {
-            method: "POST",
-            body: formData
-        })).json();
-        console.log(response);
-        showToast(response.message).then(() => {
-            window.location.reload();
-        })
     }else{
         showToast('Deve ser enviado um valor para o campo imagem').then()
     }
