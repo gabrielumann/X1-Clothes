@@ -1,9 +1,15 @@
 import {
-    getBackendUrlApi,
-    getList, setAllOptions,
+    setAllOptions, verifyIsArray,
 } from "../../../../shared/js/functions.js"
-let ImagesLocalPath = '/X1-Clothes/';
 
+import {
+    RequestProduct
+} from "../../../../shared/js/classes/RequestProduct.js";
+import {
+    ImagesLocalPath
+} from "../../../../shared/js/globals.js";
+
+const apiProduct = new RequestProduct()
 let tbody = document.querySelector("tbody#products-list")
 window.addEventListener("load", async () => {
     await setAllOptions("/products/category", "#category");
@@ -11,21 +17,12 @@ window.addEventListener("load", async () => {
     await setAllOptions("/products/brands", "#brand");
 
     tbody.innerHTML = ' '
-    let {data: products} = await (await fetch(getBackendUrlApi('/products'), {method: "GET"})).json();
+    let {data: products} = await apiProduct.listProducts()
     verifyIsArray(products).forEach((e) => {
         setValues(tbody, e)
     })
 })
 
-function verifyIsArray(element){
-    if (Array.isArray(element)) {
-        return element
-    }else{
-        let array = []
-        array.push(element)
-        return array
-    }
-}
 
 function setValues(tbody, e){
     let principalImage = null;

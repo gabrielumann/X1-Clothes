@@ -55,7 +55,7 @@ try{
         })).json();
         console.log(response);
     } else{
-        //TRAIQUÉTI CALABOKA
+
     }
 }catch (e){
 

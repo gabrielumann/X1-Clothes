@@ -3,13 +3,20 @@ import {
      destroy,
     formAppendImages,
     getBackendUrlApi,
-    getList,
     showDataForm,
     showToast
 } from "../../../../shared/js/functions.js"
-let tbody = document.querySelector("tbody#products-list")
-let ImagesLocalPath = '/X1-Clothes/';
+import {
+    RequestProduct
+} from "../../../../shared/js/classes/RequestProduct.js";
+import {
+    ImagesLocalPath
+} from "../../../../shared/js/globals.js";
+
+const apiProduct = new RequestProduct()
+
 let productID;
+let tbody = document.querySelector("tbody#products-list")
 const updateModal = document.getElementById('updateModal');
 const closeUpdateModalBtn = document.querySelector('.close-update-modal');
 tbody.addEventListener("click", async (e) => {
@@ -18,7 +25,7 @@ tbody.addEventListener("click", async (e) => {
         clearForm(['name', 'price_brl', 'color', 'category', 'size', 'brand'])
         clearImages(['current-main-image', 'current-comp-image-1', 'current-comp-image-2', 'current-comp-image-3', 'current-comp-image-4'])
 
-        let getProductID = await getList(`/products/${productID}`)
+        let {data: getProductID} = await apiProduct.getProductById(productID)
         getProductID.forEach((e) => {
             updateModal.style.display = "block";
             showDataForm(e, 1);
@@ -29,7 +36,7 @@ tbody.addEventListener("click", async (e) => {
     }
     if(e.target.matches("button.delete-btn")){
         productID = e.target.parentElement.parentElement.getAttribute("id")
-        let DeleteProductID = await destroy(`/products/delete/${productID}`)
+        let DeleteProductID = await apiProduct.deleteProduct(productID)
         //console.log(DeleteProductID)
         showToast(DeleteProductID.message).then(() => {
             window.location.reload();
@@ -68,11 +75,7 @@ updateProductForm.addEventListener("submit", async (e) => {
     ]
     let Form = new FormData(updateProductForm)
     Form = formAppendImages(Form, principal_images, comp_images)
-    let response = await (await fetch(getBackendUrlApi(`/products/update/${productID}`), {
-        method: "POST",
-        body: Form
-
-    })).json();
+    let response = await apiProduct.updateProduct(Form, productID)
     showToast(response.message).then(() => {
         window.location.reload();
     })

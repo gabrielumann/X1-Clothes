@@ -79,10 +79,10 @@
             </div>
             <div class="form-group">
                 <label for="additional_image_1">Imagens Complementares:</label>
-                <input type="file" id="additional_image_1" name="additional_image_1" accept="image/*" required>
-                <input type="file" id="additional_image_2" name="additional_image_2" accept="image/*" required>
-                <input type="file" id="additional_image_3" name="additional_image_3" accept="image/*" required>
-                <input type="file" id="additional_image_4" name="additional_image_4" accept="image/*" required>
+                <input type="file" id="additional_image_1" name="additional_image_1" accept="image/*" >
+                <input type="file" id="additional_image_2" name="additional_image_2" accept="image/*" >
+                <input type="file" id="additional_image_3" name="additional_image_3" accept="image/*" >
+                <input type="file" id="additional_image_4" name="additional_image_4" accept="image/*" >
             </div>
             <button type="submit">Cadastrar</button>
         </form>

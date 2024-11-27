@@ -11,6 +11,7 @@ body{
     background: -webkit-linear-gradient(to bottom, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #ffffff;
+    overflow-x: hidden;
 }
 
 /*       Header       */
@@ -150,7 +151,7 @@ a{
 
 .title{
     text-align: center;
-    margin: 0 auto 80px;
+    margin: 20px auto 80px;
     position: relative;
     line-height: 60px;
     color: #ffffff;

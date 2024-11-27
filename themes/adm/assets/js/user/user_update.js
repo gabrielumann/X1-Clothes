@@ -1,10 +1,11 @@
 import {
-    destroy,
     getBackendUrlApi,
-    getList,
     showDataForm,
     showToast
 } from "../../../../shared/js/functions.js"
+import {RequestUser} from "../../../../shared/js/classes/RequestUser.js";
+
+const apiUser = new RequestUser()
 let tbody = document.querySelector("tbody#user-list")
 let userID;
 const updateImageModal = document.getElementById('updateImageModal');
@@ -12,8 +13,8 @@ const updateModal = document.getElementById('updateModal');
 tbody.addEventListener("click", async (e) => {
     if(e.target.matches("button.edit-btn")){
         userID = e.target.parentElement.parentElement.getAttribute("id")
-        let getUserID= await getList(`/users/${userID}`)
-        getUserID.forEach((e) => {
+        let {data: UserById} = await apiUser.getUserById(userID)
+        UserById.forEach((e) => {
             updateModal.style.display = "block";
             showDataForm(e, 1);
         })
@@ -22,18 +23,16 @@ tbody.addEventListener("click", async (e) => {
         //console.log(e.target.parentElement.parentElement.getAttribute("id"))
         userID = e.target.parentElement.parentElement.getAttribute("id")
         let mainImage = document.querySelector('#current-main-image')
-        // tem que fazer isso
-        // dar um gitpull e mudar o tipo da imagem pra ffile
-        let getUserID= await getList(`/users/${userID}`)
+        let {data: UserById}= await apiUser.getUserById(userID)
         updateImageModal.style.display = "block";
-        getUserID.forEach((e) => {
+        UserById.forEach((e) => {
             let userImg = e.image != null ? e.image: 'themes/shared/images/interface/user-base-icon.jfif'
             mainImage.src = '../' + userImg;
         })
     }
     if(e.target.matches("button.delete-btn")){
         userID = e.target.parentElement.parentElement.getAttribute("id")
-        let DeleteUserID = await destroy(`/users/delete/${userID}`)
+        let DeleteUserID = await apiUser.deleteUser(userID)
         showToast(DeleteUserID.message).then(() => {
             window.location.reload();
         })
@@ -43,10 +42,7 @@ tbody.addEventListener("click", async (e) => {
 const updateUser = document.getElementById("form-update")
 updateUser.addEventListener("submit", async (e) => {
     e.preventDefault();
-    let response = await (await fetch(getBackendUrlApi(`/users/update/${userID}`), {
-        method: "POST",
-        body: new FormData(updateUser)
-    })).json();
+    let response = await apiUser.updateUser(new FormData(updateUser), userID)
     console.log(response);
     showToast(response.message).then(() => {
         window.location.reload();
@@ -61,15 +57,14 @@ updateUserImage.addEventListener("submit", async (e) => {
         try {
             let formData = new FormData()
             formData.append('image' , inputImage.files[0])
-            let response = await (await fetch(getBackendUrlApi(`/users/update/image/${userID}`), {
-                method: "POST",
-                body: formData
-            })).json();
+            let response = await apiUser.updateUserImage(formData, userID)
             console.log(response)
             showToast(response.message).then(() => {
                 window.location.reload();
             })
-        }catch (e){}
+        }catch (e){
+            console.log(e)
+        }
 
     }else{
         showToast('Deve ser enviado um valor para o campo imagem').then()

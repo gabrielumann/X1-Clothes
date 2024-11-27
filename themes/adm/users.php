@@ -108,39 +108,6 @@
         </form>
     </div>
 </div>
-<div id="updateModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn close-update-modal">&times;</span>
-        <h2>Edição de Usuário</h2>
-        <form id="form-update" method="post">
-            <div class="form-group">
-                <label for="first_name">Primeiro Nome:</label>
-                <input type="text" id="first_name" name="first_name" required>
-            </div>
-            <div class="form-group">
-                <label for="last_name">Último Nome:</label>
-                <input type="text" id="last_name" name="last_name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" maxlength="11" placeholder="XXX.XXX.XXX-XX" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
-            </div>
-            <div class="form-group">
-                <label for="role">Papel:</label>
-                <select id="role" name="role" required>
-                    <option value="">Selecione um papel</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="DEFAULT">Default</option>
-                </select><br><br>
-            </div>
-            <button type="submit">Editar</button>
-        </form>
-    </div>
-</div>
 <div id="updateImageModal" class="modal">
     <div class="modal-content">
         <span class="close-btn close-update-image-modal">&times;</span>

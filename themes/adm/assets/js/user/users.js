@@ -1,11 +1,10 @@
-import {getList,
-} from "../../../../shared/js/functions.js"
+import {RequestUser} from "../../../../shared/js/classes/RequestUser.js";
 
 let tbody = document.querySelector("tbody#user-list")
+const apiUser = new RequestUser()
 window.addEventListener("load", async () => {
     tbody.innerHTML = ' ';
-    let users = await getList("/users")
-    //console.log(users);
+    let {data: users} = await apiUser.listUsers()
     users.forEach((e) => {
         tbody.innerHTML += `
         <tr id="${e.id}">

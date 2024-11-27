@@ -18,7 +18,6 @@
                             <span onclick="changeLogin()">Entrar</span>
                             <span onclick="changeRegister()">Registrar</span>
                             <hr id="indicator">
-
                         </div>
 
                         <form id="loginForm">
@@ -29,18 +28,16 @@
 
                         </form>
                         <form id="regForm">
-                            <input type="text" name="first_name" placeholder="Primeiro nome">
-                            <input type="text" name="last_name" placeholder="Ultimo nome">
-                            <input type="email" name="email" placeholder="Email">
-                            <input type="text" name="cpf" placeholder="CPF">
-                            <input type="password" name="password" placeholder="Senha">
-                            <input type="password" name="passwordConfirmed" placeholder="Confirmar senha">
+                            <input type="text" name="first_name" placeholder="Primeiro nome" required>
+                            <input type="text" name="last_name" placeholder="Ultimo nome" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="text" name="cpf" maxlength="11" placeholder="CPF" oninput="this.value=this.value.replace(/[^0-9.]/g,'')" required>
+                            <input type="password" id="password" name="password" placeholder="Senha" required>
+                            <input type="password" id="passwordConfirmed" name="passwordConfirmed" placeholder="Confirmar senha" required>
                             <button class="btn">Registrar</button>
-
+                        </form>
                     </div>
-
                 </div>
-
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-import {formAppendImages, getBackendUrlApi, showToast} from "../../../../shared/js/functions.js";
+import {getBackendUrlApi, showToast} from "../../../../shared/js/functions.js";
 
 const userForm = document.querySelector("#form-register");
 userForm.addEventListener("submit", async (e) => {

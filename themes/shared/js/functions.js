@@ -1,12 +1,22 @@
-export const URLpath = "X1-Clothes";
-// export const URLpath = "sua-pasta-de-trabalho";
+import RequestBase from "./classes/RequestBase.js";
 
-// Função para retornar a URL do backend
+export const URLpath = "X1-Clothes";
+
+const api = new RequestBase(`${location.protocol}//${location.hostname}/${URLpath}/api`);
+
 export function getBackendUrl(path = "") {
     return `${location.protocol}//${location.hostname}/${URLpath}/${path}`;
 }
 
-
+export function verifyIsArray(element){
+    if (Array.isArray(element)) {
+        return element
+    }else{
+        let array = []
+        array.push(element)
+        return array
+    }
+}
 // Função para retornar a URL da API
 export function getBackendUrlApi(path = "") {
     return `${location.protocol}//${location.hostname}/${URLpath}/api/${path}`;
@@ -33,12 +43,10 @@ export function showToast (message) {
         toast.textContent = message;
         toastContainer.appendChild(toast);
 
-        // Mostrar a mensagem toast
         setTimeout(() => {
             toast.classList.add('show');
         }, 100);
 
-        // Remover a mensagem toast após 3 segundos
         setTimeout(() => {
             toast.classList.remove('show');
             toast.classList.add('hide');
@@ -49,19 +57,13 @@ export function showToast (message) {
         }, 1000);
     })
 }
-export async function getList ($path) {
-    let {data: arr} = await (await fetch(getBackendUrlApi($path), {method: "GET"})).json();
-    //console.log(arr)
-    return arr;
-}
 export async function destroy ($path) {
     return await (await fetch(getBackendUrlApi($path), {method: "DELETE"})).json();
 }
 
-
 export async function setAllOptions($path, $htmlElement) {
     let field = document.querySelectorAll($htmlElement);
-    let arr = await getList($path)
+    let {data: arr} = await api.get($path)
     //console.log(field);
     field.forEach((htmlElement) => {
         arr.forEach((e) => {
