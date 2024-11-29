@@ -1,10 +1,7 @@
 import {
     clearForm,
-     destroy,
     formAppendImages,
-    getBackendUrlApi,
     showDataForm,
-    showToast
 } from "../../../../shared/js/functions.js"
 import {
     RequestProduct
@@ -12,6 +9,7 @@ import {
 import {
     ImagesLocalPath
 } from "../../../../shared/js/globals.js";
+import Toast from "../../../../shared/js/classes/Toast.js";
 
 const apiProduct = new RequestProduct()
 
@@ -38,9 +36,7 @@ tbody.addEventListener("click", async (e) => {
         productID = e.target.parentElement.parentElement.getAttribute("id")
         let DeleteProductID = await apiProduct.deleteProduct(productID)
         //console.log(DeleteProductID)
-        showToast(DeleteProductID.message).then(() => {
-            window.location.reload();
-        })
+        Toast.showToast(DeleteProductID)
     }
 });
 function ShowImagesForm(arrayImg) {
@@ -76,8 +72,6 @@ updateProductForm.addEventListener("submit", async (e) => {
     let Form = new FormData(updateProductForm)
     Form = formAppendImages(Form, principal_images, comp_images)
     let response = await apiProduct.updateProduct(Form, productID)
-    showToast(response.message).then(() => {
-        window.location.reload();
-    })
+    Toast.showToast(response);
 });
 
