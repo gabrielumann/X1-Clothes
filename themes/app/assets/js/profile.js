@@ -1,8 +1,11 @@
-import {showToast, getBackendUrlApi, getList} from "../../../shared/js/functions.js";
+import {showToast, getBackendUrlApi} from "../../../shared/js/functions.js";
 import {session} from "../../../shared/js/globals.js";
+import {RequestUser} from "../../../shared/js/classes/RequestUser.js";
 
+
+const apiUser = new RequestUser()
 async function renderUserInfo(){
-    let users = await getList(`/users/${session.id}`)
+    let {data: users} = await apiUser.getUserById(session.id)
     let user = users[0]
     document.getElementById('firstName').innerText = user.first_name;
     document.getElementById('lastName').innerText = user.last_name;

@@ -58,7 +58,7 @@ export function showToast (message) {
     })
 }
 export async function destroy ($path) {
-    return await (await fetch(getBackendUrlApi($path), {method: "DELETE"})).json();
+    return await api.delete($path);
 }
 
 export async function setAllOptions($path, $htmlElement) {

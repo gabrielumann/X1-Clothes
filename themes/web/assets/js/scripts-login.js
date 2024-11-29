@@ -1,5 +1,6 @@
-import {getBackendUrl, getBackendUrlApi, showToast} from "../../../shared/js/functions.js"
+import {getBackendUrl, showToast} from "../../../shared/js/functions.js"
 import {RequestUser} from "../../../shared/js/classes/RequestUser.js";
+import Toast from "../../../shared/js/classes/Toast.js";
 
 const regForm = document.querySelector("#regForm");
 const apiUser = new RequestUser()
@@ -32,7 +33,7 @@ loginForm.addEventListener("submit", async (e) => {
     }
     if(response.type === "success"){
         localStorage.setItem('session', JSON.stringify(response.data));
-        showToast(`Seja Bem Vindo ${response.data.first_name}!`).then();
+        Toast.showToast(response,`Seja Bem Vindo ${response.data.first_name}!`);
         //console.log(response.data.image)
         if (response.data.role !== "DEFAULT"){
             setTimeout(() => {

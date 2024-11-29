@@ -1,14 +1,16 @@
 import {session} from "../../../shared/js/globals.js";
-import {getList} from "../../../shared/js/functions.js";
 
+import {RequestUser} from "../../../shared/js/classes/RequestUser.js";
+
+const apiUser = new RequestUser()
 async function renderProfileImage(){
     const allProfileImagesFields = document.querySelectorAll(".profile-image")
-    let users = await getList(`/users/${session.id}`)
+    let {data: users} = await apiUser.getUserById(session.id)
     let imageSrc = users[0].image != null? users[0].image: 'themes/shared/images/interface/user-base-icon.jfif'
 
     allProfileImagesFields.forEach((e, i) => {
         e.src = "../" + imageSrc
-        console.log(e.src)
+       // console.log(e.src)
     })
 }
 await renderProfileImage();

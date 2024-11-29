@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/11/2024 às 03:34
+-- Tempo de geração: 28/11/2024 às 02:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -61,7 +61,9 @@ INSERT INTO `brands` (`id`, `name`) VALUES
 (10, 'Yeezy'),
 (11, 'Syna'),
 (12, '1of1'),
-(13, 'Nocta');
+(13, 'Nocta'),
+(14, 'New Balance'),
+(15, 'Trapstar');
 
 -- --------------------------------------------------------
 
@@ -164,7 +166,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price_brl`, `color`, `category_id`, `brand_id`, `size_id`) VALUES
-(66, 'Yeezy 350 V2 MX Dark Salt', 999.99, 'preto', 1, 10, 7);
+(66, 'Yeezy 350 V2 MX Dark Salt', 999.99, 'preto', 1, 10, 7),
+(67, 'New Balance 9060 Moonbeam Sea Salt', 1049.99, 'Off White', 1, 14, 7),
+(68, 'Union LA x Nike Cortez SP Sesame', 950, 'Laranja', 1, 1, 7),
+(69, 'Air Jordan 4 RM Pink Oxford', 1950, 'Rosa', 1, 3, 7),
+(70, 'Jaqueta Exclusiviist Faux Leather', 998.99, 'Preto', 6, 12, 6),
+(71, 'BAPE BLACK Ring #8', 2899.99, 'Prata', 8, 5, 5),
+(72, 'BAPE Solid Camo Jacquard Down Jacket', 1799.99, 'Beige', 6, 5, 6),
+(74, 'Trapstar X Adwoa Jeans ', 780, 'Azul', 3, 15, 6),
+(76, 'teste1', 123123, '1231231', 1, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -214,7 +224,41 @@ INSERT INTO `product_images` (`id`, `image`, `type`, `product_id`, `complementar
 (184, 'storage/images/products/2024/11/672d77928a3a4-22.png', 'SECONDARY', 66, 1),
 (185, 'storage/images/products/2024/11/672d777f59d90-23.png', 'SECONDARY', 66, 2),
 (186, 'storage/images/products/2024/11/672d777f63021-24.png', 'SECONDARY', 66, 3),
-(187, 'storage/images/products/2024/11/672d777f6f00f-25.png', 'SECONDARY', 66, 4);
+(187, 'storage/images/products/2024/11/672d777f6f00f-25.png', 'SECONDARY', 66, 4),
+(188, 'storage/images/products/2024/11/6732089c28a65-1.png', 'PRINCIPAL', 67, NULL),
+(189, 'storage/images/products/2024/11/6732089c316a9-2.png', 'SECONDARY', 67, 1),
+(190, 'storage/images/products/2024/11/6732089c39db7-3.png', 'SECONDARY', 67, 2),
+(191, 'storage/images/products/2024/11/6732089c42290-4.png', 'SECONDARY', 67, 3),
+(192, 'storage/images/products/2024/11/6732089c49dea-5.png', 'SECONDARY', 67, 4),
+(193, 'storage/images/products/2024/11/673208f2f2ed4-1.png', 'PRINCIPAL', 68, NULL),
+(194, 'storage/images/products/2024/11/673208f308f4e-2.png', 'SECONDARY', 68, 1),
+(195, 'storage/images/products/2024/11/673208f3128ad-3.png', 'SECONDARY', 68, 2),
+(196, 'storage/images/products/2024/11/673208f31de6f-4.png', 'SECONDARY', 68, 3),
+(197, 'storage/images/products/2024/11/673208f326f8c-5.png', 'SECONDARY', 68, 4),
+(198, 'storage/images/products/2024/11/673209293f1c2-1.png', 'PRINCIPAL', 69, NULL),
+(199, 'storage/images/products/2024/11/673209294847b-2.png', 'SECONDARY', 69, 1),
+(200, 'storage/images/products/2024/11/67320929505cd-3.png', 'SECONDARY', 69, 2),
+(201, 'storage/images/products/2024/11/673209295b53e-4.png', 'SECONDARY', 69, 3),
+(202, 'storage/images/products/2024/11/6732092963ac7-5.png', 'SECONDARY', 69, 4),
+(203, 'storage/images/products/2024/11/673210c216859-2.png', 'PRINCIPAL', 70, NULL),
+(204, 'storage/images/products/2024/11/673210c21ef8a-1.png', 'SECONDARY', 70, 1),
+(205, 'storage/images/products/2024/11/673210c22772c-3.png', 'SECONDARY', 70, 2),
+(206, 'storage/images/products/2024/11/673210c237809-4.png', 'SECONDARY', 70, 3),
+(207, 'storage/images/products/2024/11/673210c248dd7-5.png', 'SECONDARY', 70, 4),
+(208, 'storage/images/products/2024/11/67321136e12df-trapstar-x-adwoa-jeans-blue.png', 'PRINCIPAL', 71, NULL),
+(209, 'storage/images/products/2024/11/6732110f17bfb-2.png', 'SECONDARY', 71, 1),
+(210, 'storage/images/products/2024/11/6732110f20b93-5.png', 'SECONDARY', 71, 2),
+(211, 'storage/images/products/2024/11/6732110f2921f-3.png', 'SECONDARY', 71, 3),
+(212, 'storage/images/products/2024/11/6732110f32c3a-4.png', 'SECONDARY', 71, 4),
+(213, 'storage/images/products/2024/11/673211893cc3b-1.png', 'PRINCIPAL', 72, NULL),
+(214, 'storage/images/products/2024/11/6732118947f4e-2.png', 'SECONDARY', 72, 1),
+(215, 'storage/images/products/2024/11/6732118953791-3.png', 'SECONDARY', 72, 2),
+(216, 'storage/images/products/2024/11/673211895eaa8-4.png', 'SECONDARY', 72, 3),
+(217, 'storage/images/products/2024/11/673211896e47d-5.png', 'SECONDARY', 72, 4),
+(223, 'storage/images/products/2024/11/673212c4169f1-1.png', 'PRINCIPAL', 74, NULL),
+(224, 'storage/images/products/2024/11/673212c41fde6-2.png', 'SECONDARY', 74, 1),
+(225, 'storage/images/products/2024/11/673212c42c22d-3.png', 'SECONDARY', 74, 2),
+(228, 'storage/images/products/2024/11/6745d1ffdde4f-1.png', 'PRINCIPAL', 76, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,7 +281,7 @@ CREATE TABLE `rating` (
 
 CREATE TABLE `sizes` (
   `id` int(11) NOT NULL,
-  `name` varchar(10) NOT NULL
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -245,13 +289,9 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`id`, `name`) VALUES
-(1, 'PP'),
-(2, 'P'),
-(3, 'M'),
-(4, 'G'),
-(5, 'GG'),
-(6, 'XXG'),
-(7, 'none');
+(5, 'Tamanho único'),
+(6, 'Tamanho para Roupas. Ex: P, M, G'),
+(7, 'Tamanho para Tenis. Ex: 39,40');
 
 -- --------------------------------------------------------
 
@@ -290,7 +330,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `cpf`
 (2, 'Lucas', 'Neves', 'default@default.com', 'default', '12345678910', 'DEFAULT', 'storage/images/user/2024/11/672d7595efc82-21.png'),
 (3, 'Jorge', 'Carvalho', 'jorge@gmail.com', '$2y$10$iavfB9tGvoNXOPMNE2yI7.zBLbh92BctE2KWd8qJqZ55lMOl5YjNu', '12345678910', 'DEFAULT', 'storage/images/user/2024/11/672d704b22ced-user-2.png'),
 (12, 'Gabriel', 'Umann', 'gu@admin.com', '$2y$10$vWnCUMqwFlu0QNpVbjTZ..S.l4tVcAw8myJHW/G/CbgW61jOeb74e', '12345678910', 'ADMIN', 'storage/images/user/2024/11/672d75dc83c57-20.png'),
-(13, 'Douglas', 'Duarte', 'douglas@gmail.com', '$2y$10$lhwOnuMqp6FvKDP8b.9Iv.ZhWL1arMQedQgp1qaq/a6HLBYHfI1ni', '12312312312', 'DEFAULT', NULL);
+(13, 'Douglas', 'Duarte', 'douglas@gmail.com', '$2y$10$lhwOnuMqp6FvKDP8b.9Iv.ZhWL1arMQedQgp1qaq/a6HLBYHfI1ni', '12312312312', 'DEFAULT', 'storage/images/user/2024/11/674711af279dd-1.png');
 
 --
 -- Índices para tabelas despejadas
@@ -400,7 +440,7 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT de tabela `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `faq_categories`
@@ -430,7 +470,7 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de tabela `product_categories`
@@ -442,7 +482,7 @@ ALTER TABLE `product_categories`
 -- AUTO_INCREMENT de tabela `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT de tabela `rating`
@@ -466,7 +506,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restrições para tabelas despejadas
