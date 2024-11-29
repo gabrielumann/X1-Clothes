@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/11/2024 às 02:09
+-- Tempo de geração: 29/11/2024 às 02:09
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -174,7 +174,7 @@ INSERT INTO `products` (`id`, `name`, `price_brl`, `color`, `category_id`, `bran
 (71, 'BAPE BLACK Ring #8', 2899.99, 'Prata', 8, 5, 5),
 (72, 'BAPE Solid Camo Jacquard Down Jacket', 1799.99, 'Beige', 6, 5, 6),
 (74, 'Trapstar X Adwoa Jeans ', 780, 'Azul', 3, 15, 6),
-(76, 'teste1', 123123, '1231231', 1, 4, 5);
+(76, 'teste', 123123, '1231231', 1, 4, 5);
 
 -- --------------------------------------------------------
 
