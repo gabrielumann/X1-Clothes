@@ -1,5 +1,5 @@
 class Toast {
-    static showToast(response, message = response.message) {
+    static showToast(response, message = response.message, reload = true) {
         if (!response || !response.type || !response.message) {
             console.error("Resposta inválida!");
             return;
@@ -37,7 +37,9 @@ class Toast {
             toast.classList.add('hide');
             setTimeout(() => {
                 toastContainer.removeChild(toast);
-                window.location.reload();
+                if (reload){
+                    window.location.reload();
+                }
             }, 500);
         }, 1000);
     }
