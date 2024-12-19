@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/11/2024 às 02:09
+-- Tempo de geração: 19/12/2024 às 10:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -173,8 +173,7 @@ INSERT INTO `products` (`id`, `name`, `price_brl`, `color`, `category_id`, `bran
 (70, 'Jaqueta Exclusiviist Faux Leather', 998.99, 'Preto', 6, 12, 6),
 (71, 'BAPE BLACK Ring #8', 2899.99, 'Prata', 8, 5, 5),
 (72, 'BAPE Solid Camo Jacquard Down Jacket', 1799.99, 'Beige', 6, 5, 6),
-(74, 'Trapstar X Adwoa Jeans ', 780, 'Azul', 3, 15, 6),
-(76, 'teste', 123123, '1231231', 1, 4, 5);
+(74, 'Trapstar X Adwoa Jeans ', 780, 'Azul', 3, 15, 6);
 
 -- --------------------------------------------------------
 
@@ -257,8 +256,7 @@ INSERT INTO `product_images` (`id`, `image`, `type`, `product_id`, `complementar
 (217, 'storage/images/products/2024/11/673211896e47d-5.png', 'SECONDARY', 72, 4),
 (223, 'storage/images/products/2024/11/673212c4169f1-1.png', 'PRINCIPAL', 74, NULL),
 (224, 'storage/images/products/2024/11/673212c41fde6-2.png', 'SECONDARY', 74, 1),
-(225, 'storage/images/products/2024/11/673212c42c22d-3.png', 'SECONDARY', 74, 2),
-(228, 'storage/images/products/2024/11/6745d1ffdde4f-1.png', 'PRINCIPAL', 76, NULL);
+(225, 'storage/images/products/2024/11/673212c42c22d-3.png', 'SECONDARY', 74, 2);
 
 -- --------------------------------------------------------
 
