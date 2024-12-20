@@ -47,7 +47,7 @@ abstract class Api
 
         self::back($return, $code);
     }
-    public function error (string $message = null, string $type = "error", int $code = 500) : void
+    public function error (string $message = null, string $type = "error", int $code = 400) : void
     {
         $return = ["type" => "error"];
         if(isset($message)){
