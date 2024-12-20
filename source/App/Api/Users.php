@@ -173,7 +173,7 @@ class Users extends Api
         $user = new User();
 
         if(!$user->login($data["email"], $data["password"])){
-            $this->error(message: $user->getMessage());
+            $this->success(message: $user->getMessage());
             return;
         }
         $token = new TokenJWT();
